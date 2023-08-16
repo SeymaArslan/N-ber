@@ -29,8 +29,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="gyj-6J-5q6">
                                 <rect key="frame" x="16" y="138" width="360" height="242.33333333333337"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGI-lB-YAN">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGI-lB-YAN">
                                         <rect key="frame" x="0.0" y="0.0" width="360" height="23.666666666666668"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="23.666666666666668" id="4na-X4-GLS"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -47,8 +50,11 @@
                                             <constraint firstAttribute="height" constant="2" id="rGV-II-321"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Şifre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-EA-ahE">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-EA-ahE">
                                         <rect key="frame" x="0.0" y="86.333333333333343" width="360" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="ygZ-5P-biP"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -65,13 +71,16 @@
                                             <constraint firstAttribute="height" constant="2" id="VQP-Nd-peR"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Şifre (Tekrar)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-TQ-U0m">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-TQ-U0m">
                                         <rect key="frame" x="0.0" y="171.33333333333331" width="360" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="hY9-O3-j3c"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Şifre (Tekrar)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-Jo-4NP">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Şifre (Tekrar)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-Jo-4NP">
                                         <rect key="frame" x="0.0" y="209.33333333333331" width="360" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -84,6 +93,9 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="dYq-EA-ahE" firstAttribute="top" secondItem="3PE-2a-8DU" secondAttribute="bottom" constant="14" id="9cF-Gu-pmQ"/>
+                                </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akH-nN-DAG">
                                 <rect key="frame" x="16" y="408.66666666666669" width="177" height="35"/>
@@ -183,7 +195,7 @@
                         <outlet property="passwordTextField" destination="ATy-P5-G6O" id="7w9-mb-xLm"/>
                         <outlet property="repeatPasswordLabel" destination="Xqi-TQ-U0m" id="cUf-Zk-BZL"/>
                         <outlet property="repeatPasswordLineView" destination="FSn-R8-1V5" id="qxi-xD-Ut9"/>
-                        <outlet property="repeatPasswprdTextField" destination="rkg-Jo-4NP" id="PAr-XR-HiX"/>
+                        <outlet property="repeatPasswordTextField" destination="rkg-Jo-4NP" id="4Bh-9H-Wfv"/>
                         <outlet property="resendEmailButtonOutlet" destination="nbe-wK-Jyw" id="Eqw-zV-lGm"/>
                         <outlet property="signUpButtonOutlet" destination="5jc-uG-hKV" id="IPt-f8-VBy"/>
                         <outlet property="signUpLabel" destination="nC6-cO-7En" id="oP7-Ak-zmH"/>
