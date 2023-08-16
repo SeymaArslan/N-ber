@@ -1,24 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="N_ber" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Giriş" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvF-kM-iqd">
+                                <rect key="frame" x="16" y="75" width="360" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="361" id="8y8-gg-Iwi"/>
+                                    <constraint firstAttribute="height" constant="48" id="Otm-XR-eRE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="gyj-6J-5q6">
+                                <rect key="frame" x="16" y="138" width="360" height="242.33333333333337"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGI-lB-YAN">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="23.666666666666668"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u4d-Y2-FC7">
+                                        <rect key="frame" x="0.0" y="37.666666666666657" width="360" height="18.666666666666671"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PE-2a-8DU">
+                                        <rect key="frame" x="0.0" y="70.333333333333343" width="360" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="rGV-II-321"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Şifre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYq-EA-ahE">
+                                        <rect key="frame" x="0.0" y="86.333333333333343" width="360" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Şifre" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ATy-P5-G6O">
+                                        <rect key="frame" x="0.0" y="124.33333333333331" width="360" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k2y-5u-P97">
+                                        <rect key="frame" x="0.0" y="155.33333333333331" width="360" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="VQP-Nd-peR"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Şifre (Tekrar)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xqi-TQ-U0m">
+                                        <rect key="frame" x="0.0" y="171.33333333333331" width="360" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Şifre (Tekrar)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-Jo-4NP">
+                                        <rect key="frame" x="0.0" y="209.33333333333331" width="360" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FSn-R8-1V5">
+                                        <rect key="frame" x="0.0" y="240.33333333333331" width="360" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="Emb-YH-aM2"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="akH-nN-DAG">
+                                <rect key="frame" x="16" y="408.66666666666669" width="177" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="177" id="kqb-iW-3d9"/>
+                                    <constraint firstAttribute="height" constant="35" id="tC6-hF-B1E"/>
+                                </constraints>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Şifremi Unuttum?"/>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qfu-v7-aZM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbe-wK-Jyw">
+                                <rect key="frame" x="200" y="408.66666666666669" width="176" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="4Zv-cA-h54"/>
+                                    <constraint firstAttribute="height" constant="35" id="Xj6-Uu-Zzk"/>
+                                </constraints>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Şifremi Gönder"/>
+                                <connections>
+                                    <action selector="resendEmailButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fNQ-Dh-qc1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srg-St-g70">
+                                <rect key="frame" x="50" y="463.66666666666669" width="292" height="45.333333333333314"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="292" id="61k-UJ-aA0"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="tintColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="GİRİŞ" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="26"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJc-1D-tT7"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G7t-QV-Ek3">
+                                <rect key="frame" x="94.333333333333329" y="782.33333333333337" width="203.33333333333337" height="35.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hesabım Yok?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nC6-cO-7En">
+                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="35.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jc-uG-hKV">
+                                        <rect key="frame" x="117.66666666666666" y="0.0" width="85.666666666666657" height="35.666666666666664"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Kayıt Ol">
+                                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="signUpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nqL-5l-1gT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" red="0.22033703330000001" green="0.71261721850000004" blue="0.99855047460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EvF-kM-iqd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2gM-cg-yXg"/>
+                            <constraint firstItem="akH-nN-DAG" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="4ON-5P-yfP"/>
+                            <constraint firstItem="akH-nN-DAG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4hd-KM-60F"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="G7t-QV-Ek3" secondAttribute="bottom" id="Gzh-q6-0mT"/>
+                            <constraint firstItem="nbe-wK-Jyw" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="LlR-0v-9N0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gyj-6J-5q6" secondAttribute="trailing" constant="16" id="Qmc-ZO-a4M"/>
+                            <constraint firstItem="nbe-wK-Jyw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Qnj-kn-OGL"/>
+                            <constraint firstItem="gyj-6J-5q6" firstAttribute="top" secondItem="EvF-kM-iqd" secondAttribute="bottom" constant="15" id="YLm-Ys-98u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EvF-kM-iqd" secondAttribute="trailing" constant="16" id="YNh-3m-haa"/>
+                            <constraint firstItem="G7t-QV-Ek3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZSA-e6-h3s"/>
+                            <constraint firstItem="gyj-6J-5q6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bR9-iu-nue"/>
+                            <constraint firstItem="nbe-wK-Jyw" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="e4S-lu-P7O"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nbe-wK-Jyw" secondAttribute="trailing" constant="16" id="fgs-Ne-1RA"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gLb-9D-VgE"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="top" secondItem="akH-nN-DAG" secondAttribute="bottom" constant="20" id="gSy-mn-Iw5"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="ieD-rD-rF5"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="top" secondItem="akH-nN-DAG" secondAttribute="bottom" constant="20" id="qSN-zP-Fzf"/>
+                            <constraint firstItem="akH-nN-DAG" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="r0U-VP-5OM"/>
+                            <constraint firstItem="akH-nN-DAG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rez-3C-3Wj"/>
+                            <constraint firstItem="EvF-kM-iqd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uWD-cK-n7D"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="srg-St-g70" secondAttribute="trailing" constant="50" id="x3Z-mb-xLo"/>
+                            <constraint firstItem="EvF-kM-iqd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="zEe-pt-Zuk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="oGI-lB-YAN" id="0vF-Zt-iOt"/>
+                        <outlet property="emailTextField" destination="u4d-Y2-FC7" id="N5D-bZ-eoy"/>
+                        <outlet property="loginButtonOutlet" destination="srg-St-g70" id="RYO-ts-QeW"/>
+                        <outlet property="passwordLabel" destination="dYq-EA-ahE" id="tnG-Cd-AkX"/>
+                        <outlet property="passwordTextField" destination="ATy-P5-G6O" id="7w9-mb-xLm"/>
+                        <outlet property="repeatPasswordLabel" destination="Xqi-TQ-U0m" id="cUf-Zk-BZL"/>
+                        <outlet property="repeatPasswordLineView" destination="FSn-R8-1V5" id="qxi-xD-Ut9"/>
+                        <outlet property="repeatPasswprdTextField" destination="rkg-Jo-4NP" id="PAr-XR-HiX"/>
+                        <outlet property="resendEmailButtonOutlet" destination="nbe-wK-Jyw" id="Eqw-zV-lGm"/>
+                        <outlet property="signUpButtonOutlet" destination="5jc-uG-hKV" id="IPt-f8-VBy"/>
+                        <outlet property="signUpLabel" destination="nC6-cO-7En" id="oP7-Ak-zmH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="122.90076335877862" y="-2.1126760563380285"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>
