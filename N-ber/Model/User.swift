@@ -41,3 +41,15 @@ struct User: Codable, Equatable { // Equatable is to control two equal users ne 
     }
     
 }
+
+func saveUserLocally(_ user: User) {
+    let encoder = JSONEncoder()
+    
+    do {
+        let data = try encoder.encode(user)
+        UserDefaults.standard.set(data, forKey: kCURRENTUSER)
+    } catch {
+        print("error saving user locally ", error.localizedDescription)
+    }
+    
+}
