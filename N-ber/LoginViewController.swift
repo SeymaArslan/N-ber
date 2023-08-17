@@ -6,6 +6,7 @@
 //  8
 
 import UIKit
+import ProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -32,19 +33,34 @@ class LoginViewController: UIViewController {
         
         updateUIFor(login: true)
         setupTextFieldDelegates()
+        setupBackgroungTap()
+        
     }
 
     //MARK: - Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
-        
+        if isDataInputedFor(type: isLogin ? "login" : "register") {
+            print("login/register için veriler")
+        } else {
+            ProgressHUD.showFailed("Bütün alanları doldurun.")
+        }
     }
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
+        if isDataInputedFor(type: "password") {
+            print("şifremi unuttum için veriler")
+        } else {
+            ProgressHUD.showFailed("Bütün alanları doldurun.")
+        }
         
     }
     
     @IBAction func resendEmailButtonPressed(_ sender: Any) {
-        
+        if isDataInputedFor(type: "password") {
+            print("şifre gönder için veriler")
+        } else {
+            ProgressHUD.showFailed("Bütün alanları doldurun.")
+        }
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
@@ -63,6 +79,14 @@ class LoginViewController: UIViewController {
         updatePlaceholderLabels(textField: textField)
     }
     
+    private func setupBackgroungTap(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func backgroundTap() {
+        view.endEditing(false)
+    }
     
     //MARK: - Animations
     
@@ -75,6 +99,7 @@ class LoginViewController: UIViewController {
             self.repeatPasswordTextField.isHidden = login
             self.repeatPasswordLabel.isHidden = login
             self.repeatPasswordLineView.isHidden = login
+            self.resendEmailButtonOutlet.isHidden = login
         }
     }
     
@@ -88,5 +113,19 @@ class LoginViewController: UIViewController {
             repeatPasswordLabel.text = textField.hasText ? "Şifre (Tekrar)" : ""
         }
     }
+    
+    
+    //MARK: - Helpers
+    private func isDataInputedFor(type: String)  -> Bool {
+        switch type {
+        case "login":
+            return emailTextField.text != "" && passwordTextField.text != ""
+        case "registration":
+            return emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != ""
+        default:
+            return emailTextField.text != ""  // resend mail button is default
+        }
+    }
+    
 }
 

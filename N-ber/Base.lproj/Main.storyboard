@@ -110,7 +110,7 @@
                                     <action selector="forgotPasswordButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qfu-v7-aZM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbe-wK-Jyw">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nbe-wK-Jyw">
                                 <rect key="frame" x="201" y="408.66666666666669" width="176" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="176" id="4Zv-cA-h54"/>
@@ -121,17 +121,6 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Şifremi Gönder"/>
                                 <connections>
                                     <action selector="resendEmailButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fNQ-Dh-qc1"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srg-St-g70">
-                                <rect key="frame" x="153.33333333333334" y="463.66666666666669" width="86.666666666666657" height="45.333333333333314"/>
-                                <color key="tintColor" systemColor="tintColor"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="GİRİŞ" cornerStyle="large">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="26"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJc-1D-tT7"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="G7t-QV-Ek3">
@@ -155,27 +144,45 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="srg-St-g70">
+                                <rect key="frame" x="134" y="463.66666666666669" width="125" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="2mX-x1-Ij6"/>
+                                    <constraint firstAttribute="width" constant="125" id="2wM-VP-Gxh"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="K0W-As-C2b"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="hEZ-Ya-BEd"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="tintColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="GİRİŞ" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="26"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yJc-1D-tT7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" red="0.22033703330000001" green="0.71261721850000004" blue="0.99855047460000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EvF-kM-iqd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="2gM-cg-yXg"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="134" id="3QU-wp-AF6"/>
                             <constraint firstItem="akH-nN-DAG" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="4ON-5P-yfP"/>
                             <constraint firstItem="akH-nN-DAG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="4hd-KM-60F"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="G7t-QV-Ek3" secondAttribute="bottom" id="Gzh-q6-0mT"/>
                             <constraint firstItem="nbe-wK-Jyw" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="LlR-0v-9N0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="srg-St-g70" secondAttribute="trailing" constant="134" id="O9i-av-51D"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gyj-6J-5q6" secondAttribute="trailing" constant="16" id="Qmc-ZO-a4M"/>
                             <constraint firstItem="nbe-wK-Jyw" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Qnj-kn-OGL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="srg-St-g70" secondAttribute="trailing" constant="134" id="UII-QP-4hB"/>
                             <constraint firstItem="gyj-6J-5q6" firstAttribute="top" secondItem="EvF-kM-iqd" secondAttribute="bottom" constant="15" id="YLm-Ys-98u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EvF-kM-iqd" secondAttribute="trailing" constant="16" id="YNh-3m-haa"/>
                             <constraint firstItem="G7t-QV-Ek3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZSA-e6-h3s"/>
                             <constraint firstItem="gyj-6J-5q6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="bR9-iu-nue"/>
+                            <constraint firstItem="srg-St-g70" firstAttribute="top" secondItem="akH-nN-DAG" secondAttribute="bottom" constant="20" id="cbu-gt-kAE"/>
                             <constraint firstItem="nbe-wK-Jyw" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="e4S-lu-P7O"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nbe-wK-Jyw" secondAttribute="trailing" constant="16" id="fgs-Ne-1RA"/>
-                            <constraint firstItem="srg-St-g70" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gLb-9D-VgE"/>
-                            <constraint firstItem="srg-St-g70" firstAttribute="top" secondItem="akH-nN-DAG" secondAttribute="bottom" constant="20" id="gSy-mn-Iw5"/>
-                            <constraint firstItem="srg-St-g70" firstAttribute="top" secondItem="akH-nN-DAG" secondAttribute="bottom" constant="20" id="qSN-zP-Fzf"/>
                             <constraint firstItem="akH-nN-DAG" firstAttribute="top" secondItem="gyj-6J-5q6" secondAttribute="bottom" constant="28.329999999999998" id="r0U-VP-5OM"/>
                             <constraint firstItem="akH-nN-DAG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="rez-3C-3Wj"/>
                             <constraint firstItem="EvF-kM-iqd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="uWD-cK-n7D"/>
