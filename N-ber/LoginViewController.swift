@@ -3,7 +3,7 @@
 //  N-ber
 //
 //  Created by Seyma on 15.08.2023.
-//  8
+//  11
 
 import UIKit
 import ProgressHUD
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     //MARK: - Actions
     @IBAction func loginButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: isLogin ? "login" : "register") {
-            print("login/register için veriler")
+            isLogin ? loginUser() : registerUser()
         } else {
             ProgressHUD.showFailed("Bütün alanları doldurun.")
         }
@@ -66,6 +66,7 @@ class LoginViewController: UIViewController {
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         updateUIFor(login: sender.titleLabel?.text == "Giriş")
         isLogin.toggle()
+        resendEmailButtonOutlet.isHidden = true
     }
     
     //MARK: - Setup
@@ -126,6 +127,28 @@ class LoginViewController: UIViewController {
             return emailTextField.text != ""  // resend mail button is default
         }
     }
+    
+    private func loginUser() {
+        
+    }
+    
+    private func registerUser() {
+        if passwordTextField.text! == repeatPasswordTextField.text! {
+            FirebaseUserListener.shared.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!) { (error) in
+                if error == nil {
+                    ProgressHUD.showSuccess("Emailinize doğrulama postası gönderildi.")
+                    self.resendEmailButtonOutlet.isHidden = false
+                } else {
+                    ProgressHUD.showFailed(error?.localizedDescription)
+                    self.resendEmailButtonOutlet.isHidden = true
+                }
+            }
+        } else {
+            ProgressHUD.showFailed("Girdiğiniz şifreler birbirinden farklı.")
+            self.resendEmailButtonOutlet.isHidden = true
+        }
+    }
+    
     
 }
 
