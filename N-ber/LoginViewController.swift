@@ -48,7 +48,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: "password") {
-            print("şifremi unuttum için veriler")
+            resetPassword()
         } else {
             ProgressHUD.showFailed("Bütün alanları doldurun.")
         }
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func resendEmailButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: "password") {
-            print("şifre gönder için veriler")
+            resendeVerificationEmail()
         } else {
             ProgressHUD.showFailed("Bütün alanları doldurun.")
         }
@@ -160,6 +160,27 @@ class LoginViewController: UIViewController {
         } else {
             ProgressHUD.showFailed("Girdiğiniz şifreler birbirinden farklı.")
             self.resendEmailButtonOutlet.isHidden = true
+        }
+    }
+    
+    private func resetPassword(){
+        FirebaseUserListener.shared.resetPasswordFor(email: emailTextField.text!) { error in
+            if error == nil {
+                ProgressHUD.showSuccess("Mailinize gönderilen bağlantıya tıklayın.")
+            } else {
+                ProgressHUD.showFailed(error!.localizedDescription)
+            }
+        }
+    }
+    
+    private func resendeVerificationEmail() {
+        FirebaseUserListener.shared.resendVerificationEmail(email: emailTextField.text!) { error in
+            if error == nil {
+                ProgressHUD.showSuccess("Yeni doğrulama maili gönderildi.")
+            } else {
+//                ProgressHUD.showFailed(error!.localizedDescription)
+                print(error!.localizedDescription)
+            }
         }
     }
     

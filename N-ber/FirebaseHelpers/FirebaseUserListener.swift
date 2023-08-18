@@ -37,7 +37,7 @@ class FirebaseUserListener {
                 
                 // send verification email
                 authDataResult!.user.sendEmailVerification { (error) in
-                    print("auth email send with error: ", error?.localizedDescription)
+                    print("auth email send with error: ", error?.localizedDescription ?? "")
                 }
                 
                 // create user and save it
@@ -50,6 +50,21 @@ class FirebaseUserListener {
                 
             }
         }
+    }
+    
+    func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void ) {
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+    }
+    
+    //MARK: - Resend link methods
+    func resendVerificationEmail(email: String, completion: @escaping (_ error: Error?) -> Void) {
+        Auth.auth().currentUser?.reload(completion: { (error) in
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                completion(error)
+            })
+        })
     }
     
     //MARK: - Save users
