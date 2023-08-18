@@ -57,7 +57,7 @@ class LoginViewController: UIViewController {
     
     @IBAction func resendEmailButtonPressed(_ sender: Any) {
         if isDataInputedFor(type: "password") {
-            resendeVerificationEmail()
+            resendVerificationEmail()
         } else {
             ProgressHUD.showFailed("Bütün alanları doldurun.")
         }
@@ -133,7 +133,7 @@ class LoginViewController: UIViewController {
             if error == nil {
                 if isEmailVerified {
 //                    print("Kullanıcı mail ile giriş yaptı:  ", User.currentUser?.email)
-                    // go to app
+
                     self.goToApp()
                     
                 } else {
@@ -173,7 +173,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func resendeVerificationEmail() {
+    private func resendVerificationEmail() {
         FirebaseUserListener.shared.resendVerificationEmail(email: emailTextField.text!) { error in
             if error == nil {
                 ProgressHUD.showSuccess("Yeni doğrulama maili gönderildi.")
@@ -186,7 +186,10 @@ class LoginViewController: UIViewController {
     
     //MARK: - Navigation
     private func goToApp() {
-        print("go to app")
+        let mainView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as! UITabBarController
+        mainView.modalPresentationStyle = .fullScreen
+        self.present(mainView, animated: true, completion: nil)
+        
     }
     
 }
