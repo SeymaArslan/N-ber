@@ -129,7 +129,21 @@ class LoginViewController: UIViewController {
     }
     
     private func loginUser() {
-        
+        FirebaseUserListener.shared.loginUserWithEmail(email: emailTextField.text!, password: passwordTextField.text!) { (error, isEmailVerified) in
+            if error == nil {
+                if isEmailVerified {
+//                    print("Kullanıcı mail ile giriş yaptı:  ", User.currentUser?.email)
+                    // go to app
+                    self.goToApp()
+                    
+                } else {
+                    ProgressHUD.showFailed("Lütfen mailinizi doğrulayın.")
+                    self.resendEmailButtonOutlet.isHidden = false
+                }
+            } else {
+                ProgressHUD.showFailed(error!.localizedDescription)
+            }
+        }
     }
     
     private func registerUser() {
@@ -149,6 +163,10 @@ class LoginViewController: UIViewController {
         }
     }
     
+    //MARK: - Navigation
+    private func goToApp() {
+        print("go to app")
+    }
     
 }
 
