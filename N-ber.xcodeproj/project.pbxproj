@@ -76,9 +76,9 @@
 				125D2C172A8C041A003415B1 /* AppDelegate.swift */,
 				125D2C192A8C041A003415B1 /* SceneDelegate.swift */,
 				125D2C1B2A8C041A003415B1 /* LoginViewController.swift */,
-				12BFE5AB2A8E60DB005748B2 /* Constants.swift */,
 				12BFE5AF2A8E9E5F005748B2 /* FirebaseHelpers */,
 				12BFE5AA2A8E5D6C005748B2 /* Model */,
+				12BFE5B22A9115AA005748B2 /* Helpers */,
 				125D2C1D2A8C041A003415B1 /* Main.storyboard */,
 				125D2C202A8C041C003415B1 /* Assets.xcassets */,
 				125D2C222A8C041C003415B1 /* LaunchScreen.storyboard */,
@@ -103,6 +103,14 @@
 				12BFE5B02A8E9EFE005748B2 /* FirebaseUserListener.swift */,
 			);
 			path = FirebaseHelpers;
+			sourceTree = "<group>";
+		};
+		12BFE5B22A9115AA005748B2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				12BFE5AB2A8E60DB005748B2 /* Constants.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3674626A63E39FC121AD1B29 /* Frameworks */ = {

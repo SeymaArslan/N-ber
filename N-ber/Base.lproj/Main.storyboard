@@ -207,7 +207,7 @@
             </objects>
             <point key="canvasLocation" x="-240" y="-39"/>
         </scene>
-        <!--Item 2-->
+        <!--Kanallar-->
         <scene sceneID="eSO-kf-rCc">
             <objects>
                 <viewController id="US6-9G-IQw" sceneMemberID="viewController">
@@ -217,13 +217,13 @@
                         <viewLayoutGuide key="safeArea" id="Eje-Ec-TaK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="H0A-4B-XEr"/>
+                    <tabBarItem key="tabBarItem" title="Kanallar" image="quote.bubble" catalog="system" id="H0A-4B-XEr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b02-YQ-NVL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1443" y="283"/>
+            <point key="canvasLocation" x="1442" y="-358"/>
         </scene>
-        <!--Item 1-->
+        <!--Sohbet-->
         <scene sceneID="gLV-fz-uPW">
             <objects>
                 <viewController id="Fvm-Ia-Wco" sceneMemberID="viewController">
@@ -233,11 +233,11 @@
                         <viewLayoutGuide key="safeArea" id="ank-8E-wu8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="lrd-e2-JfR"/>
+                    <tabBarItem key="tabBarItem" title="Sohbet" image="message" catalog="system" id="lrd-e2-JfR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Z9-Oa-0Eg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1443" y="-324"/>
+            <point key="canvasLocation" x="1442" y="-1069"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2Mh-yV-XaC">
@@ -251,14 +251,78 @@
                     <connections>
                         <segue destination="Fvm-Ia-Wco" kind="relationship" relationship="viewControllers" id="rXd-Ut-MeX"/>
                         <segue destination="US6-9G-IQw" kind="relationship" relationship="viewControllers" id="lLR-TC-q4G"/>
+                        <segue destination="UmI-Q2-U0V" kind="relationship" relationship="viewControllers" id="1Ak-pU-5UT"/>
+                        <segue destination="eud-ls-zdU" kind="relationship" relationship="viewControllers" id="j4k-UW-YN2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dvS-GN-FHW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="573" y="-39"/>
         </scene>
+        <!--Kullanıcılar-->
+        <scene sceneID="nIz-Wf-DK0">
+            <objects>
+                <tableViewController id="UmI-Q2-U0V" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="tRw-Q9-eUK">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="eoY-os-r3p">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eoY-os-r3p" id="8bK-c0-aM1">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="UmI-Q2-U0V" id="UJQ-8r-Xyd"/>
+                            <outlet property="delegate" destination="UmI-Q2-U0V" id="Yc7-Me-TS7"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Kullanıcılar" image="person.2" catalog="system" id="1qk-XR-4mh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cXW-q0-3p6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="337"/>
+        </scene>
+        <!--Ayarlar-->
+        <scene sceneID="S7J-Pb-lAi">
+            <objects>
+                <tableViewController id="eud-ls-zdU" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="XVs-cX-zDj">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wOw-Yz-pjH">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wOw-Yz-pjH" id="e7e-zs-sLS">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eud-ls-zdU" id="PoK-n3-7m0"/>
+                            <outlet property="delegate" destination="eud-ls-zdU" id="cCe-n7-Zwt"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Ayarlar" image="gear" catalog="system" id="DaR-5f-cdf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uoo-eQ-PDr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1442" y="1030"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="122"/>
+        <image name="message" catalog="system" width="128" height="116"/>
+        <image name="person.2" catalog="system" width="128" height="82"/>
+        <image name="quote.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
