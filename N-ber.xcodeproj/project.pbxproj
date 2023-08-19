@@ -18,6 +18,7 @@
 		12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFE5AB2A8E60DB005748B2 /* Constants.swift */; };
 		12BFE5AE2A8E9CB8005748B2 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFE5AD2A8E9CB8005748B2 /* FCollectionReference.swift */; };
 		12BFE5B12A8E9EFE005748B2 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFE5B02A8E9EFE005748B2 /* FirebaseUserListener.swift */; };
+		12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */; };
 		FC091A8161450DF11A1DD603 /* Pods_N_ber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478E78BEC65F0FD8670F791 /* Pods_N_ber.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		12BFE5AB2A8E60DB005748B2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12BFE5AD2A8E9CB8005748B2 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		12BFE5B02A8E9EFE005748B2 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
+		12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		A3A43E965B8C30FC9D786EE5 /* Pods-N-ber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-N-ber.release.xcconfig"; path = "Target Support Files/Pods-N-ber/Pods-N-ber.release.xcconfig"; sourceTree = "<group>"; };
 		A478E78BEC65F0FD8670F791 /* Pods_N_ber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_N_ber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD31D3A0294DA80B1823C88 /* Pods-N-ber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-N-ber.debug.xcconfig"; path = "Target Support Files/Pods-N-ber/Pods-N-ber.debug.xcconfig"; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				125D2C172A8C041A003415B1 /* AppDelegate.swift */,
 				125D2C192A8C041A003415B1 /* SceneDelegate.swift */,
 				125D2C1B2A8C041A003415B1 /* LoginViewController.swift */,
+				12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */,
 				12BFE5AF2A8E9E5F005748B2 /* FirebaseHelpers */,
 				12BFE5AA2A8E5D6C005748B2 /* Model */,
 				12BFE5B22A9115AA005748B2 /* Helpers */,
@@ -250,6 +253,7 @@
 				12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */,
 				12BFE5A92A8E5D55005748B2 /* User.swift in Sources */,
 				125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */,
+				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
 				12BFE5B12A8E9EFE005748B2 /* FirebaseUserListener.swift in Sources */,
 				125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */,
