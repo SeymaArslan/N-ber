@@ -3,7 +3,7 @@
 //  N-ber
 //
 //  Created by Seyma on 17.08.2023.
-//
+// completion @escaping (_ error: Error?) -> Void ) geri bir bilgilendirme almak istiyorsak örn çıkış yapıldıysa bununla ilgili bilgi almak istediğimizde
 
 import Foundation
 import Firebase
@@ -54,6 +54,17 @@ class FirebaseUserListener {
     
     func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void ) {
         Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+    }
+    
+    func logOutCurrentUser(completion: @escaping (_ error: Error?) -> Void ){
+        do {
+            try Auth.auth().signOut()
+            userDefaults.removeObject(forKey: kCURRENTUSER)
+            userDefaults.synchronize() // save it
+            completion(nil)
+        } catch let error as NSError {
             completion(error)
         }
     }
