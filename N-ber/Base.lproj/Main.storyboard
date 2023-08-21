@@ -584,11 +584,50 @@
                         <outlet property="avatarImageView" destination="2Yh-xy-4g7" id="tPn-SK-QSV"/>
                         <outlet property="statusLabel" destination="ykK-T6-891" id="BNv-EK-lrl"/>
                         <outlet property="userNameTextField" destination="8Dw-y6-WdV" id="pgV-50-dDv"/>
+                        <segue destination="v4M-CE-OXf" kind="show" identifier="editProfileToStatusSeg" id="2tF-Qe-amf"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5iO-7e-bb6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2988.5496183206105" y="1029.5774647887324"/>
+        </scene>
+        <!--Durum-->
+        <scene sceneID="f4c-bL-dyc">
+            <objects>
+                <tableViewController id="v4M-CE-OXf" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="bes-f2-vpS">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="pag-5T-PuR" style="IBUITableViewCellStyleDefault" id="poI-2K-BN1">
+                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="poI-2K-BN1" id="Fqh-c8-exU">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pag-5T-PuR">
+                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="v4M-CE-OXf" id="ohc-fK-BFl"/>
+                            <outlet property="delegate" destination="v4M-CE-OXf" id="dwp-GE-Idz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Durum" id="zUo-Jn-Xem"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fbe-2o-w6q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3717" y="1030"/>
         </scene>
         <!--Ayarlar-->
         <scene sceneID="UWI-78-nU0">

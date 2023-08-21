@@ -44,6 +44,9 @@ class EditProfileTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true) // satır seçildiğinde seçili olarak kalıyor bunun böyle olmaması için bu kodu yazdık
+        if indexPath.section == 1 && indexPath.row == 0 {
+            performSegue(withIdentifier: "editProfileToStatusSeg", sender: self)
+        }
     }
     
     //MARK: - IBActions
@@ -61,7 +64,7 @@ class EditProfileTableViewController: UITableViewController {
             
             if user.avatarLink != "" {
                 FileStorage.downloadImage(imageUrl: user.avatarLink) { (avatarImage) in
-                    self.avatarImageView.image = avatarImage
+                    self.avatarImageView.image = avatarImage?.circleMasked
                 }
             }
         }
@@ -124,7 +127,7 @@ extension EditProfileTableViewController: GalleryControllerDelegate {
             images.first!.resolve { (avatarImage) in
                 if avatarImage != nil {
                     self.uploadAvatarImage(avatarImage!)
-                    self.avatarImageView.image = avatarImage
+                    self.avatarImageView.image = avatarImage?.circleMasked
                 } else {
                     ProgressHUD.showError("Fotoğraf seçmediniz!")
                 }
