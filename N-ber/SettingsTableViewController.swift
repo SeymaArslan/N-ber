@@ -41,6 +41,13 @@ class SettingsTableViewController: UITableViewController {
         return section == 0 ? 0.0 : 5.0  // section == 0 ilk section eğer ilk sectionsa 0 değilse 10
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 0 {
+            performSegue(withIdentifier: "settingsToEditProfileSegue", sender: self)
+        }
+    }
+    
     //MARK: -  Actions
     @IBAction func tellAFrindButtonPressed(_ sender: Any) {
         print("Arkadaşlarına öner")
