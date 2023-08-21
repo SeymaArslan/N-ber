@@ -47,9 +47,34 @@ class FileStorage {
         if fileExistsAtPath(path: imageFileName) {
             // get it locally
             print("we have local image")
+            if let contentsOfFile = UIImage(contentsOfFile: fileInDocumentsDirectory(fileName: imageFileName)) {
+                completion(contentsOfFile)
+            } else {
+                print("Fotoğraf yerel olarak kaydedilemedi.")
+                completion(UIImage(named: "MeAvatar"))
+            }
+                
         } else {
             // download from firebase
             print("Lets get from Firebase")
+            if imageUrl != "" {
+                let documentUrl = URL(string: imageUrl)
+                let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+                downloadQueue.async {
+                    let data = NSData(contentsOf: documentUrl!)
+                    if data != nil {
+                        // save locally
+                        FileStorage.saveFileLocally(fileData: data!, fileName: imageFileName)
+                        DispatchQueue.main.async {
+                            completion(UIImage(data: data! as Data))
+                        }
+                    } else {
+                        print("veritabanından belge yok")
+                        completion(nil)
+                    }
+                }
+            }
+            
         }
 
     }
