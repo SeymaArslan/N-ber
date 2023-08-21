@@ -512,6 +512,9 @@
                                                     <buttonConfiguration key="configuration" style="plain" title="Düzenle">
                                                         <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="editButtonPressed:" destination="iVf-W5-mtD" eventType="touchUpInside" id="VvW-oz-Ads"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
