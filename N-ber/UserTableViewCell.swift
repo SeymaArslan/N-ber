@@ -24,7 +24,7 @@ class UserTableViewCell: UITableViewCell {
 
     }
     
-    func configureCell(user: User) {
+    func configure(user: User) {
         usernameLabel.text = user.username
         statusLabel.text = user.status
         setAvatar(avatarLink: user.avatarLink)
