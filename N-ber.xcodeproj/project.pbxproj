@@ -25,6 +25,8 @@
 		12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3DFE22A93F6AD002A7E12 /* Extensions.swift */; };
 		12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3DFE42A93FCC7002A7E12 /* Status.swift */; };
 		12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3DFE62A94020C002A7E12 /* StatusTableViewController.swift */; };
+		12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */; };
+		12F3DFEB2A94DDB5002A7E12 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F3DFEA2A94DDB5002A7E12 /* UsersTableViewController.swift */; };
 		FC091A8161450DF11A1DD603 /* Pods_N_ber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A478E78BEC65F0FD8670F791 /* Pods_N_ber.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		12F3DFE22A93F6AD002A7E12 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		12F3DFE42A93FCC7002A7E12 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		12F3DFE62A94020C002A7E12 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
+		12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		12F3DFEA2A94DDB5002A7E12 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		A3A43E965B8C30FC9D786EE5 /* Pods-N-ber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-N-ber.release.xcconfig"; path = "Target Support Files/Pods-N-ber/Pods-N-ber.release.xcconfig"; sourceTree = "<group>"; };
 		A478E78BEC65F0FD8670F791 /* Pods_N_ber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_N_ber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFD31D3A0294DA80B1823C88 /* Pods-N-ber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-N-ber.debug.xcconfig"; path = "Target Support Files/Pods-N-ber/Pods-N-ber.debug.xcconfig"; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */,
 				12BFE5B52A926518005748B2 /* EditProfileTableViewController.swift */,
 				12F3DFE62A94020C002A7E12 /* StatusTableViewController.swift */,
+				12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */,
+				12F3DFEA2A94DDB5002A7E12 /* UsersTableViewController.swift */,
 				12BFE5AF2A8E9E5F005748B2 /* FirebaseHelpers */,
 				12BFE5AA2A8E5D6C005748B2 /* Model */,
 				12BFE5B22A9115AA005748B2 /* Helpers */,
@@ -271,6 +277,7 @@
 				12F3DFDF2A938C5D002A7E12 /* FileStorage.swift in Sources */,
 				12F3DFE12A93E792002A7E12 /*  GlobalFunctions.swift in Sources */,
 				12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */,
+				12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */,
 				12BFE5A92A8E5D55005748B2 /* User.swift in Sources */,
 				125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */,
 				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
@@ -280,6 +287,7 @@
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
 				12BFE5B12A8E9EFE005748B2 /* FirebaseUserListener.swift in Sources */,
+				12F3DFEB2A94DDB5002A7E12 /* UsersTableViewController.swift in Sources */,
 				125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
