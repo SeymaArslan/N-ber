@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1242BE0A2A9616C00011332A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE092A9616C00011332A /* ProfileTableViewController.swift */; };
 		125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C172A8C041A003415B1 /* AppDelegate.swift */; };
 		125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C192A8C041A003415B1 /* SceneDelegate.swift */; };
 		125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C1B2A8C041A003415B1 /* LoginViewController.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1242BE092A9616C00011332A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		125D2C142A8C041A003415B1 /* N-ber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "N-ber.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		125D2C172A8C041A003415B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		125D2C192A8C041A003415B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1242BE052A9613CE0011332A /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */,
+				12BFE5B52A926518005748B2 /* EditProfileTableViewController.swift */,
+				12F3DFE62A94020C002A7E12 /* StatusTableViewController.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		1242BE062A9613EB0011332A /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		1242BE072A9614270011332A /* LoginViews */ = {
+			isa = PBXGroup;
+			children = (
+				125D2C1B2A8C041A003415B1 /* LoginViewController.swift */,
+			);
+			path = LoginViews;
+			sourceTree = "<group>";
+		};
+		1242BE082A9614560011332A /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				12F3DFEA2A94DDB5002A7E12 /* UsersTableViewController.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		1242BE0B2A9616DD0011332A /* SecondaryViews */ = {
+			isa = PBXGroup;
+			children = (
+				1242BE092A9616C00011332A /* ProfileTableViewController.swift */,
+			);
+			path = SecondaryViews;
+			sourceTree = "<group>";
+		};
 		125D2C0B2A8C041A003415B1 = {
 			isa = PBXGroup;
 			children = (
@@ -93,12 +137,11 @@
 			children = (
 				125D2C172A8C041A003415B1 /* AppDelegate.swift */,
 				125D2C192A8C041A003415B1 /* SceneDelegate.swift */,
-				125D2C1B2A8C041A003415B1 /* LoginViewController.swift */,
-				12BFE5B32A913AB9005748B2 /* SettingsTableViewController.swift */,
-				12BFE5B52A926518005748B2 /* EditProfileTableViewController.swift */,
-				12F3DFE62A94020C002A7E12 /* StatusTableViewController.swift */,
-				12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */,
-				12F3DFEA2A94DDB5002A7E12 /* UsersTableViewController.swift */,
+				1242BE082A9614560011332A /* MainViews */,
+				1242BE0B2A9616DD0011332A /* SecondaryViews */,
+				1242BE072A9614270011332A /* LoginViews */,
+				1242BE052A9613CE0011332A /* SettingsView */,
+				1242BE062A9613EB0011332A /* CustomCells */,
 				12BFE5AF2A8E9E5F005748B2 /* FirebaseHelpers */,
 				12BFE5AA2A8E5D6C005748B2 /* Model */,
 				12BFE5B22A9115AA005748B2 /* Helpers */,
@@ -280,6 +323,7 @@
 				12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */,
 				12BFE5A92A8E5D55005748B2 /* User.swift in Sources */,
 				125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */,
+				1242BE0A2A9616C00011332A /* ProfileTableViewController.swift in Sources */,
 				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
 				12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */,
 				12BFE5B62A926518005748B2 /* EditProfileTableViewController.swift in Sources */,
