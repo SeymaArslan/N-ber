@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1242BE0A2A9616C00011332A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE092A9616C00011332A /* ProfileTableViewController.swift */; };
+		1242BE0D2A9627380011332A /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0C2A9627380011332A /* RecentChat.swift */; };
+		1242BE0F2A963BA00011332A /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */; };
+		1242BE112A964A910011332A /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE102A964A910011332A /* StartChat.swift */; };
 		125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C172A8C041A003415B1 /* AppDelegate.swift */; };
 		125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C192A8C041A003415B1 /* SceneDelegate.swift */; };
 		125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C1B2A8C041A003415B1 /* LoginViewController.swift */; };
@@ -33,6 +36,9 @@
 
 /* Begin PBXFileReference section */
 		1242BE092A9616C00011332A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		1242BE0C2A9627380011332A /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
+		1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
+		1242BE102A964A910011332A /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
 		125D2C142A8C041A003415B1 /* N-ber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "N-ber.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		125D2C172A8C041A003415B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		125D2C192A8C041A003415B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				12F3DFE82A94DD8E002A7E12 /* UserTableViewCell.swift */,
+				1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -158,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				12BFE5A82A8E5D55005748B2 /* User.swift */,
+				1242BE0C2A9627380011332A /* RecentChat.swift */,
 				12F3DFE42A93FCC7002A7E12 /* Status.swift */,
 			);
 			path = Model;
@@ -178,6 +186,7 @@
 			children = (
 				12BFE5AB2A8E60DB005748B2 /* Constants.swift */,
 				12F3DFE02A93E792002A7E12 /*  GlobalFunctions.swift */,
+				1242BE102A964A910011332A /* StartChat.swift */,
 				12F3DFE22A93F6AD002A7E12 /* Extensions.swift */,
 			);
 			path = Helpers;
@@ -316,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1242BE0D2A9627380011332A /* RecentChat.swift in Sources */,
 				12BFE5AE2A8E9CB8005748B2 /* FCollectionReference.swift in Sources */,
 				12F3DFDF2A938C5D002A7E12 /* FileStorage.swift in Sources */,
 				12F3DFE12A93E792002A7E12 /*  GlobalFunctions.swift in Sources */,
@@ -331,8 +341,10 @@
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
 				12BFE5B12A8E9EFE005748B2 /* FirebaseUserListener.swift in Sources */,
+				1242BE112A964A910011332A /* StartChat.swift in Sources */,
 				12F3DFEB2A94DDB5002A7E12 /* UsersTableViewController.swift in Sources */,
 				125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */,
+				1242BE0F2A963BA00011332A /* RecentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

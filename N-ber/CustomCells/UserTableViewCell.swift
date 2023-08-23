@@ -36,7 +36,7 @@ class UserTableViewCell: UITableViewCell {
                 self.avatarImageView.image = avatarImage?.circleMasked
             }
         } else {
-            self.avatarImageView.image = UIImage(named: "MeAvatar")?.circleMasked
+            self.avatarImageView.image = UIImage(named: "YouAvatar")?.circleMasked
         }
     }
     
