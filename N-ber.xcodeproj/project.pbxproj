@@ -11,6 +11,7 @@
 		1242BE0D2A9627380011332A /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0C2A9627380011332A /* RecentChat.swift */; };
 		1242BE0F2A963BA00011332A /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */; };
 		1242BE112A964A910011332A /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE102A964A910011332A /* StartChat.swift */; };
+		1242BE132A9A59600011332A /* FirebaseRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE122A9A59600011332A /* FirebaseRecentListener.swift */; };
 		125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C172A8C041A003415B1 /* AppDelegate.swift */; };
 		125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C192A8C041A003415B1 /* SceneDelegate.swift */; };
 		125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C1B2A8C041A003415B1 /* LoginViewController.swift */; };
@@ -39,6 +40,7 @@
 		1242BE0C2A9627380011332A /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		1242BE102A964A910011332A /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
+		1242BE122A9A59600011332A /* FirebaseRecentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRecentListener.swift; sourceTree = "<group>"; };
 		125D2C142A8C041A003415B1 /* N-ber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "N-ber.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		125D2C172A8C041A003415B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		125D2C192A8C041A003415B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				12BFE5AD2A8E9CB8005748B2 /* FCollectionReference.swift */,
 				12BFE5B02A8E9EFE005748B2 /* FirebaseUserListener.swift */,
+				1242BE122A9A59600011332A /* FirebaseRecentListener.swift */,
 				12F3DFDE2A938C5D002A7E12 /* FileStorage.swift */,
 			);
 			path = FirebaseHelpers;
@@ -328,6 +331,7 @@
 				1242BE0D2A9627380011332A /* RecentChat.swift in Sources */,
 				12BFE5AE2A8E9CB8005748B2 /* FCollectionReference.swift in Sources */,
 				12F3DFDF2A938C5D002A7E12 /* FileStorage.swift in Sources */,
+				1242BE132A9A59600011332A /* FirebaseRecentListener.swift in Sources */,
 				12F3DFE12A93E792002A7E12 /*  GlobalFunctions.swift in Sources */,
 				12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */,
 				12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */,
