@@ -18,18 +18,23 @@ func StartChat(user1: User, user2: User) -> String {
 func createRecentItems(chatRoomId: String, users: [User]) {
     
     var membersIdsToCreateRecent = [users.first!.id, users.last!.id]
+//    print("Üyelerin oluşturması gereken ", membersIdsToCreateRecent)
     
     FirebaseReference(.Recent).whereField(kChatRoomId, isEqualTo: chatRoomId).getDocuments { (snapshot, error) in
         guard let snapshot = snapshot else { return }
         if !snapshot.isEmpty {
             membersIdsToCreateRecent = removeMemberWhoHasRecent(snapshot: snapshot, memberIds: membersIdsToCreateRecent)
+//            print("Güncellenen üyelerin oluşturması gereken ", membersIdsToCreateRecent)
         }
         
         for userId in  membersIdsToCreateRecent {
+//            print("Kullanıcı için yeni içerik oluşturuluyor id : ", userId)
             let senderUser = userId == User.currentId ? User.currentUser! : getReceiverFrom(users: users)
             let receiverUser = userId == User.currentId ? getReceiverFrom(users: users) : User.currentUser!
             
             let recentObject = RecentChat(id: UUID().uuidString, chatRoomId: chatRoomId, senderId: senderUser.id, senderName: senderUser.username, receiverId: receiverUser.id, receiverName: receiverUser.username, date: Date(), memberIds: [senderUser.id, receiverUser.id], lastMessage: "", unreadCounter: 0, avatarLink: receiverUser.avatarLink)
+            
+            FirebaseRecentListener.shared.addRecent(recentObject)
         }
         
     }

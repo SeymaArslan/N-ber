@@ -42,8 +42,8 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
-            print("Sohbet başladı")
-            //TODO: sohbet sayfası
+            let chatId = StartChat(user1: User.currentUser!, user2: user!)
+            print("Sohbet başladı, sohbet oda Id: ", chatId)
         }
     }
 
