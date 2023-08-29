@@ -8,7 +8,7 @@
 import UIKit
 
 class ChatsTableViewController: UITableViewController {
-
+    
     //MARK: - Vars
     var allRecents: [RecentChat] = []
     var filteredRecents: [RecentChat] = []
@@ -28,18 +28,19 @@ class ChatsTableViewController: UITableViewController {
     //MARK: - IBActions
     
     @IBAction func composeBarButtonPress(_ sender: Any) {
+        print("bastım")
         let userView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "usersView") as! UsersTableViewController
         navigationController?.pushViewController(userView, animated: true)
         
     }
     
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.isActive ? filteredRecents.count : allRecents.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! RecentTableViewCell
         
@@ -53,8 +54,11 @@ class ChatsTableViewController: UITableViewController {
     //MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //TODO: continue chat with user and go to chatroom
         
+        let recent = searchController.isActive ? filteredRecents[indexPath.row] : allRecents[indexPath.row]
+        FirebaseRecentListener.shared.clearUnreadCounter(recent: recent)
+        
+        goToChat(recent: recent)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -80,8 +84,6 @@ class ChatsTableViewController: UITableViewController {
         return 0
     }
     
-    
-    
     //MARK: - Download chats
     private func downloadRecentChats(){
         FirebaseRecentListener.shared.downloadRecentChatsFromFirestore { (allChats) in
@@ -90,6 +92,15 @@ class ChatsTableViewController: UITableViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    //MARK: - Navigation
+    private func goToChat(recent: RecentChat){
+        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds)
+        let privateChatView = ChatViewController(chatId: recent.chatRoomId, recipientId: recent.receiverId, recipientName: recent.receiverName)
+        
+        privateChatView.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(privateChatView, animated: true)
     }
     
     //MARK: - Search Controller

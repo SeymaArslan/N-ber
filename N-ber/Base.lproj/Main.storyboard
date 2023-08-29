@@ -904,6 +904,9 @@
                     <navigationItem key="navigationItem" title="Sohbet" id="DAZ-1N-t2F">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="4cl-y7-Wtf">
                             <color key="tintColor" systemColor="systemOrangeColor"/>
+                            <connections>
+                                <action selector="composeBarButtonPress:" destination="riJ-8Q-KfA" id="5X9-tu-INi"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>

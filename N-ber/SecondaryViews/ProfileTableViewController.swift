@@ -43,7 +43,9 @@ class ProfileTableViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 {
             let chatId = StartChat(user1: User.currentUser!, user2: user!)
-            print("Sohbet başladı, sohbet oda Id: ", chatId)
+            let privateChatView = ChatViewController(chatId: chatId, recipientId: user!.id, recipientName: user!.username)
+            privateChatView.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(privateChatView, animated: true)
         }
     }
 

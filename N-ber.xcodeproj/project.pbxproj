@@ -13,6 +13,7 @@
 		1242BE112A964A910011332A /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE102A964A910011332A /* StartChat.swift */; };
 		1242BE132A9A59600011332A /* FirebaseRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE122A9A59600011332A /* FirebaseRecentListener.swift */; };
 		1242BE152A9CB6090011332A /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE142A9CB6090011332A /* ChatsTableViewController.swift */; };
+		1242BE172A9E19A20011332A /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE162A9E19A20011332A /* ChatViewController.swift */; };
 		125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C172A8C041A003415B1 /* AppDelegate.swift */; };
 		125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C192A8C041A003415B1 /* SceneDelegate.swift */; };
 		125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D2C1B2A8C041A003415B1 /* LoginViewController.swift */; };
@@ -43,6 +44,7 @@
 		1242BE102A964A910011332A /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
 		1242BE122A9A59600011332A /* FirebaseRecentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRecentListener.swift; sourceTree = "<group>"; };
 		1242BE142A9CB6090011332A /* ChatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
+		1242BE162A9E19A20011332A /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		125D2C142A8C041A003415B1 /* N-ber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "N-ber.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		125D2C172A8C041A003415B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		125D2C192A8C041A003415B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				1242BE092A9616C00011332A /* ProfileTableViewController.swift */,
+				1242BE162A9E19A20011332A /* ChatViewController.swift */,
 			);
 			path = SecondaryViews;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
+				1242BE172A9E19A20011332A /* ChatViewController.swift in Sources */,
 				12BFE5B12A8E9EFE005748B2 /* FirebaseUserListener.swift in Sources */,
 				1242BE152A9CB6090011332A /* ChatsTableViewController.swift in Sources */,
 				1242BE112A964A910011332A /* StartChat.swift in Sources */,
