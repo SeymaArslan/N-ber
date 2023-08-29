@@ -51,8 +51,8 @@ class ProfileTableViewController: UITableViewController {
     private func setupUI() {
         if user != nil {
             self.title = user!.username
-            usernameLabel.text = user?.username
-            statusLabel.text = user?.status
+            usernameLabel.text = user!.username
+            statusLabel.text = user!.status
             
             if user!.avatarLink != "" {
                 FileStorage.downloadImage(imageUrl: user!.avatarLink) { (avatarImage) in

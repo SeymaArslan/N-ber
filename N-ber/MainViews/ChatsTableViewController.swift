@@ -24,6 +24,15 @@ class ChatsTableViewController: UITableViewController {
         downloadRecentChats() // want to download every recent object
         setupSearchController()
     }
+    
+    //MARK: - IBActions
+    
+    @IBAction func composeBarButtonPress(_ sender: Any) {
+        let userView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "usersView") as! UsersTableViewController
+        navigationController?.pushViewController(userView, animated: true)
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -40,6 +49,36 @@ class ChatsTableViewController: UITableViewController {
         
         return cell
     }
+    
+    //MARK: - Table view delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        //TODO: continue chat with user and go to chatroom
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { // Create handle because we dont need ..editingStyleForRowAt indexPath: IndexPath..
+        if editingStyle == .delete {
+            let recent = searchController.isActive ? filteredRecents[indexPath.row] : allRecents[indexPath.row]
+            FirebaseRecentListener.shared.deleteRecent(recent)
+            searchController.isActive ? self.filteredRecents.remove(at: indexPath.row) : allRecents.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)   // refresh
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor(named: "tableviewBackgroundColor")
+        return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     
     
     //MARK: - Download chats

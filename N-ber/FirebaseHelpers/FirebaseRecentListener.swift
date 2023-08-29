@@ -46,4 +46,9 @@ class FirebaseRecentListener {
             print("Son sohbet kaydedilirken hata oluştu -> ", error.localizedDescription)
         }
     }
+    
+    func deleteRecent(_ recent: RecentChat) {
+        FirebaseReference(.Recent).document(recent.id).delete()
+    }
+    
 }
