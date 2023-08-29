@@ -39,7 +39,28 @@ class FirebaseRecentListener {
         }
     }
     
-    func addRecent(_ recent: RecentChat) {
+    func resetRecentCounter(chatRoomId: String) {
+        FirebaseReference(.Recent).whereField(kChatRoomId, isEqualTo: chatRoomId).whereField(kSenderId, isEqualTo: User.currentId).getDocuments { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("Son gönderilere ait belge yok")
+                return
+            }
+            let allReccents = documents.compactMap { (queryDocumentSnapshot) -> RecentChat? in
+                return try? queryDocumentSnapshot.data(as: RecentChat.self)
+            }
+            if allReccents.count > 0 { // it means we have at least one item
+                self.clearUnreadCounter(recent: allReccents.first!) //and we can call this to reset our recent and then save it *1
+            }
+        }
+    }
+    
+    func clearUnreadCounter(recent: RecentChat) {
+        var newRecent = recent
+        newRecent.unreadCounter = 0
+        self.saveRecent(newRecent) // *1
+    }
+    
+    func saveRecent(_ recent: RecentChat) {
         do{
             try FirebaseReference(.Recent).document(recent.id).setData(from: recent)
         } catch {
