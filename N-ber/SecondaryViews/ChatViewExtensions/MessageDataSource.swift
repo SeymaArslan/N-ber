@@ -15,11 +15,13 @@ extension ChatViewController: MessagesDataSource {
     }
     
     func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {  // this is message for item at index path in our message collection.. MessageType protocol return messageKit, which is again from our messageKit and it has different kind of messages, text attributes text, photo, video, location, emoji, audio..
-        <#code#>
+        
+        return mkMessages[indexPath.section]
     }
     
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {  // this is collectionView and each message is a seperate section. There is not like one section and others are like sales in that section. Each message is a different section
-        <#code#>
+        
+        mkMessages.count
     }
     
     

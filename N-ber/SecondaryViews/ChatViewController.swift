@@ -24,6 +24,8 @@ class ChatViewController: MessagesViewController {
     
     let micButton = InputBarButtonItem()
     
+    var mkMessages: [MKMessage] = []
+    
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
         super.init(nibName: nil, bundle: nil) // so initialize our super view of our messenger messages, your controller as well
@@ -39,7 +41,8 @@ class ChatViewController: MessagesViewController {
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        configureMessageCollectionView()
+       configureMessageInputBar()
     }
     
     //MARK: - Configurations
