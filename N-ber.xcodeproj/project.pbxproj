@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
+		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		1242BE0A2A9616C00011332A /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE092A9616C00011332A /* ProfileTableViewController.swift */; };
 		1242BE0D2A9627380011332A /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0C2A9627380011332A /* RecentChat.swift */; };
 		1242BE0F2A963BA00011332A /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */; };
@@ -48,6 +49,7 @@
 
 /* Begin PBXFileReference section */
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		1242BE092A9616C00011332A /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		1242BE0C2A9627380011332A /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		1242BE0E2A963BA00011332A /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				1242BE0C2A9627380011332A /* RecentChat.swift */,
 				12F3DFE42A93FCC7002A7E12 /* Status.swift */,
 				128E4FD02A9F71730028244D /* MKMessage.swift */,
+				123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */,
 				128E4FD42A9F75EF0028244D /* RealmMessages */,
 			);
 			path = Model;
@@ -392,6 +395,7 @@
 				125D2C1C2A8C041A003415B1 /* LoginViewController.swift in Sources */,
 				1242BE0A2A9616C00011332A /* ProfileTableViewController.swift in Sources */,
 				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
+				123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */,
 				12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */,
 				12BFE5B62A926518005748B2 /* EditProfileTableViewController.swift in Sources */,
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,

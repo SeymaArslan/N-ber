@@ -18,3 +18,12 @@ public let kFirstRun = "firstRUN"
 //MARK: - RecentChat.swift
 public let kChatRoomId = "chatRoomId"
 public let kSenderId = "senderId"
+
+public let kSent = "Sent"
+public let kRead = "Read"
+
+public let kText = "text"
+public let kPhoto = "photo"
+public let kVideo = "video"
+public let kAudio = "audio"
+public let kLocation = "location"

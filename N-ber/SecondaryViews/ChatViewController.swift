@@ -85,4 +85,14 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.backgroundColor = .systemBackground
         
     }
+    
+    //MARK: - Actions
+    func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
+        
+     
+        
+    }
+    
+    
+    
 }
