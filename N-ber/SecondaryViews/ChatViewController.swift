@@ -106,10 +106,13 @@ class ChatViewController: MessagesViewController {
             case .initial : // initial means that is the initial loading
                 //print("\(self.allLocalMessages.count) mesajımız var.")
                 self.insertMessages()
-                
+                self.messagesCollectionView.reloadData()
+                self.messagesCollectionView.scrollToBottom(animated: true)  // the scrolling to the bottom
             case .update(_, _, let insertions, _) :
                 for index in insertions {
-                    print("\(self.allLocalMessages[index].message) yeni mesajımız.")
+                    self.insertMessage(self.allLocalMessages[index])
+                    self.messagesCollectionView.reloadData()
+                    self.messagesCollectionView.scrollToBottom(animated: false)
                 }
                 
             case .error(let error) :
@@ -126,9 +129,7 @@ class ChatViewController: MessagesViewController {
     }
     
     private func insertMessage(_ localMessage: LocalMessage) { // So this function is going just the loop and calls are insert message and this function, we are dividing the tasks so that this function knows only how to take a local message, convert it into a message.. So we want to put every new MKMessage there
-         
-        print("Mesaj eklendi.")
-        
+
         let incoming = IncomingMessage(_collectionView: self) // self because our chatView is a collection view itself so we can pass this to our incoming messages
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
         
