@@ -26,7 +26,7 @@ class OutgoingMessage {
         
         if text != nil {
             // send textMessage
-            sendTextMessage(message: message, text: text, memberIds: memberIds)
+            sendTextMessage(message: message, text: text!, memberIds: memberIds)
         }
         
         //TODO: send push notification
@@ -34,7 +34,14 @@ class OutgoingMessage {
         
     }
     
-    
+    class func sendMessage(message: LocalMessage, memberIds: [String]) { // the task of this func will be simply to save these to our own and to save these to our firebase for each user
+        RealmManager.shared.saveToRealm(message)
+        
+        for memberId in memberIds {
+            FirebaseMessageListener.shared.addMessage(message, memberId: memberId)
+        }
+        
+    }
     
 }
 
@@ -43,5 +50,6 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
     message.message = text
     message.type = kText
     
+    OutgoingMessage.sendMessage(message: message, memberIds: memberIds) // we call this function and we pass our message and sendTextMessage function.
     
 }
