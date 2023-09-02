@@ -13,7 +13,7 @@ extension ChatViewController: InputBarAccessoryViewDelegate { // we basically ge
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
         
         if text != "" {
-            print("typing...")
+//            print("typing...")
         }
     }
     
