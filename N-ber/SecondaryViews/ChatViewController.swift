@@ -25,6 +25,12 @@ class ChatViewController: MessagesViewController {
     let micButton = InputBarButtonItem()
     
     var mkMessages: [MKMessage] = []
+    var allLocalMessages: Results<LocalMessage>!
+    
+    let realm = try! Realm()
+    
+    // Listeners
+    var notificationToken: NotificationToken?
     
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
@@ -43,6 +49,8 @@ class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         configureMessageCollectionView()
        configureMessageInputBar()
+        
+        loadChats()
     }
     
     //MARK: - Configurations
@@ -62,7 +70,7 @@ class ChatViewController: MessagesViewController {
     private func configureMessageInputBar() { // message input power we get from our message
         messageInputBar.delegate = self
         let attachButton = InputBarButtonItem()
-        attachButton.image = UIImage(systemName: "plus.viewfinder")
+        attachButton.image = UIImage(systemName: "plus.square.on.square", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
         attachButton.setSize(CGSize(width : 30, height: 30), animated: false)
         attachButton.tintColor = .systemOrange
         attachButton.onTouchUpInside { item in
@@ -70,7 +78,7 @@ class ChatViewController: MessagesViewController {
         }
         
         // microphone
-        micButton.image = UIImage(systemName: "mic.fill")
+        micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
         micButton.tintColor = .systemOrange
         
@@ -84,6 +92,29 @@ class ChatViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
         
+    }
+    
+    //MARK: - Load chats
+    private func loadChats() {
+        let predicate = NSPredicate(format: "chatRoomId = %@", chatId) // we say we want our predicate to be where chatRoomId equals to the id that we have
+       
+        allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: kDate, ascending: true)
+        //print("\(allLocalMessages.count) mesajımız var.")
+        
+        notificationToken = allLocalMessages.observe({ (changes: RealmCollectionChange) in
+            switch changes {
+            case .initial : // initial means that is the initial loading
+                print("\(self.allLocalMessages.count) mesajımız var.")
+                
+            case .update(_, _, let insertions, _) :
+                for index in insertions {
+                    print("\(self.allLocalMessages[index].message) yeni mesajımız.")
+                }
+                
+            case .error(let error) :
+                print("Eklenirken hata oluştu", error.localizedDescription)
+            }
+        })
     }
     
     //MARK: - Actions
