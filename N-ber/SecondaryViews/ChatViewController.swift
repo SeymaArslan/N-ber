@@ -13,6 +13,27 @@ import RealmSwift
 
 class ChatViewController: MessagesViewController {
 
+    //MARK: - Views
+    let leftBarButtonView: UIView = { // this will be our container view and now we are going to you
+        return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+    }()
+    
+    let titleLabel: UILabel = {
+       let title = UILabel(frame: CGRect(x: 5, y: 0, width: 180, height: 25))
+        title.textAlignment = .left
+        title.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        title.adjustsFontSizeToFitWidth = true // so it will automatically make it smaller in case if the name is really long, we will adjust the size
+        return title
+    }()
+    
+    let subTitleLabel: UILabel = {
+       let subTitle = UILabel(frame: CGRect(x: 5, y: 22, width: 180, height: 20))
+        subTitle.textAlignment = .left
+        subTitle.font = UIFont.systemFont(ofSize: 13, weight: .medium)
+        subTitle.adjustsFontSizeToFitWidth = true // so it will automatically make it smaller in case if the name is really long, we will adjust the size
+        return subTitle
+    }()
+    
     //MARK: - Vars
     private var chatId = ""
     private var recipientId = ""
@@ -47,8 +68,12 @@ class ChatViewController: MessagesViewController {
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureMessageCollectionView()
-       configureMessageInputBar()
+        configureMessageInputBar()
+        
+        configureLeftBarButton()
+        configureCustomTitle()
         
         loadChats()
     }
@@ -70,7 +95,7 @@ class ChatViewController: MessagesViewController {
     private func configureMessageInputBar() { // message input power we get from our message
         messageInputBar.delegate = self
         let attachButton = InputBarButtonItem()
-        attachButton.image = UIImage(systemName: "plus.square.on.square", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
+        attachButton.image = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25))
         attachButton.setSize(CGSize(width : 30, height: 30), animated: false)
         attachButton.tintColor = .systemOrange
         attachButton.onTouchUpInside { item in
@@ -92,6 +117,21 @@ class ChatViewController: MessagesViewController {
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
         
+    }
+    
+    private func configureLeftBarButton() { // this function, we are going to make only our icon here as a back button. We don't want to show the back button and the name where we are going to
+        
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+    }
+    
+    private func configureCustomTitle() {
+        leftBarButtonView.addSubview(titleLabel)
+        leftBarButtonView.addSubview(subTitleLabel)
+        
+        let leftBarButtonItem = UIBarButtonItem(customView: leftBarButtonView)  // this will become our second left power button item
+        
+        self.navigationItem.leftBarButtonItems?.append(leftBarButtonItem)
+        titleLabel.text = recipientName
     }
     
     //MARK: - Load chats
@@ -142,6 +182,16 @@ class ChatViewController: MessagesViewController {
         
     }
     
+    @objc func backButtonPressed() {
+        
+        //TODO: remove listeners
+        self.navigationController?.popToRootViewController(animated: true)
+    }
     
+    //MARK: - Update typing indicator
+    
+    func updateTypingIndicator(_ show: Bool) {
+        subTitleLabel.text = show ? "Yazıyor.." : ""
+    }
     
 }
