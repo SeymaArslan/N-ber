@@ -13,6 +13,7 @@ import RealmSwift
 
 class ChatViewController: MessagesViewController {
 
+    
     //MARK: - Views
     let leftBarButtonView: UIView = { // this will be our container view and now we are going to you
         return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -34,6 +35,7 @@ class ChatViewController: MessagesViewController {
         return subTitle
     }()
     
+    
     //MARK: - Vars
     private var chatId = ""
     private var recipientId = ""
@@ -50,8 +52,13 @@ class ChatViewController: MessagesViewController {
     
     let realm = try! Realm()
     
+    var displayMessagesCount = 0
+    var maxMessageNumber = 0
+    var minMessageMember = 0
+    
     // Listeners
     var notificationToken: NotificationToken?
+    
     
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
@@ -65,6 +72,7 @@ class ChatViewController: MessagesViewController {
         super.init(coder: coder)
     }
 
+    
     //MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +84,9 @@ class ChatViewController: MessagesViewController {
         configureCustomTitle()
         
         loadChats()
+        listenForNewChats()
     }
+    
     
     //MARK: - Configurations
     private func configureMessageCollectionView() { // set all delegates
@@ -148,6 +158,7 @@ class ChatViewController: MessagesViewController {
         titleLabel.text = recipientName
     }
     
+    
     //MARK: - Load chats
     private func loadChats() {
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId) // we say we want our predicate to be where chatRoomId equals to the id that we have
@@ -180,29 +191,40 @@ class ChatViewController: MessagesViewController {
     
     // İf our user decides to change the device or lost the device, will replace it with a new one. İf the user logs in on a different device, the local database will be empty.. And the idea is, of course, every time we open our chatView you in case if our local database is empty, we want to check if there are any old chats on a cloud so we can download them and put them in our local database -> listenForNewChats and checkForOldChats .. allLocalMessages will be zero or the array will be empty, we wamt tp just in case to check if there are any old messages **
     private func listenForNewChats() {
-        
+        FirebaseMessageListener.shared.listenForNewChats(User.currentId, collectionId: chatId, lastMessageDate: lastMessageDate())
     }
     
     private func checkForOldChats(){
         FirebaseMessageListener.shared.checkForOldChats(User.currentId, collectionId: chatId)
-        
     }
     
     
     //MARK: - Insert messages
     private func insertMessages() { // we want to call is insertMessages plural function that is going to take all the items from allLocalMessages and a cell on based on that item that will insert one by one into our chat view
         
-        for message in allLocalMessages {
-            insertMessage(message)
+        maxMessageNumber = allLocalMessages.count - displayMessagesCount  //we want to show another 12 messges and then another 12,.. etc   oldest---------------min------>maxLatest show min - maxLatest                             oldest----- min------>maxLatest min------>maxLatest min------>maxLatest
+        minMessageMember = maxMessageNumber - kNumberOfMessages
+        
+        if minMessageMember < 0 {  // we said our main message number equals to zero and this way we will never get a negative number there, it will always the smallest value it can have is going to be always zero
+            minMessageMember = 0
         }
+        
+        for i in minMessageMember ..< maxMessageNumber {
+            insertMessage(allLocalMessages[i])
+        }
+        
+//        for message in allLocalMessages {
+//            insertMessage(message)
+//        }
     }
     
     private func insertMessage(_ localMessage: LocalMessage) { // So this function is going just the loop and calls are insert message and this function, we are dividing the tasks so that this function knows only how to take a local message, convert it into a message.. So we want to put every new MKMessage there
 
         let incoming = IncomingMessage(_collectionView: self) // self because our chatView is a collection view itself so we can pass this to our incoming messages
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
-        
+        displayMessagesCount += 1
     }
+    
     
     //MARK: - Actions
     func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
@@ -214,13 +236,22 @@ class ChatViewController: MessagesViewController {
     @objc func backButtonPressed() {
         
         //TODO: remove listeners
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
-    //MARK: - Update typing indicator
     
+    //MARK: - Update typing indicator
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Yazıyor.." : ""
+    }
+    
+    
+    //MARK: - Helpers
+    private func lastMessageDate() -> Date {
+        let lastMessageDate = allLocalMessages.last?.date ?? Date() // The scenario is, we started brandnew chat there are no messages, so that last this thing will be nil (allLocalMessages.last?.date) because there are no messages in our local messages, so then we want to keep listening for any new chats starting from now so that if somebody types, we will recieve it, so this is the starting from now date which will return to the current date and time (Date())
+        
+        // What we want to do is add one second to this date, and the reason that we are doing this is because when we do a filter in firebase is greater than specific date, for some reason, if there is another object with the value of the same date, so it will return that one as well, so we don't want to do it, for example in our case if I put it if I don't add the current date, this last message will be returned twice, so if I add one second to the last message date, it will keep this message
+        return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate  // this will be our function that returns the last message date
     }
     
 }

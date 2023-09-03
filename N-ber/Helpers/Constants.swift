@@ -11,6 +11,8 @@ let userDefaults = UserDefaults.standard
 
 public let kFileReference = "gs://n-ber-39675.appspot.com"
 
+public let kNumberOfMessages = 12
+
 public let kCURRENTUSER = "currentUser"
 public let kStatus = "status"
 public let kFirstRun = "firstRUN"
