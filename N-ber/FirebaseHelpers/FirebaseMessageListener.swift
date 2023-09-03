@@ -10,9 +10,60 @@ import Firebase
 import FirebaseFirestoreSwift
 
 class FirebaseMessageListener {
+    
     static let shared = FirebaseMessageListener()
+    var newChatListener: ListenerRegistration!
+    var updatedChatListener: ListenerRegistration!
     
     private init() {}
+    
+    
+    func listenForNewChats(_ documentId: String, collectionId: String, lastMessageDate: Date) {  // documentId will be our userId and collectionId will be our chatRoomId and lastMessageDate will be last message state, this one we need to calculate
+        newChatListener = FirebaseReference(.Messages).document(documentId).collection(collectionId).whereField(kDate, isGreaterThan: lastMessageDate).addSnapshotListener({ (querySnapshpt, error) in  // and then our firebase we ask to keep listening and we create this newChatListener variable.. So we want to stop listening whenever we leave our chatRoom. So we listen for any changes in our database with the specific parameters
+            
+            guard let snapshot = querySnapshpt else { return }
+            
+            for change in snapshot.documentChanges { // and if there is a change, we check
+                if change.type == .added { // if it was an addition to our database and then we try to create
+                    let result = Result { // a local message from it
+                        try? change.document.data(as: LocalMessage.self)
+                    }
+                
+                    switch result { // if it was successful, we save it to our Realm otherwise we print an error
+                    case .success(let messageObject):
+                        if let message = messageObject {
+                            RealmManager.shared.saveToRealm(message)
+                        } else {
+                            print("Belge mevcut değil.")
+                        }
+                    case .failure(let error):
+                        print("Local mesajlar docode edilirken hata oluştu, \(error.localizedDescription)")
+                    }
+                }
+            }
+        })
+    }
+    
+    func checkForOldChats(_ documentId: String, collectionId: String) {
+        FirebaseReference(.Messages).document(documentId).collection(collectionId).getDocuments { (querySnapshpt, error) in
+            guard let documents = querySnapshpt?.documents else {
+                print("Eski sohbetlerin belgesi bulanamadı.")
+                return
+            }
+            
+            // we want to save them to our realm and then the database will be updated and our user can see them. So we grab everything to convert it to local message and we save it to our realm
+            var oldMessages = documents.compactMap { (queryDocumentSnapshot) -> LocalMessage? in
+                return try? queryDocumentSnapshot.data(as: LocalMessage.self)
+            }
+            
+            oldMessages.sort(by: {$0.date < $1.date})
+            
+            for message in oldMessages {
+                RealmManager.shared.saveToRealm(message)
+            }
+            
+        }
+    }
     
     //MARK: - Add, update, delete
     func addMessage(_ message: LocalMessage, memberId: String){

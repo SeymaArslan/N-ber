@@ -113,15 +113,29 @@ class ChatViewController: MessagesViewController {
         
         messageInputBar.setLeftStackViewWidthConstant(to: 36, animated: false) // control to constraints
         
+        updateMicButtonStatus(show: true) // update microphone button is right here when we initialize our microphone button, because at the beginning we want to see only microphpne. When we open our chatView, the text field is empty, we want to show this button
+        
         messageInputBar.inputTextView.isImagePasteEnabled = false // don't want to for the user to be able to paste the image inside our cell here, copy text but can't copy image
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
         
     }
     
+    func updateMicButtonStatus(show: Bool) {
+        if show {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 55, animated: false)
+            messageInputBar.sendButton.setTitleColor(UIColor.systemOrange, for: .normal)
+        }
+    }
+    
     private func configureLeftBarButton() { // this function, we are going to make only our icon here as a back button. We don't want to show the back button and the name where we are going to
         
-        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+        self.navigationItem.leftBarButtonItems = [UIBarButtonItem(image: UIImage(systemName: "arrowshape.left.fill"), style: .plain, target: self, action: #selector(self.backButtonPressed))]
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.systemOrange
     }
     
     private func configureCustomTitle() {
@@ -139,7 +153,10 @@ class ChatViewController: MessagesViewController {
         let predicate = NSPredicate(format: "chatRoomId = %@", chatId) // we say we want our predicate to be where chatRoomId equals to the id that we have
        
         allLocalMessages = realm.objects(LocalMessage.self).filter(predicate).sorted(byKeyPath: kDate, ascending: true)
-        //print("\(allLocalMessages.count) mesajımız var.")
+
+        if allLocalMessages.isEmpty{ // **
+            checkForOldChats()
+        }
         
         notificationToken = allLocalMessages.observe({ (changes: RealmCollectionChange) in
             switch changes {
@@ -161,6 +178,18 @@ class ChatViewController: MessagesViewController {
         })
     }
     
+    // İf our user decides to change the device or lost the device, will replace it with a new one. İf the user logs in on a different device, the local database will be empty.. And the idea is, of course, every time we open our chatView you in case if our local database is empty, we want to check if there are any old chats on a cloud so we can download them and put them in our local database -> listenForNewChats and checkForOldChats .. allLocalMessages will be zero or the array will be empty, we wamt tp just in case to check if there are any old messages **
+    private func listenForNewChats() {
+        
+    }
+    
+    private func checkForOldChats(){
+        FirebaseMessageListener.shared.checkForOldChats(User.currentId, collectionId: chatId)
+        
+    }
+    
+    
+    //MARK: - Insert messages
     private func insertMessages() { // we want to call is insertMessages plural function that is going to take all the items from allLocalMessages and a cell on based on that item that will insert one by one into our chat view
         
         for message in allLocalMessages {
