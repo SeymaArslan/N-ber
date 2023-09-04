@@ -74,6 +74,16 @@ class FirebaseMessageListener {
         }
     }
     
+    
+    //MARK: - UpdateMessageStatus
+    func updateMessageInFirebase(_ message: LocalMessage, memberIds: [String]) { // whenever our user is reading a message here, we want to take that message and change a status to be read, and then we are also going to update the date it was read so our sender can check when was the mwssage read and at the status is read or sent And to do that, we are going to write one function here.
+        
+        let values = [kStatus : kRead, kReadDate : Date()] as [String : Any]
+        for userId in memberIds {
+            FirebaseReference(.Messages).document(userId).collection(message.chatRoomId).document(message.id).updateData(values)
+        }
+    }
+    
     func removeListeners() {
         self.newChatListener.remove()
        // self.updatedChatListener.remove()

@@ -21,8 +21,8 @@ public let kFirstRun = "firstRUN"
 public let kChatRoomId = "chatRoomId"
 public let kSenderId = "senderId"
 
-public let kSent = "Sent"
-public let kRead = "Read"
+public let kSent = "Gönderildi"
+public let kRead = "Okundu"
 
 public let kText = "text"
 public let kPhoto = "photo"
@@ -31,3 +31,4 @@ public let kAudio = "audio"
 public let kLocation = "location"
 
 public let kDate = "date"
+public let kReadDate = "date"

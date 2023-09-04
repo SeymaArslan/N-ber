@@ -226,6 +226,9 @@ class ChatViewController: MessagesViewController {
     
     private func insertMessage(_ localMessage: LocalMessage) { // So this function is going just the loop and calls are insert message and this function, we are dividing the tasks so that this function knows only how to take a local message, convert it into a message.. So we want to put every new MKMessage there
 
+        
+        markMessageAsRead(localMessage)
+        
         let incoming = IncomingMessage(_collectionView: self) // self because our chatView is a collection view itself so we can pass this to our incoming messages
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
         displayMessagesCount += 1
@@ -252,6 +255,12 @@ class ChatViewController: MessagesViewController {
         let incoming = IncomingMessage(_collectionView: self)
         self.mkMessages.insert(incoming.createMessage(localMessage: localMessage)!, at: 0)
         displayMessagesCount += 1
+    }
+    
+    private func markMessageAsRead(_ localMessage: LocalMessage) {
+        if localMessage.senderId != User.currentId {
+            FirebaseMessageListener.shared.updateMessageInFirebase(localMessage, memberIds: [User.currentId, recipientId])
+        }
     }
     
     
