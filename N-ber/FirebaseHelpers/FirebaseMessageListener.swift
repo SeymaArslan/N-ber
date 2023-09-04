@@ -44,6 +44,29 @@ class FirebaseMessageListener {
         })
     }
     
+    func listenForReadStatusChange(_ documentId: String, collectionId: String, completion: @escaping (_ updatedMessage: LocalMessage) -> Void) {
+        
+        updatedChatListener = FirebaseReference(.Messages).document(documentId).collection(collectionId).addSnapshotListener({ (querySnapshot, error) in
+            
+            guard let snapshot = querySnapshot else { return }
+            for change in snapshot.documentChanges {
+                if change.type == .modified {
+                    let result = Result {
+                        try? change.document.data(as: LocalMessage.self)
+                    }
+                    switch result {
+                    case .success(let messageObject):
+                        if let message = messageObject {
+                            completion(message)
+                        } else { print("Belge sohbette mevcut değil.") }
+                    case .failure(let error):
+                        print("Yerel mesajlar decode edilirken hata oluştu: ", error.localizedDescription)
+                    }
+                }
+            }
+        })
+    }
+    
     func checkForOldChats(_ documentId: String, collectionId: String) {
         FirebaseReference(.Messages).document(documentId).collection(collectionId).getDocuments { (querySnapshpt, error) in
             guard let documents = querySnapshpt?.documents else {
@@ -86,7 +109,7 @@ class FirebaseMessageListener {
     
     func removeListeners() {
         self.newChatListener.remove()
-       // self.updatedChatListener.remove()
+        self.updatedChatListener.remove()
     }
     
     

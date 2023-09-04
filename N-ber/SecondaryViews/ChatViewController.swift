@@ -91,6 +91,8 @@ class ChatViewController: MessagesViewController {
         
         loadChats()
         listenForNewChats()
+        listenForReadStatusChange()
+        
     }
     
     
@@ -206,6 +208,15 @@ class ChatViewController: MessagesViewController {
     
     
     //MARK: - Insert messages
+    private func listenForReadStatusChange() {
+        FirebaseMessageListener.shared.listenForReadStatusChange(User.currentId, collectionId: chatId) { updatedMessage in
+            
+            print("mesajlar güncellendi.............", updatedMessage.message)
+            print("mesajların durumu güncellendi.............", updatedMessage.status)
+            
+        }
+    }
+    
     private func insertMessages() { // we want to call is insertMessages plural function that is going to take all the items from allLocalMessages and a cell on based on that item that will insert one by one into our chat view
         
         maxMessageNumber = allLocalMessages.count - displayMessagesCount  //we want to show another 12 messges and then another 12,.. etc   oldest---------------min------>maxLatest show min - maxLatest                             oldest----- min------>maxLatest min------>maxLatest min------>maxLatest
