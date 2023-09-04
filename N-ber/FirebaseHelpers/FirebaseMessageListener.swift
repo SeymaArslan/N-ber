@@ -73,4 +73,11 @@ class FirebaseMessageListener {
             print("Mesaj kaydedilirken hata oluştu ", error.localizedDescription)
         }
     }
+    
+    func removeListeners() {
+        self.newChatListener.remove()
+        self.updatedChatListener.remove()
+    }
+    
+    
 }

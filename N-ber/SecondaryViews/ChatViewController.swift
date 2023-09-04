@@ -56,6 +56,8 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageMember = 0
     
+    var typingCounter = 0  // that is going to listen for our typing changes so we save our typing changes
+    
     // Listeners
     var notificationToken: NotificationToken?
     
@@ -78,6 +80,8 @@ class ChatViewController: MessagesViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never // sohbet ekranında daha fazla mesaj gör bölümünde bir tasarım hatası vardı. sebebi önceki sohbetler ekranında başlığımızın large olması ve sohbet alanını çektiğimizde o aynı large alanını devam ettirmesi bu yüzden kod satırını ekledik
+        
+        createTypingObserver()
         
         configureMessageCollectionView()
         configureMessageInputBar()
@@ -259,13 +263,42 @@ class ChatViewController: MessagesViewController {
     }
     
     @objc func backButtonPressed() {
-        
-        //TODO: remove listeners
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        removeListeners()
         self.navigationController?.popViewController(animated: true)
     }
     
     
     //MARK: - Update typing indicator
+    func createTypingObserver() {
+        FirebaseTypingListener.shared.createTypingObserver(chatRoomId: chatId) { (isTyping) in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(isTyping)
+            }
+        }
+    }
+    
+    func typingIndicatorUpdate() {
+        typingCounter += 1
+        
+        FirebaseTypingListener.saveTypingCounter(typing: true, chatRoomId: chatId)  // and this way we are saving that our current user is typing, whenever we want to update our indicator
+        
+        // also we want to said that our user is no longer typing after some amount of time because, for example, when you start typing and at some point you will stop typing or do nothing, which basically means you are stoppped typing, we want this to automatically be updated on our firebase. So our user, even if the user stops doing anyting, we want our code to still update the typing that the user has stopped.. So we are going to put some timer here and call a specific function that is going to stop our typing after x amount of seconds
+        
+        //DispatchQueue.main.asyncAfter(deadline: <#T##DispatchTime#>, execute: <#T##() -> Void#>)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            
+            self.typingCounterStop()
+        }
+    }
+    
+    func typingCounterStop() {
+        typingCounter -= 1
+        if typingCounter == 0 {
+            FirebaseTypingListener.saveTypingCounter(typing: false, chatRoomId: chatId)
+        }
+    }
+    
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Yazıyor.." : ""
     }
@@ -286,6 +319,12 @@ class ChatViewController: MessagesViewController {
     
     
     //MARK: - Helpers
+    private func removeListeners() {
+        FirebaseTypingListener.shared.removeTypingListener()
+        // we want to remove our message listener because we don't want to listen for any new messages when we leave the chatRoom
+        FirebaseMessageListener.shared.removeListeners()
+    }
+    
     private func lastMessageDate() -> Date {
         let lastMessageDate = allLocalMessages.last?.date ?? Date() // The scenario is, we started brandnew chat there are no messages, so that last this thing will be nil (allLocalMessages.last?.date) because there are no messages in our local messages, so then we want to keep listening for any new chats starting from now so that if somebody types, we will recieve it, so this is the starting from now date which will return to the current date and time (Date())
         

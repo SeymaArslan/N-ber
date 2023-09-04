@@ -26,6 +26,7 @@
 		125D2C212A8C041C003415B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 125D2C202A8C041C003415B1 /* Assets.xcassets */; };
 		125D2C242A8C041C003415B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 125D2C222A8C041C003415B1 /* LaunchScreen.storyboard */; };
 		125D2C2C2A8C0BC4003415B1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 125D2C2B2A8C0BC4003415B1 /* GoogleService-Info.plist */; };
+		12853D982AA5F4AC001C8A7E /* FirebaseTypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D972AA5F4AC001C8A7E /* FirebaseTypingListener.swift */; };
 		128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC32A9F5BE30028244D /* MessageDataSource.swift */; };
 		128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */; };
 		128E4FC92A9F5C3F0028244D /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */; };
@@ -72,6 +73,7 @@
 		125D2C232A8C041C003415B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		125D2C252A8C041C003415B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		125D2C2B2A8C0BC4003415B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		12853D972AA5F4AC001C8A7E /* FirebaseTypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTypingListener.swift; sourceTree = "<group>"; };
 		128E4FC32A9F5BE30028244D /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
 		128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			children = (
 				12BFE5AD2A8E9CB8005748B2 /* FCollectionReference.swift */,
 				12BFE5B02A8E9EFE005748B2 /* FirebaseUserListener.swift */,
+				12853D972AA5F4AC001C8A7E /* FirebaseTypingListener.swift */,
 				1242BE122A9A59600011332A /* FirebaseRecentListener.swift */,
 				123A93E72AA3695400F65F58 /* FirebaseMessageListener.swift */,
 				12F3DFDE2A938C5D002A7E12 /* FileStorage.swift */,
@@ -407,6 +410,7 @@
 				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
 				123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */,
 				12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */,
+				12853D982AA5F4AC001C8A7E /* FirebaseTypingListener.swift in Sources */,
 				12BFE5B62A926518005748B2 /* EditProfileTableViewController.swift in Sources */,
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
