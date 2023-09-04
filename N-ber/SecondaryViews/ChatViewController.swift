@@ -210,10 +210,9 @@ class ChatViewController: MessagesViewController {
     //MARK: - Insert messages
     private func listenForReadStatusChange() {
         FirebaseMessageListener.shared.listenForReadStatusChange(User.currentId, collectionId: chatId) { updatedMessage in
-            
-            print("mesajlar güncellendi.............", updatedMessage.message)
-            print("mesajların durumu güncellendi.............", updatedMessage.status)
-            
+            if updatedMessage.status != kSent {
+                self.updatedMessage(updatedMessage)
+            }
         }
     }
     
@@ -237,8 +236,9 @@ class ChatViewController: MessagesViewController {
     
     private func insertMessage(_ localMessage: LocalMessage) { // So this function is going just the loop and calls are insert message and this function, we are dividing the tasks so that this function knows only how to take a local message, convert it into a message.. So we want to put every new MKMessage there
 
-        
-        markMessageAsRead(localMessage)
+        if localMessage.senderId != User.currentId { // it means this is an incoming message
+            markMessageAsRead(localMessage)
+        }
         
         let incoming = IncomingMessage(_collectionView: self) // self because our chatView is a collection view itself so we can pass this to our incoming messages
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
@@ -269,7 +269,7 @@ class ChatViewController: MessagesViewController {
     }
     
     private func markMessageAsRead(_ localMessage: LocalMessage) {
-        if localMessage.senderId != User.currentId {
+        if localMessage.senderId != User.currentId && localMessage.status != kRead {
             FirebaseMessageListener.shared.updateMessageInFirebase(localMessage, memberIds: [User.currentId, recipientId])
         }
     }
@@ -336,6 +336,24 @@ class ChatViewController: MessagesViewController {
         }
     }
     
+    
+    //MARK: - Update read message status
+    private func updatedMessage(_ localMessage: LocalMessage) {
+        // the first thing we want to do is to find that message
+        for index in 0 ..< mkMessages.count {
+            let tempMessage = mkMessages[index]
+            if localMessage.id == tempMessage.messageId {
+                mkMessages[index].status = localMessage.status
+                mkMessages[index].readDate = localMessage.readDate
+                
+                RealmManager.shared.saveToRealm(localMessage)
+                
+                if mkMessages[index].status == kRead {
+                    self.messagesCollectionView.reloadData()
+                }
+            }
+        }
+    }
     
     
     //MARK: - Helpers

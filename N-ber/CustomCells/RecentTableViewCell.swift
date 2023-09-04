@@ -42,8 +42,8 @@ class RecentTableViewCell: UITableViewCell {
             self.unreadCounterLabel.text = "\(recent.unreadCounter)"
             self.unreadCounterBackgroundView.isHidden = false
         } else {
-            self.unreadCounterLabel.isHidden = true
-//            self.unreadCounterBackgroundView.isHidden = true
+//            self.unreadCounterLabel.isHidden = true
+            self.unreadCounterBackgroundView.isHidden = true
         }
         
         setAvatar(avatarLink: recent.avatarLink)

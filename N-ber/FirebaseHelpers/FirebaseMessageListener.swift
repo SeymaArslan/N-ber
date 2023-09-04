@@ -28,11 +28,13 @@ class FirebaseMessageListener {
                     let result = Result { // a local message from it
                         try? change.document.data(as: LocalMessage.self)
                     }
-                
+                    
                     switch result { // if it was successful, we save it to our Realm otherwise we print an error
                     case .success(let messageObject):
                         if let message = messageObject {
-                            RealmManager.shared.saveToRealm(message)
+                            if message.senderId != User.currentId { // it means this is an incoming message
+                                RealmManager.shared.saveToRealm(message)
+                            }
                         } else {
                             print("Belge mevcut değil.")
                         }
