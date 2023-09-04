@@ -29,7 +29,7 @@ extension ChatViewController: MessagesDataSource {
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if indexPath.section % 3 == 0 { // We will say if in this part toward section can be divided to three without any leftovers, that it means this is every third message and we want to show our title
             
-            let showLoadMore = false
+            let showLoadMore = (indexPath.section == 0) && (allLocalMessages.count > displayMessagesCount)  // show load more is going to be true if both of these things are true. İf one of the things are true, it doesn't matter the show, a lot more will be false.. 
             let text = showLoadMore ? "Önceki mesajlarınız için kaydırın" : MessageKitDateFormatter.shared.string(from: message.sentDate)
             let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
             let color = showLoadMore ? UIColor.systemBlue : UIColor.systemGray2

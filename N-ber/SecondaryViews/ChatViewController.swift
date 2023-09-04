@@ -77,6 +77,8 @@ class ChatViewController: MessagesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.largeTitleDisplayMode = .never // sohbet ekranında daha fazla mesaj gör bölümünde bir tasarım hatası vardı. sebebi önceki sohbetler ekranında başlığımızın large olması ve sohbet alanını çektiğimizde o aynı large alanını devam ettirmesi bu yüzden kod satırını ekledik
+        
         configureMessageCollectionView()
         configureMessageInputBar()
         
@@ -225,6 +227,29 @@ class ChatViewController: MessagesViewController {
         displayMessagesCount += 1
     }
     
+    private func loadMoreMessages(maxNumber: Int, minNumber: Int) {
+        maxMessageNumber = minNumber - 1
+        minMessageMember = maxMessageNumber - kNumberOfMessages
+        
+        if minMessageMember < 0 { // this case, we will never have that negative number
+            minMessageMember = 0
+        }
+        
+        for i in (minMessageMember ... maxMessageNumber).reversed() { // we add the message old message, it should be at the index zero of our array (func of insertMessage)
+            
+            insertOlderMessage(allLocalMessages[i])
+            
+        }
+        
+    }
+    
+    private func insertOlderMessage(_ localMessage: LocalMessage) {
+
+        let incoming = IncomingMessage(_collectionView: self)
+        self.mkMessages.insert(incoming.createMessage(localMessage: localMessage)!, at: 0)
+        displayMessagesCount += 1
+    }
+    
     
     //MARK: - Actions
     func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
@@ -244,6 +269,20 @@ class ChatViewController: MessagesViewController {
     func updateTypingIndicator(_ show: Bool) {
         subTitleLabel.text = show ? "Yazıyor.." : ""
     }
+    
+    
+    //MARK: - UIScrollViewDelegate
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshController.isRefreshing {
+            if displayMessagesCount < allLocalMessages.count {
+                self.loadMoreMessages(maxNumber: maxMessageNumber, minNumber: minMessageMember)  // load earlear messages
+                
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshController.endRefreshing()
+        }
+    }
+    
     
     
     //MARK: - Helpers
