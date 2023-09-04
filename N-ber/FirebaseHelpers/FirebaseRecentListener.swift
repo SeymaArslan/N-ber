@@ -54,6 +54,31 @@ class FirebaseRecentListener {
         }
     }
     
+    func updateRecents(chatRoomId: String, lastMessage: String) {  // update recent messages
+        FirebaseReference(.Recent).whereField(kChatRoomId, isEqualTo: chatRoomId).getDocuments { (querySnapshot, error) in  // calls and finds all the recent objects that belong to that chatroom
+            guard let documents = querySnapshot?.documents else {
+                print("Son güncelleme için belge yok")
+                return
+            }
+            let allRecents = documents.compactMap { (queryDocumentSnapshot) -> RecentChat? in
+                return try? queryDocumentSnapshot.data(as: RecentChat.self)
+            }
+            for recentChat in allRecents { // takes a specific chat specific recent item and updates the last message of it and also the incrementing of the on the counter and the date(the increment counter is only when we need that) in case we need that
+                self.updateRecentItemWithNewMessage(recent: recentChat, lastMessage: lastMessage)
+            }
+        }
+    }
+    
+    private func updateRecentItemWithNewMessage(recent: RecentChat, lastMessage: String) { // this func doesn't need to have access from outside world.
+        var tempRecent = recent
+        if tempRecent.senderId != User.currentId {
+            tempRecent.unreadCounter += 1
+        }
+        tempRecent.lastMessage = lastMessage
+        tempRecent.date = Date()
+        self.saveRecent(tempRecent)
+    }
+    
     func clearUnreadCounter(recent: RecentChat) {
         var newRecent = recent
         newRecent.unreadCounter = 0
