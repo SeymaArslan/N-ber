@@ -58,6 +58,8 @@ class ChatViewController: MessagesViewController {
     
     var typingCounter = 0  // that is going to listen for our typing changes so we save our typing changes
     
+    var gallery: GalleryController!
+    
     // Listeners
     var notificationToken: NotificationToken?
     
@@ -117,7 +119,8 @@ class ChatViewController: MessagesViewController {
         attachButton.setSize(CGSize(width : 30, height: 30), animated: false)
         attachButton.tintColor = .systemOrange
         attachButton.onTouchUpInside { item in
-            print("ekle butonuna basıldı")
+            
+            self.actionAttachMessage()
         }
         
         // microphone
@@ -288,6 +291,41 @@ class ChatViewController: MessagesViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    private func actionAttachMessage() {
+        messageInputBar.inputTextView.resignFirstResponder()
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let takePhotoOrVideo = UIAlertAction(title: "Kamera", style: .default) { (alert) in
+
+            self.showImageGallery(camera: true)
+        }
+        
+        let shareMedia = UIAlertAction(title: "Galeri", style: .default) { (alert) in
+            self.showImageGallery(camera: false)
+
+        }
+        
+        let shareLocation = UIAlertAction(title: "Konum", style: .default) { (alert) in
+            print("konumu göster")
+        }
+        
+        let cancelAction = UIAlertAction(title: "Kapat", style: .cancel, handler: nil)
+        
+        takePhotoOrVideo.setValue(UIImage(systemName: "camera"), forKey: "image")
+        takePhotoOrVideo.setValue(UIColor.systemOrange, forKey: "image")
+        shareMedia.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
+        shareMedia.setValue(UIColor.systemOrange, forKey: "image")
+        shareLocation.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
+        shareLocation.setValue(UIColor.systemOrange, forKey: "image")
+            
+        optionMenu.addAction(takePhotoOrVideo)
+        optionMenu.addAction(shareMedia)
+        optionMenu.addAction(shareLocation)
+        optionMenu.addAction(cancelAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
     
     //MARK: - Update typing indicator
     func createTypingObserver() {
@@ -369,5 +407,47 @@ class ChatViewController: MessagesViewController {
         // What we want to do is add one second to this date, and the reason that we are doing this is because when we do a filter in firebase is greater than specific date, for some reason, if there is another object with the value of the same date, so it will return that one as well, so we don't want to do it, for example in our case if I put it if I don't add the current date, this last message will be returned twice, so if I add one second to the last message date, it will keep this message
         return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate  // this will be our function that returns the last message date
     }
+    
+    
+    //MARK: - Gallery
+    private func showImageGallery(camera: Bool) {
+        gallery = GalleryController()
+        gallery.delegate = self
+        
+        Config.tabsToShow = camera ? [.cameraTab] : [.imageTab, .videoTab]
+        Config.Camera.imageLimit = 1
+        Config.initialTab = .imageTab
+        Config.VideoEditor.maximumDuration = 30
+        
+        self.present(gallery, animated: true, completion: nil)
+        
+    }
+}
+
+
+extension ChatViewController: GalleryControllerDelegate {
+    func galleryController(_ controller: Gallery.GalleryController, didSelectImages images: [Gallery.Image]) {
+        
+        if images.count > 0 {
+            images.first!.resolve { (image) in
+                self.messageSend(text: nil, photo: image, video: nil, audio: nil, location: nil)
+            }
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: Gallery.GalleryController, didSelectVideo video: Gallery.Video) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: Gallery.GalleryController, requestLightbox images: [Gallery.Image]) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryControllerDidCancel(_ controller: Gallery.GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
     
 }
