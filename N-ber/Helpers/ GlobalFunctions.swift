@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import AVFoundation
 
 func fileNameFrom(fileUrl: String) -> String {
     return ((fileUrl.components(separatedBy: "_").last)!.components(separatedBy: "?").first!).components(separatedBy: ".").first!
@@ -30,4 +32,33 @@ func timeElapsed(_ date: Date) -> String {
     }
     
     return elapsed
+}
+
+
+func videoThumbnail(video: URL) -> UIImage {
+    
+    let asset = AVURLAsset(url: video, options: nil)
+    
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    imageGenerator.appliesPreferredTrackTransform = true
+    
+    // let's say, a screenshot of our video
+    let time = CMTimeMakeWithSeconds(0.5, preferredTimescale: 1000)
+    var actualTime = CMTime.zero
+    
+    var image: CGImage?
+    
+    do {
+        image = try imageGenerator.copyCGImage(at: time, actualTime: &actualTime)
+        
+    } catch let error as NSError {
+        print("Küçük resim hatası ", error.localizedDescription)
+    }
+    
+    if image != nil {
+        return UIImage(cgImage: image!)
+    } else {
+        return UIImage(named: "placeHolder")!
+    }
+    
 }

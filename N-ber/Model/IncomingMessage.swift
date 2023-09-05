@@ -35,6 +35,23 @@ class IncomingMessage {
             }
         }
         
+        if localMessage.type == kVideo {
+            FileStorage.downloadImage(imageUrl: localMessage.pictureUrl) { (thumbNail) in
+                
+                FileStorage.downloadVideo(videoLink: localMessage.videoUrl) { isReadyToPlay, videoFileName in
+                    
+                    let videoUrl = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: videoFileName))
+                    
+                    let videoItem = VideoMessage(url: videoUrl)
+                    
+                    mkMessage.videoItem = videoItem
+                    mkMessage.kind = MessageKind.video(videoItem)  // this is our main message understands that we are not showing a picture message, but the video, so it will apply this play button on top of the imageView
+                }
+                mkMessage.videoItem?.image = thumbNail
+                self.messageCollectionView.messagesCollectionView.reloadData()
+            }
+        }
+        
         return mkMessage
     }
 }

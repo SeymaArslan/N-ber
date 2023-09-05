@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 import FirebaseFirestoreSwift
+import Gallery  // the video is part of the gallery and now we have access to that
 
 class OutgoingMessage {
     
-    class func send(chatId: String, text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0, memberIds: [String]) {
+    class func send(chatId: String, text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0, memberIds: [String]) {
         
         let currentUser = User.currentUser!
         
@@ -31,6 +32,10 @@ class OutgoingMessage {
         
         if photo != nil {
             sendPictureMessage(message: message, photo: photo!, memberIds: memberIds)
+        }
+        
+        if video != nil {
+            sendVideoMessage(message: message, video: video!, memberIds: memberIds)
         }
         
         //TODO: send push notification
@@ -77,6 +82,46 @@ func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [Strin
             
             OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
         }
+    }
+    
+}
+
+func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) {
+    
+    message.message = "*- Video -*"
+    message.type = kVideo
+    
+    let fileName = Date().stringDate()
+    let thumbnailDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".jpg"
+    let videoDirectory = "MediaMessages/Video/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".mov"
+    
+    let editor = VideoEditor()
+    editor.process(video: video) { (processedVideo, videoUrl) in
+        
+        if let tempPath = videoUrl {
+            let thumbnail = videoThumbnail(video: tempPath)
+            
+            FileStorage.saveFileLocally(fileData: thumbnail.jpegData(compressionQuality: 0.7)! as NSData, fileName: fileName)
+            
+            FileStorage.uploadImage(thumbnail, directory: thumbnailDirectory) { (imageLink) in
+                if imageLink != nil {
+                    
+                    let videoData = NSData(contentsOfFile: tempPath.path)
+                    
+                    FileStorage.saveFileLocally(fileData: videoData!, fileName: fileName + ".mov")
+                    
+                    FileStorage.uploadVideo(videoData!, directory: videoDirectory) { (videoLink) in
+                        // once we receive the video link, it means we have completed all the things we are required to send a message
+                        message.pictureUrl = imageLink ?? ""
+                        message.videoUrl = videoLink ?? ""
+                        
+                        // and once we have these, we're going to send our message, which is just calling our OutgoingMessage func, which just takes the local message with our changes and saves these to our fireplace
+                        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+                    }
+                }
+            }
+        }
+        
     }
     
 }

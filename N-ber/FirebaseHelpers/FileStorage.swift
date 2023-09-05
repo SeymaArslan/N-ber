@@ -23,7 +23,7 @@ class FileStorage {
             task.removeAllObservers() // bu dosyadaki herhangi bir değişiklikten haberdar olmaycağız
             ProgressHUD.dismiss() // ilerleme gösterimini de kapatmak istiyoruz
             if error != nil {
-                print("image yükleme hatası: \(error!.localizedDescription)")
+                print("Fotoğraf yükleme hatası: \(error!.localizedDescription)")
                 return
             }
             storageRef.downloadURL { (url, error) in
@@ -69,7 +69,7 @@ class FileStorage {
                             completion(UIImage(data: data! as Data))
                         }
                     } else {
-                        print("veritabanından belge yok")
+                        print("Veritabanında belge yok")
                         completion(nil)
                     }
                 }
@@ -79,6 +79,63 @@ class FileStorage {
 
     }
     
+    
+    //MARK: - Video
+    class func uploadVideo(_ video: NSData, directory: String, completion: @escaping (_ videoLink: String?) -> Void) {
+        
+        let storageRef = storage.reference(forURL: kFileReference).child(directory)
+
+        var task: StorageUploadTask!
+        
+        task = storageRef.putData(video as Data, metadata: nil, completion: { (metadata, error) in
+            
+            task.removeAllObservers() // bu dosyadaki herhangi bir değişiklikten haberdar olmaycağız
+            ProgressHUD.dismiss() // ilerleme gösterimini de kapatmak istiyoruz
+            
+            if error != nil {
+                print("Video yükleme hatası: \(error!.localizedDescription)")
+                return
+            }
+            storageRef.downloadURL { (url, error) in
+                guard let downloadUrl = url else {
+                    completion(nil)
+                    return
+                }
+                completion(downloadUrl.absoluteString)
+            }
+        })
+        
+        task.observe(StorageTaskStatus.progress) { (snapshot) in // ilerleme yüzdemiz
+            let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
+            ProgressHUD.showProgress(CGFloat(progress))
+        }
+    }
+    
+    class func downloadVideo(videoLink: String, completion: @escaping (_ isReadyToPlay: Bool, _ videoFileName: String) -> Void) {
+        let videoUrl = URL(string: videoLink)
+        let videoFileName = fileNameFrom(fileUrl: videoLink) + ".mov"
+        
+        if fileExistsAtPath(path: videoFileName) {
+            completion(true, videoFileName)
+        } else {
+            let downloadQueue = DispatchQueue(label: "VideoDownloadQueue")
+            
+            downloadQueue.async {
+                let data = NSData(contentsOf: videoUrl!)
+                if data != nil {
+                    FileStorage.saveFileLocally(fileData: data!, fileName: videoFileName)  // save locally
+                    DispatchQueue.main.async {
+                        completion(true, videoFileName)
+                    }
+                } else {
+                    print("Veritabanında belge yok.")
+                }
+            }
+        }
+
+    }
+    
+    
     //MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docURL = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
@@ -86,6 +143,7 @@ class FileStorage {
     }
     
 }
+
 
 //MARK: - Helpers
 func fileInDocumentsDirectory(fileName: String) -> String { // yerel dosyamız için bir yol elde etmek istiyoruz
