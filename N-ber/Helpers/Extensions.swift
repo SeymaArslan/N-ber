@@ -31,9 +31,16 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func stringDate() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "ddMMMyyyyHHmmss"  // the seconds, at least because it's very small value will be different, so we will not have a unique name there (photoMessage)
+        return dateFormatter.string(from: self)
+    }
+    
     func time() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         return dateFormatter.string(from: self)
     }
+    
 }
