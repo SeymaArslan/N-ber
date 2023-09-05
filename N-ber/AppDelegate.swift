@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         firstRunCheck()
         
+        LocationManager.shared.startUpdating() // so that our locationManager will start working and also the most important think that this variable (currentLocation) will have value with our latest location so that we can use it in order to send our location messages
+        
         return true
     }
 
