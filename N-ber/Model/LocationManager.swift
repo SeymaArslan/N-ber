@@ -28,6 +28,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyBest  // we want to get as good position on the user as possible
             locationManager!.requestWhenInUseAuthorization()
+
         }
     }
     
@@ -50,6 +51,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         currentLocation = locations.last!.coordinate
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) { // so this func, we called every time our user has changed the authorization of the location and we want to check if
+        
+        if manager.authorizationStatus == .notDetermined {
+            self.locationManager!.requestWhenInUseAuthorization()
+        }
     }
     
 }

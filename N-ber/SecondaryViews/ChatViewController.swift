@@ -306,7 +306,9 @@ class ChatViewController: MessagesViewController {
         }
         
         let shareLocation = UIAlertAction(title: "Konum", style: .default) { (alert) in
-            print("konumu göster")
+            if let _ = LocationManager.shared.currentLocation {
+                self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLocation)
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Kapat", style: .cancel, handler: nil)

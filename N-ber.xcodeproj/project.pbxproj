@@ -30,6 +30,7 @@
 		12853D9A2AA74ED4001C8A7E /* PhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D992AA74ED4001C8A7E /* PhotoMessage.swift */; };
 		12853D9D2AA7AC04001C8A7E /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */; };
 		12853D9F2AA7C3A0001C8A7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */; };
+		12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA02AA86930001C8A7E /* LocationMessage.swift */; };
 		128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC32A9F5BE30028244D /* MessageDataSource.swift */; };
 		128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */; };
 		128E4FC92A9F5C3F0028244D /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */; };
@@ -80,6 +81,7 @@
 		12853D992AA74ED4001C8A7E /* PhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessage.swift; sourceTree = "<group>"; };
 		12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		12853DA02AA86930001C8A7E /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
 		128E4FC32A9F5BE30028244D /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
 		128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 			children = (
 				12853D992AA74ED4001C8A7E /* PhotoMessage.swift */,
 				12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */,
+				12853DA02AA86930001C8A7E /* LocationMessage.swift */,
 			);
 			path = "Media Messages";
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 				12853D9D2AA7AC04001C8A7E /* VideoMessage.swift in Sources */,
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
+				12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
 				123A93EA2AA3C54200F65F58 /* IncomingMessage.swift in Sources */,
 				1242BE172A9E19A20011332A /* ChatViewController.swift in Sources */,

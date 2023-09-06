@@ -27,7 +27,7 @@
 	<string>$(PRODUCT_NAME) medya kitaplığına erişmek istiyor.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) konumunuzu kullanmak istiyor.</string>
 </dict>
 </plist>

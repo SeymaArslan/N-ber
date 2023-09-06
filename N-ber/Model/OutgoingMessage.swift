@@ -38,6 +38,10 @@ class OutgoingMessage {
             sendVideoMessage(message: message, video: video!, memberIds: memberIds)
         }
         
+        if location != nil {
+            sendLocationMessage(message: message, memberIds: memberIds)
+        }
+        
         //TODO: send push notification
         
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
@@ -67,7 +71,7 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
 func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String]) {
     print("Fotoğraflı mesaj gönderildi")
     
-    message.message = "*- Fotoğraf -*"
+    message.message = "+ Fotoğraf"
     message.type = kPhoto
     
     let fileName = Date().stringDate()
@@ -88,7 +92,7 @@ func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [Strin
 
 func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) {
     
-    message.message = "*- Video -*"
+    message.message = "+ Video"
     message.type = kVideo
     
     let fileName = Date().stringDate()
@@ -123,5 +127,17 @@ func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) 
         }
         
     }
+}
+
+
+func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
+    // here we want to access our message and also access our current location
     
+    let currentLocation = LocationManager.shared.currentLocation
+    message.message = "+ Konum"
+    message.type = kLocation
+    message.latitude = currentLocation?.latitude ?? 0.0
+    message.longitude = currentLocation?.longitude ?? 0.0
+    
+    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
 }
