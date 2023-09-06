@@ -43,8 +43,8 @@ class MapViewController: UIViewController {
     }
     
     private func configureLeftBarButton() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(self.backButtonPressed))
-        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "arrowshape.left.fill"), style: .plain, target: self, action: #selector(self.backButtonPressed))
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.systemOrange
     }
     
     private func configureTitle() {

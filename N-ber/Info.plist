@@ -29,5 +29,7 @@
 	<string>$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) konumunuzu kullanmak istiyor.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>$(PRODUCT_NAME) mikrofonunuzu kullanmak istiyor.</string>
 </dict>
 </plist>

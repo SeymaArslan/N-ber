@@ -63,6 +63,9 @@ class ChatViewController: MessagesViewController {
     // Listeners
     var notificationToken: NotificationToken?
     
+    var longPressGesture: UILongPressGestureRecognizer!
+    var audioFileName: String = ""
+    var audioDuration: Date!
     
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
@@ -85,12 +88,13 @@ class ChatViewController: MessagesViewController {
         
         createTypingObserver()
         
-        configureMessageCollectionView()
-        configureMessageInputBar()
-        
         configureLeftBarButton()
         configureCustomTitle()
         
+        configureMessageCollectionView()
+        configureGestureRecognizer()
+        configureMessageInputBar()
+
         loadChats()
         listenForNewChats()
         listenForReadStatusChange()
@@ -111,6 +115,12 @@ class ChatViewController: MessagesViewController {
         messagesCollectionView.refreshControl = refreshController  // this is the display of the spins after the user pulls down the chatView
         
     }
+    
+    private func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
+    }
 
     private func configureMessageInputBar() { // message input power we get from our message
         messageInputBar.delegate = self
@@ -128,7 +138,7 @@ class ChatViewController: MessagesViewController {
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
         micButton.tintColor = .systemOrange
         
-        // add gesture recognizer
+        micButton.addGestureRecognizer(longPressGesture)  // this way whenever we long press our micButton now, our func, which doesn't exist yet will be called
         
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         
@@ -314,7 +324,6 @@ class ChatViewController: MessagesViewController {
         let cancelAction = UIAlertAction(title: "Kapat", style: .cancel, handler: nil)
         
         takePhotoOrVideo.setValue(UIImage(systemName: "camera"), forKey: "image")
-//        takePhotoOrVideo.setValue(UIColor.systemOrange, forKey: "image")
         shareMedia.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
         shareLocation.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
             
@@ -422,6 +431,36 @@ class ChatViewController: MessagesViewController {
         self.present(gallery, animated: true, completion: nil)
         
     }
+    
+    
+    //MARK: - Audio Messages
+    @objc func recordAudio() {
+        // dümdüz kullandığımızda üzerine basılı tuttuğumuz süre içerisinde bir çok kez çağırıyor ve isteiğimiz 1 kez algıladıktan sonra ses tekrar tekrar fonksiyonu kullanmaması
+        switch longPressGesture.state { // the state is going to have a case that began
+        case .began:
+            
+            audioDuration = Date()
+            audioFileName = Date().stringDate()
+            AudioRecorder.shared
+            
+        case.ended:
+            
+            // stop recording
+            
+            if fileExistsAtPath(path: audioFileName + ".m4a") {
+                // send message
+            } else {
+                print("Ses dosyası yok.")
+            }
+            
+            audioFileName = ""
+            
+        @unknown default: // we have other cases but we are not really interested in them and I'm going to put here unknown
+            print("Bilinmeyen")
+        }
+        
+    }
+    
 }
 
 

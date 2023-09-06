@@ -33,6 +33,7 @@
 		12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA02AA86930001C8A7E /* LocationMessage.swift */; };
 		12853DA62AA86C09001C8A7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA52AA86C09001C8A7E /* MapViewController.swift */; };
 		12853DA82AA87216001C8A7E /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA72AA87216001C8A7E /* MapAnnotation.swift */; };
+		12853DAB2AA89D66001C8A7E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */; };
 		128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC32A9F5BE30028244D /* MessageDataSource.swift */; };
 		128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */; };
 		128E4FC92A9F5C3F0028244D /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */; };
@@ -86,6 +87,7 @@
 		12853DA02AA86930001C8A7E /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
 		12853DA52AA86C09001C8A7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		12853DA72AA87216001C8A7E /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		128E4FC32A9F5BE30028244D /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
 		128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				123A93E92AA3C54100F65F58 /* IncomingMessage.swift */,
 				12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */,
 				12853DA72AA87216001C8A7E /* MapAnnotation.swift */,
+				12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */,
 				12853D9B2AA7ABE9001C8A7E /* Media Messages */,
 				128E4FD42A9F75EF0028244D /* RealmMessages */,
 			);
@@ -429,6 +432,7 @@
 				128E4FCD2A9F5C5E0028244D /* InputBarAccessoryViewDelegate.swift in Sources */,
 				128E4FCF2A9F62220028244D /* MessageKitDefaults.swift in Sources */,
 				128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */,
+				12853DAB2AA89D66001C8A7E /* AudioRecorder.swift in Sources */,
 				12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */,
 				12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */,
 				12BFE5A92A8E5D55005748B2 /* User.swift in Sources */,
