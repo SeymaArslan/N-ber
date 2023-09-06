@@ -31,6 +31,8 @@
 		12853D9D2AA7AC04001C8A7E /* VideoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */; };
 		12853D9F2AA7C3A0001C8A7E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */; };
 		12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA02AA86930001C8A7E /* LocationMessage.swift */; };
+		12853DA62AA86C09001C8A7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA52AA86C09001C8A7E /* MapViewController.swift */; };
+		12853DA82AA87216001C8A7E /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA72AA87216001C8A7E /* MapAnnotation.swift */; };
 		128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC32A9F5BE30028244D /* MessageDataSource.swift */; };
 		128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */; };
 		128E4FC92A9F5C3F0028244D /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */; };
@@ -82,6 +84,8 @@
 		12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoMessage.swift; sourceTree = "<group>"; };
 		12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		12853DA02AA86930001C8A7E /* LocationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMessage.swift; sourceTree = "<group>"; };
+		12853DA52AA86C09001C8A7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		12853DA72AA87216001C8A7E /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		128E4FC32A9F5BE30028244D /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
 		128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				1242BE092A9616C00011332A /* ProfileTableViewController.swift */,
+				12853DA52AA86C09001C8A7E /* MapViewController.swift */,
 				1242BE162A9E19A20011332A /* ChatViewController.swift */,
 				128E4FC52A9F5BFD0028244D /* ChatViewExtensions */,
 			);
@@ -248,6 +253,7 @@
 				123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */,
 				123A93E92AA3C54100F65F58 /* IncomingMessage.swift */,
 				12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */,
+				12853DA72AA87216001C8A7E /* MapAnnotation.swift */,
 				12853D9B2AA7ABE9001C8A7E /* Media Messages */,
 				128E4FD42A9F75EF0028244D /* RealmMessages */,
 			);
@@ -330,6 +336,7 @@
 				TargetAttributes = {
 					125D2C132A8C041A003415B1 = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 				};
 			};
@@ -436,6 +443,7 @@
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
 				12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */,
+				12853DA82AA87216001C8A7E /* MapAnnotation.swift in Sources */,
 				125D2C182A8C041A003415B1 /* AppDelegate.swift in Sources */,
 				123A93EA2AA3C54200F65F58 /* IncomingMessage.swift in Sources */,
 				1242BE172A9E19A20011332A /* ChatViewController.swift in Sources */,
@@ -445,6 +453,7 @@
 				128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */,
 				1242BE152A9CB6090011332A /* ChatsTableViewController.swift in Sources */,
 				123A93E82AA3695400F65F58 /* FirebaseMessageListener.swift in Sources */,
+				12853DA62AA86C09001C8A7E /* MapViewController.swift in Sources */,
 				123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */,
 				128E4FCB2A9F5C4E0028244D /* MessageLayoutDelegate.swift in Sources */,
 				1242BE112A964A910011332A /* StartChat.swift in Sources */,
@@ -598,6 +607,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
@@ -616,6 +626,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seymarslan.N-ber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -627,6 +638,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
