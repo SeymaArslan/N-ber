@@ -291,7 +291,7 @@ class ChatViewController: MessagesViewController {
     //MARK: - Actions
     func messageSend(text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         
-        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, memberIds: [User.currentId, recipientId])
+        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, audioDuration: audioDuration, memberIds: [User.currentId, recipientId])
         
     }
     
@@ -441,14 +441,18 @@ class ChatViewController: MessagesViewController {
             
             audioDuration = Date()
             audioFileName = Date().stringDate()
-            AudioRecorder.shared
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
             
         case.ended:
             
-            // stop recording
+            AudioRecorder.shared.finishRecording()
             
             if fileExistsAtPath(path: audioFileName + ".m4a") {
-                // send message
+                
+                let audioD = audioDuration.interval(ofComponent: .second, from: Date())
+                
+                messageSend(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioD)
+                
             } else {
                 print("Ses dosyası yok.")
             }

@@ -42,6 +42,11 @@ class OutgoingMessage {
             sendLocationMessage(message: message, memberIds: memberIds)
         }
         
+        if audio != nil {
+//            print("ses gönder ", audio, audioDuration)
+            sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
+        }
+        
         //TODO: send push notification
         
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
@@ -140,4 +145,23 @@ func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
     message.longitude = currentLocation?.longitude ?? 0.0
     
     OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+}
+
+func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String]) {
+    
+    message.message = "+ Sesli mesaj"
+    message.type = kAudio
+    
+    let fileDirectory = "MediaMessages/Audio/" + "\(message.chatRoomId)/" + "_\(audioFileName)" + ".m4a"
+    
+    FileStorage.uploadAudio(audioFileName, directory: fileDirectory) { (audioUrl) in
+        
+        if audioUrl != nil {
+            message.audioUrl = audioUrl ?? ""
+            message.audioDuration = Double(audioDuration)
+            
+            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+        }
+    }
+    
 }

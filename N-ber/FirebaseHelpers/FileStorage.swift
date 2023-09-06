@@ -136,6 +136,50 @@ class FileStorage {
     }
     
     
+    //MARK: - Audio
+    class func uploadAudio(_ audioFileName: String, directory: String, completion: @escaping (_ audioLink: String?) -> Void) {
+        
+        let fileName = audioFileName + ".m4a"
+        
+        let storageRef = storage.reference(forURL: kFileReference).child(directory)
+
+        var task: StorageUploadTask!
+        
+        if fileExistsAtPath(path: fileName) {
+            if let audioData = NSData(contentsOfFile: fileInDocumentsDirectory(fileName: fileName)) {
+                
+                task = storageRef.putData(audioData as Data, metadata: nil, completion: { (metadata, error) in
+                    
+                    task.removeAllObservers() // bu dosyadaki herhangi bir değişiklikten haberdar olmaycağız
+                    ProgressHUD.dismiss() // ilerleme gösterimini de kapatmak istiyoruz
+                    
+                    if error != nil {
+                        print("Ses yükleme hatası: \(error!.localizedDescription)")
+                        return
+                    }
+                    
+                    storageRef.downloadURL { (url, error) in
+                        guard let downloadUrl = url else {
+                            completion(nil)
+                            return
+                        }
+                        completion(downloadUrl.absoluteString)
+                    }
+                })
+                
+                task.observe(StorageTaskStatus.progress) { (snapshot) in // ilerleme yüzdemiz
+                    let progress = snapshot.progress!.completedUnitCount / snapshot.progress!.totalUnitCount
+                    ProgressHUD.showProgress(CGFloat(progress))
+                }
+                
+            } else {
+                print("Hiçbir şey yüklenemedi (ses)")
+            }
+        }
+    }
+
+    
+    
     //MARK: - Save Locally
     class func saveFileLocally(fileData: NSData, fileName: String) {
         let docURL = getDocumentsURL().appendingPathComponent(fileName, isDirectory: false)
