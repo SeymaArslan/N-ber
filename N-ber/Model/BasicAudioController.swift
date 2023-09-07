@@ -164,11 +164,11 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
   }
 
   // MARK: - AVAudioPlayerDelegate
-  open func audioPlayerDidFinishPlaying(_: AVAudioPlayer, successfully _: Bool) {
+  open func audioPlayerDidFinishPlaying(_: AVAudioPlayer, successfully _: Bool) {  // this is once our music or our whatever the audio messages stopped playing, we just we get this function call and then we just stop our onGoingPlaying, which we do the reset on our button here and also on the timer and on the loading part there
     stopAnyOngoingPlaying()
   }
 
-  open func audioPlayerDecodeErrorDidOccur(_: AVAudioPlayer, error _: Error?) {
+  open func audioPlayerDecodeErrorDidOccur(_: AVAudioPlayer, error _: Error?) {  // if there is an error, we just basically stop our message playing 
     stopAnyOngoingPlaying()
   }
 
@@ -186,7 +186,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
 
   // MARK: - Fire Methods
   @objc
-  private func didFireProgressTimer(_: Timer) {
+  private func didFireProgressTimer(_: Timer) {  // How much of the audio we have already played
     guard let player = audioPlayer, let collectionView = messageCollectionView, let cell = playingCell else {
       return
     }
@@ -214,7 +214,7 @@ open class BasicAudioController: NSObject, AVAudioPlayerDelegate {
   }
 
   // MARK: - Private Methods
-  private func startProgressTimer() {
+  private func startProgressTimer() {  // It changes the value and shows how much it basically shows this loading there
     progressTimer?.invalidate()
     progressTimer = nil
     progressTimer = Timer.scheduledTimer(
