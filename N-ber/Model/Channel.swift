@@ -20,7 +20,7 @@ struct Channel: Codable {
     @ServerTimestamp var createdDate = Date()  // ServerTimestamp, which comes with this FirebaseFirestoreSwift, basically, it says if these two values are not set, firebase is going to take and assign a serverTimestamp, which is the current date automatically, so this way we have like EXTRA safety
     @ServerTimestamp var lastMessageDate = Date()
     
-    enum CodingKeys: String, CodingKeys { // and this way, once you do like you cannot only take the last message.. if you enabled this thing (CodingKeys) then you have to set all the keys here. No matter if they match or if they don't match the CodingKeys doesn't care about it .. you have to have all of them here
+    enum CodingKeys: String, CodingKey { // and this way, once you do like you cannot only take the last message.. if you enabled this thing (CodingKeys) then you have to set all the keys here. No matter if they match or if they don't match the CodingKeys doesn't care about it .. you have to have all of them here
         
         case id
         case name

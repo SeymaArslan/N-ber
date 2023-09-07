@@ -11,6 +11,8 @@
 		1236A5062AA9CCD100AC3B1E /* ChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5052AA9CCD100AC3B1E /* ChannelsTableViewController.swift */; };
 		1236A5082AA9F0EB00AC3B1E /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5072AA9F0EB00AC3B1E /* Channel.swift */; };
 		1236A50A2AA9F5F300AC3B1E /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5092AA9F5F200AC3B1E /* ChannelTableViewCell.swift */; };
+		1236A50C2AAA541200AC3B1E /* MyChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */; };
+		1236A50E2AAA542200AC3B1E /* AddChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */; };
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
 		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		123A93E62AA366FF00F65F58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 123A93E52AA366FF00F65F58 /* README.md */; };
@@ -68,6 +70,8 @@
 		1236A5052AA9CCD100AC3B1E /* ChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsTableViewController.swift; sourceTree = "<group>"; };
 		1236A5072AA9F0EB00AC3B1E /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		1236A5092AA9F5F200AC3B1E /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
+		1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewController.swift; sourceTree = "<group>"; };
+		1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelTableViewController.swift; sourceTree = "<group>"; };
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		123A93E52AA366FF00F65F58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 				1242BE092A9616C00011332A /* ProfileTableViewController.swift */,
 				12853DA52AA86C09001C8A7E /* MapViewController.swift */,
 				1242BE162A9E19A20011332A /* ChatViewController.swift */,
+				1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */,
+				1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */,
 				128E4FC52A9F5BFD0028244D /* ChatViewExtensions */,
 			);
 			path = SecondaryViews;
@@ -459,6 +465,7 @@
 				123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */,
 				12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */,
 				12853D982AA5F4AC001C8A7E /* FirebaseTypingListener.swift in Sources */,
+				1236A50E2AAA542200AC3B1E /* AddChannelTableViewController.swift in Sources */,
 				12BFE5B62A926518005748B2 /* EditProfileTableViewController.swift in Sources */,
 				12853D9D2AA7AC04001C8A7E /* VideoMessage.swift in Sources */,
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
@@ -479,6 +486,7 @@
 				12853DA62AA86C09001C8A7E /* MapViewController.swift in Sources */,
 				123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */,
 				128E4FCB2A9F5C4E0028244D /* MessageLayoutDelegate.swift in Sources */,
+				1236A50C2AAA541200AC3B1E /* MyChannelsTableViewController.swift in Sources */,
 				1242BE112A964A910011332A /* StartChat.swift in Sources */,
 				12F3DFEB2A94DDB5002A7E12 /* UsersTableViewController.swift in Sources */,
 				125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */,
