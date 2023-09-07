@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1236A5042AA9A6AE00AC3B1E /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5032AA9A6AE00AC3B1E /* BasicAudioController.swift */; };
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
 		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		123A93E62AA366FF00F65F58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 123A93E52AA366FF00F65F58 /* README.md */; };
@@ -34,6 +35,7 @@
 		12853DA62AA86C09001C8A7E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA52AA86C09001C8A7E /* MapViewController.swift */; };
 		12853DA82AA87216001C8A7E /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DA72AA87216001C8A7E /* MapAnnotation.swift */; };
 		12853DAB2AA89D66001C8A7E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */; };
+		12853DAD2AA8F25A001C8A7E /* AudioMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12853DAC2AA8F25A001C8A7E /* AudioMessage.swift */; };
 		128E4FC42A9F5BE30028244D /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC32A9F5BE30028244D /* MessageDataSource.swift */; };
 		128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */; };
 		128E4FC92A9F5C3F0028244D /* MessageDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */; };
@@ -59,6 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1236A5032AA9A6AE00AC3B1E /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		123A93E52AA366FF00F65F58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -88,6 +91,7 @@
 		12853DA52AA86C09001C8A7E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		12853DA72AA87216001C8A7E /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		12853DAC2AA8F25A001C8A7E /* AudioMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioMessage.swift; sourceTree = "<group>"; };
 		128E4FC32A9F5BE30028244D /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
 		128E4FC62A9F5C210028244D /* MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellDelegate.swift; sourceTree = "<group>"; };
 		128E4FC82A9F5C3F0028244D /* MessageDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDisplayDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,7 @@
 				12853D992AA74ED4001C8A7E /* PhotoMessage.swift */,
 				12853D9C2AA7AC04001C8A7E /* VideoMessage.swift */,
 				12853DA02AA86930001C8A7E /* LocationMessage.swift */,
+				12853DAC2AA8F25A001C8A7E /* AudioMessage.swift */,
 			);
 			path = "Media Messages";
 			sourceTree = "<group>";
@@ -257,6 +262,7 @@
 				12853D9E2AA7C3A0001C8A7E /* LocationManager.swift */,
 				12853DA72AA87216001C8A7E /* MapAnnotation.swift */,
 				12853DAA2AA89D66001C8A7E /* AudioRecorder.swift */,
+				1236A5032AA9A6AE00AC3B1E /* BasicAudioController.swift */,
 				12853D9B2AA7ABE9001C8A7E /* Media Messages */,
 				128E4FD42A9F75EF0028244D /* RealmMessages */,
 			);
@@ -433,6 +439,7 @@
 				128E4FCF2A9F62220028244D /* MessageKitDefaults.swift in Sources */,
 				128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */,
 				12853DAB2AA89D66001C8A7E /* AudioRecorder.swift in Sources */,
+				1236A5042AA9A6AE00AC3B1E /* BasicAudioController.swift in Sources */,
 				12BFE5AC2A8E60DB005748B2 /* Constants.swift in Sources */,
 				12F3DFE92A94DD8E002A7E12 /* UserTableViewCell.swift in Sources */,
 				12BFE5A92A8E5D55005748B2 /* User.swift in Sources */,
@@ -463,6 +470,7 @@
 				1242BE112A964A910011332A /* StartChat.swift in Sources */,
 				12F3DFEB2A94DDB5002A7E12 /* UsersTableViewController.swift in Sources */,
 				125D2C1A2A8C041A003415B1 /* SceneDelegate.swift in Sources */,
+				12853DAD2AA8F25A001C8A7E /* AudioMessage.swift in Sources */,
 				1242BE0F2A963BA00011332A /* RecentTableViewCell.swift in Sources */,
 				128E4FD12A9F71730028244D /* MKMessage.swift in Sources */,
 				12853D9F2AA7C3A0001C8A7E /* LocationManager.swift in Sources */,
@@ -617,6 +625,10 @@
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kitaplığına erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kamerana erişmek istiyor.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumuna erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -648,6 +660,10 @@
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kitaplığına erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kamerana erişmek istiyor.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumuna erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

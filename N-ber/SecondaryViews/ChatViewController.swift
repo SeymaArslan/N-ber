@@ -41,6 +41,8 @@ class ChatViewController: MessagesViewController {
     private var recipientId = ""
     private var recipientName = ""
     
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)  // lazy, basically, we don't want to initialize these basic audio player on our runtime because it's quiteB class, we want to initialize this class only if we need it. So when our user clicks on the play button, we are going to need our audio controller and only then we want to initialize it
+    
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
     let refreshController = UIRefreshControl()
@@ -99,6 +101,20 @@ class ChatViewController: MessagesViewController {
         listenForNewChats()
         listenForReadStatusChange()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId) // we want to reset the conter because once we open the chatRoom, we are going to read all the messages, So there will be no and read message available
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {  // will be called every time we leave the chatRoom
+        super.viewWillDisappear(animated)
+        
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        audioController.stopAnyOngoingPlaying()
     }
     
     
@@ -318,6 +334,8 @@ class ChatViewController: MessagesViewController {
         let shareLocation = UIAlertAction(title: "Konum", style: .default) { (alert) in
             if let _ = LocationManager.shared.currentLocation {
                 self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLocation)
+            } else {
+                print("shareLocation da hata")
             }
         }
         

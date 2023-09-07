@@ -178,6 +178,29 @@ class FileStorage {
         }
     }
 
+    class func downloadAudio(audioLink: String, completion: @escaping (_ audioFileName: String) -> Void) {
+ 
+        let audioFileName = fileNameFrom(fileUrl: audioLink) + ".m4a"
+        
+        if fileExistsAtPath(path: audioFileName) {
+            completion(audioFileName)
+        } else {
+            let downloadQueue = DispatchQueue(label: "AudioDownloadQueue")
+            
+            downloadQueue.async {
+                let data = NSData(contentsOf: URL(string: audioLink)!)
+                if data != nil {
+                    FileStorage.saveFileLocally(fileData: data!, fileName: audioFileName)  // save locally
+                    DispatchQueue.main.async {
+                        completion(audioFileName)
+                    }
+                } else {
+                    print("Veritabanında ses belgesi yok.")
+                }
+            }
+        }
+
+    }
     
     
     //MARK: - Save Locally

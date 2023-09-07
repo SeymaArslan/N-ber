@@ -42,7 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func firstRunCheck() {
         firstRun = userDefaults.bool(forKey: kFirstRun)
         if !firstRun! {
-            let status = Status.array.map { $0.rawValue }
+        //    let status = Status.array.map { $0.rawValue }   before added Status: CaseIterable
+            let status = Status.allCases.map { $0.rawValue }  // *
             userDefaults.set(status, forKey: kStatus)
             userDefaults.set(true, forKey: kFirstRun)
             

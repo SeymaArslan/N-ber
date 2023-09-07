@@ -17,23 +17,28 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     private override init() {
         super.init()
-        // request location access
+        
+        requestLocationAccess()
         
     }
     
     func requestLocationAccess() {
         
         if locationManager == nil {
+            print("auth location manager")
             locationManager = CLLocationManager()
             locationManager!.delegate = self
             locationManager!.desiredAccuracy = kCLLocationAccuracyBest  // we want to get as good position on the user as possible
             locationManager!.requestWhenInUseAuthorization()
+//            locationManager!.requestAlwaysAuthorization()
 
+        } else {
+            print("we have location manager")
         }
     }
     
     func startUpdating() {
-        locationManager!.startUpdatingLocation()
+        locationManager?.startUpdatingLocation()
     }
     
     func stopUpdating() {
@@ -54,7 +59,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) { // so this func, we called every time our user has changed the authorization of the location and we want to check if
-        
+
         if manager.authorizationStatus == .notDetermined {
             self.locationManager!.requestWhenInUseAuthorization()
         }

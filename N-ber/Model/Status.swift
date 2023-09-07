@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum Status: String {
+enum Status: String, CaseIterable { // we have static array and append every object in there, and we are delete this arrayList and instead of doing that, we can just confirm to protocol of CaseIterable, which will give us access of an array with all these items of our struct
+    
     case Available = "Müsait"
     case Busy = "Meşgul"
     case AtSchool = "Okulda"
@@ -20,33 +21,6 @@ enum Status: String {
     case Sleepig = "Uyuyor"
     case UrgentCallsOnly = "Yalnızca acil aramalar"
     
-    static var array: [Status] {
-        var a: [Status] = []
-        
-        switch Status.Available {
-        case .Available:
-            a.append(.Available); fallthrough
-        case .Busy:
-            a.append(.Busy); fallthrough
-        case .AtSchool:
-            a.append(.AtSchool); fallthrough
-        case .AtTheMovies:
-            a.append(.AtTheMovies); fallthrough
-        case .AtWork:
-            a.append(.AtWork); fallthrough
-        case .BatteryAboutToDie:
-            a.append(.BatteryAboutToDie); fallthrough
-        case .CantTalk:
-            a.append(.CantTalk); fallthrough
-        case .InAMeeting:
-            a.append(.InAMeeting); fallthrough
-        case .AtTheGym:
-            a.append(.AtTheGym); fallthrough
-        case .Sleepig:
-            a.append(.Sleepig); fallthrough
-        case .UrgentCallsOnly:
-            a.append(.UrgentCallsOnly);
-            return a
-        }
-    }
 }
+
+// So we dont have to write long array and put every extra every new item that we put inside.. So imagine tomorrow you come and write a new status here. You had to put it manually inside the array, otherwise it wouldnt be available.. but now with this CaseIterable protocol here, we just can do whatever we want and it's automatically available and will be saved in our user default
