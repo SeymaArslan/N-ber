@@ -79,9 +79,10 @@ class MyChannelsTableViewController: UITableViewController {
         if editingStyle == .delete {
 //            print("indexin hücresi silindi ", indexPath)
             
+            let channelToDelete = myChannels[indexPath.row]
+            
             myChannels.remove(at: indexPath.row)  // and also, we just don't want to only delete it in firebase, but we also want to remove it from the array so that we no longer have it in our source.
             
-            let channelToDelete = myChannels[indexPath.row]
             FirebaseChannelListener.shared.deleteChannel(channelToDelete)
             
             tableView.deleteRows(at: [indexPath], with: .automatic) // .SO first we access temporary channel and then we remove it from our array and we will remove it from our firebase
