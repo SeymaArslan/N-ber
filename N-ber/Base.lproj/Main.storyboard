@@ -1044,7 +1044,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="FXE-Uz-TNz">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="tableviewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="fpY-nm-H2P" customClass="ChannelTableViewCell" customModule="N_ber" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="100"/>
@@ -1147,7 +1147,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="SiL-bu-wrl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="tableviewBackgroundColor"/>
                         <sections>
                             <tableViewSection id="QsT-bc-i3B">
                                 <cells>
@@ -1229,8 +1229,16 @@
                     <navigationItem key="navigationItem" title="Yeni Kanal" id="CLM-qc-ndB">
                         <barButtonItem key="rightBarButtonItem" title="Kaydet" id="WOt-5z-bBI">
                             <color key="tintColor" systemColor="systemOrangeColor"/>
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="4oQ-jG-45B" id="hdf-Rw-xyP"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="aboutTextView" destination="S4q-Wm-07b" id="gm6-uw-ghb"/>
+                        <outlet property="avatarImageView" destination="zi5-ll-J2f" id="oCT-1q-Qzx"/>
+                        <outlet property="nameTextField" destination="I1o-aA-9x2" id="dWy-Va-pIh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g22-Lu-vXF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

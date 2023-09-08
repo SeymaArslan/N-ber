@@ -6,84 +6,137 @@
 //
 
 import UIKit
+import Gallery
+import ProgressHUD
 
 class AddChannelTableViewController: UITableViewController {
 
+    //MARK: - IBOutlets
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var aboutTextView: UITextView!
+    
+    
+    //MARK: - Vars
+    var gallery: GalleryController!
+    var tapGesture = UITapGestureRecognizer()
+    var avatarLink = ""
+    var channelId = UUID().uuidString  // so this will be a unique id for our channel
+    
+    
+    //MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        navigationItem.largeTitleDisplayMode = .never
+        tableView.tableFooterView = UIView() // and this way its going to hide our empty selves
+        
+        configureGestures()
     }
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    //MARK: - IBActions
+    @IBAction func saveButtonPressed(_ sender: Any) {
+        
+        if nameTextField.text != "" {
+            saveChannel()
+        } else {
+            ProgressHUD.showError("Kanal adı boş!")
+        }
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    
+    @objc func avatarImageTap() {
+//        print("tap on avatar")
+        showGallery()
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    @objc func backButtonPressed() {
+        self.navigationController?.popViewController(animated: true)
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+    
+    
+    //MARK: - Configuration
+    private func configureGestures() {
+        tapGesture.addTarget(self, action: #selector(avatarImageTap))
+        avatarImageView.isUserInteractionEnabled = true // it means our user can interact with our avatar image of you, and the interaction also includes tapping on the avatarImage of you
+        avatarImageView.addGestureRecognizer(tapGesture)
 
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    private func configureLeftBarButton () {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowshape.left.fill"), style: .plain, target: self, action: #selector(backButtonPressed))
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    
+    //MARK: - SaveChannel
+    private func saveChannel() {
+        let channel = Channel(id: channelId, name: nameTextField.text!, adminId: User.currentUser as String, memberIds: [User.currentId], avatarLink: avatarLink, aboutChannel: aboutTextView.text)
+        
+        // save channel to Firebase
+        
+        self.navigationController?.popViewController(animated: true)  // dismiss
     }
-    */
+    
+    
+    //MARK: - Gallery
+    private func showGallery() {
+        self.gallery = GalleryController()
+        self.gallery.delegate = self
+        Config.tabsToShow = [.imageTab, .cameraTab]
+        Config.Camera.imageLimit = 1
+        Config.initialTab = .imageTab
+        self.present(gallery, animated: true, completion: nil)
+    }
+    
+    
+    //MARK: - Avatars
+    private func uploadAvatarImage(_ image: UIImage) {
+        
+        let fileDirectory = "Avatars/" + "_\(channelId)" + ".jpg"
+        
+        FileStorage.saveFileLocally(fileData: image.jpegData(compressionQuality: 0.7)! as NSData, fileName: self.channelId)
+        
+        FileStorage.uploadImage(image, directory: fileDirectory) { (avatarLink) in
+            self.avatarLink = avatarLink ?? ""
+        }
+    }
+    
+}
 
+
+extension AddChannelTableViewController: GalleryControllerDelegate {
+    func galleryController(_ controller: Gallery.GalleryController, didSelectImages images: [Gallery.Image]) {
+      
+        if images.count > 0 {
+            images.first!.resolve(completion: { (icon) in
+                if icon != nil {
+                    self.uploadAvatarImage(icon!) // upload image
+                    
+                    self.avatarImageView.image = icon?.circleMasked // set avatar image
+                } else {
+                    ProgressHUD.showFailed("Fotoğraf seçilmedi!")
+                }
+            })
+        }
+        
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: Gallery.GalleryController, didSelectVideo video: Gallery.Video) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryController(_ controller: Gallery.GalleryController, requestLightbox images: [Gallery.Image]) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func galleryControllerDidCancel(_ controller: Gallery.GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
 }
