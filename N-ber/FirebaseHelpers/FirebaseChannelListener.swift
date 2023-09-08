@@ -51,4 +51,10 @@ class FirebaseChannelListener {
     }
     
     
+    func deleteChannel(_ channel: Channel) {
+        FirebaseReference(.Channel).document(channel.id).delete()
+    }
+    
+    
+    
 }

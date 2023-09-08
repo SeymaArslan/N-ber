@@ -1131,10 +1131,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rPj-hI-q3D">
                             <color key="tintColor" systemColor="systemOrangeColor"/>
                             <connections>
-                                <segue destination="4oQ-jG-45B" kind="show" id="iUx-hs-gu2"/>
+                                <action selector="addBarButtonPressed:" destination="GNB-7Y-K9L" id="FG4-H5-n2o"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="4oQ-jG-45B" kind="show" identifier="myChannelToAddSeg" id="t8g-dW-0gx"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YlM-eA-TGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

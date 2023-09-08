@@ -9,81 +9,94 @@ import UIKit
 
 class MyChannelsTableViewController: UITableViewController {
 
+    //MARK: - Vars
+    var myChannels: [Channel] = [] // is going to hold all the channels
+    
+    
+    
+    //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        tableView.tableFooterView = UIView() // and this will get read of empty cells
+        downloadUserChannels()
     }
+    
+    
+    
+    //MARK: - Download Channels
+    private func downloadUserChannels() {
+        FirebaseChannelListener.shared.downloadUserChannelsFromFirebase { allChannels in
+            
+            self.myChannels = allChannels
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    
+    
+    //MARK: - IBActions
+    @IBAction func addBarButtonPressed(_ sender: Any) {
+        
+        performSegue(withIdentifier: "myChannelToAddSeg", sender: self)
+    }
+    
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+        
+        return myChannels.count
     }
-
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChannelTableViewCell
 
-        // Configure the cell...
-
+        cell.configure(channel: myChannels[indexPath.row]) // provide it to our celli which in turn is going to set our user interface
+        
         return cell
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
+    
+    
+    
+    //MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        performSegue(withIdentifier: "myChannelToAddSeg", sender: myChannels[indexPath.row])
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {  // So this allows our user to edit each cell because we are the admins and we are allowed to delete this channels
         return true
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {  // swipe delete
+        // and here we want to check if the user wants to delete, so we say if editing style is equals to delete
+        
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+//            print("indexin hücresi silindi ", indexPath)
+            
+            myChannels.remove(at: indexPath.row)  // and also, we just don't want to only delete it in firebase, but we also want to remove it from the array so that we no longer have it in our source.
+            
+            let channelToDelete = myChannels[indexPath.row]
+            FirebaseChannelListener.shared.deleteChannel(channelToDelete)
+            
+            tableView.deleteRows(at: [indexPath], with: .automatic) // .SO first we access temporary channel and then we remove it from our array and we will remove it from our firebase
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "myChannelToAddSeg" {
+            
+            let editChannelView = segue.destination as! AddChannelTableViewController
+            
+            editChannelView.channelToEdit = sender as? Channel
+        }
+        
     }
-    */
-
+    
 }

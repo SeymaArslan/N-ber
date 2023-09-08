@@ -35,6 +35,7 @@ class ChannelTableViewCell: UITableViewCell {
         memberCountLabel.text = "\(channel.memberIds.count) members"
         lastMessageDateLabel.text = timeElapsed(channel.lastMessageDate ?? Date())
         lastMessageDateLabel.adjustsFontSizeToFitWidth = true // this basically tells if the state last message state is to big to fit in our label there (lastMessageDateLabel.text), we are going to dynamically decrease the size to make it smaller
+        setAvatar(avatarLink: channel.avatarLink)
     }
     
     private func setAvatar(avatarLink: String) {
