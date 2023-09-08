@@ -40,7 +40,7 @@ class FirebaseChannelListener {
     
     
     //MARK: - Add Update Delete
-    func addChannel(_ channel: Channel) {
+    func saveChannel(_ channel: Channel) {
         
         do {
          try

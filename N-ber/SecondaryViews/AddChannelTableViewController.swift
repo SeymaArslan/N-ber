@@ -35,6 +35,12 @@ class AddChannelTableViewController: UITableViewController {
         tableView.tableFooterView = UIView() // and this way its going to hide our empty selves
         
         configureGestures()
+        configureLeftBarButton()
+        
+        if channelToEdit != nil {
+            configureEditingView()
+        }
+        
     }
 
     
@@ -42,7 +48,7 @@ class AddChannelTableViewController: UITableViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         
         if nameTextField.text != "" {
-            saveChannel()
+            channelToEdit != nil ? editChannel() : saveChannel()
         } else {
             ProgressHUD.showError("Kanal adı boş!")
         }
@@ -71,15 +77,39 @@ class AddChannelTableViewController: UITableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrowshape.left.fill"), style: .plain, target: self, action: #selector(backButtonPressed))
     }
     
+    private func configureEditingView() {
+        self.nameTextField.text = channelToEdit!.name
+        self.channelId = channelToEdit!.id
+        self.aboutTextView.text = channelToEdit!.aboutChannel
+        self.avatarLink = channelToEdit!.avatarLink
+        self.title = "Kanalı Düzenle"
+        
+        setAvatar(avatarLink: channelToEdit!.avatarLink)
+    }
+    
+
+    
     
     //MARK: - SaveChannel
     private func saveChannel() {
         let channel = Channel(id: channelId, name: nameTextField.text!, adminId: User.currentId, memberIds: [User.currentId], avatarLink: avatarLink, aboutChannel: aboutTextView.text)
         
-        FirebaseChannelListener.shared.addChannel(channel)  // save channel to Firebase
+        FirebaseChannelListener.shared.saveChannel(channel)  // save channel to Firebase
         
         self.navigationController?.popViewController(animated: true)  // dismiss
     }
+    
+    private func editChannel() {
+        channelToEdit!.name = nameTextField.text!
+        channelToEdit!.aboutChannel = aboutTextView.text
+        channelToEdit!.avatarLink = avatarLink
+        
+        FirebaseChannelListener.shared.saveChannel(channelToEdit!)  // save channel to Firebase
+        
+        self.navigationController?.popViewController(animated: true)  // dismiss
+    }
+    
+    
     
     
     //MARK: - Gallery
@@ -104,6 +134,20 @@ class AddChannelTableViewController: UITableViewController {
             self.avatarLink = avatarLink ?? ""
         }
     }
+ 
+    
+    private func setAvatar(avatarLink: String) {
+        if avatarLink != "" {
+            FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
+                DispatchQueue.main.async {
+                    self.avatarImageView.image = avatarImage?.circleMasked
+                }
+            }
+        } else {
+            self.avatarImageView.image = UIImage(named: "MeAvatar")
+        }
+    }
+    
     
 }
 
