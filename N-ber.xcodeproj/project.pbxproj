@@ -13,6 +13,7 @@
 		1236A50A2AA9F5F300AC3B1E /* ChannelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5092AA9F5F200AC3B1E /* ChannelTableViewCell.swift */; };
 		1236A50C2AAA541200AC3B1E /* MyChannelsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */; };
 		1236A50E2AAA542200AC3B1E /* AddChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */; };
+		1236A5102AAB03FC00AC3B1E /* FirebaseChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */; };
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
 		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		123A93E62AA366FF00F65F58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 123A93E52AA366FF00F65F58 /* README.md */; };
@@ -72,6 +73,7 @@
 		1236A5092AA9F5F200AC3B1E /* ChannelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewCell.swift; sourceTree = "<group>"; };
 		1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsTableViewController.swift; sourceTree = "<group>"; };
 		1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelTableViewController.swift; sourceTree = "<group>"; };
+		1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChannelListener.swift; sourceTree = "<group>"; };
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		123A93E52AA366FF00F65F58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 				12853D972AA5F4AC001C8A7E /* FirebaseTypingListener.swift */,
 				1242BE122A9A59600011332A /* FirebaseRecentListener.swift */,
 				123A93E72AA3695400F65F58 /* FirebaseMessageListener.swift */,
+				1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */,
 				12F3DFDE2A938C5D002A7E12 /* FileStorage.swift */,
 			);
 			path = FirebaseHelpers;
@@ -469,6 +472,7 @@
 				12BFE5B62A926518005748B2 /* EditProfileTableViewController.swift in Sources */,
 				12853D9D2AA7AC04001C8A7E /* VideoMessage.swift in Sources */,
 				12F3DFE72A94020C002A7E12 /* StatusTableViewController.swift in Sources */,
+				1236A5102AAB03FC00AC3B1E /* FirebaseChannelListener.swift in Sources */,
 				12F3DFE52A93FCC7002A7E12 /* Status.swift in Sources */,
 				12853DA12AA86930001C8A7E /* LocationMessage.swift in Sources */,
 				12853DA82AA87216001C8A7E /* MapAnnotation.swift in Sources */,

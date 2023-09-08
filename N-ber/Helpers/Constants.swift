@@ -32,3 +32,5 @@ public let kLocation = "location"
 
 public let kDate = "date"
 public let kReadDate = "date"
+
+public let kAdminId = "adminId"  // Channel modelinde "adminId" alanının tanımlanmış ve aynı isimde olmalı
