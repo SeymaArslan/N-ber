@@ -25,9 +25,13 @@ class ChannelsTableViewController: UITableViewController {
         navigationItem.largeTitleDisplayMode = .always
         self.title = "Kanallar"
         
+        self.refreshControl = UIRefreshControl()
+        self.tableView.refreshControl = self.refreshControl
+        
         tableView.tableFooterView = UIView()  // there is empty cells when we dont anything in our tableView, I want to hide
      
-        downloadChannels()
+        downloadAllChannels()
+        downloadSubscribedChannels()
     }
 
     
@@ -49,6 +53,19 @@ class ChannelsTableViewController: UITableViewController {
     
     
     
+    //MARK: - TableView Delegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if channelSegmentOutlet.selectedSegmentIndex == 1 {
+            showChannelView(channel: allChannels[indexPath.row])
+        } else {
+            showChat(channel: subscribedChannels[indexPath.row])
+        }
+    }
+    
+    
+    
     //MARK: - IB Actions
     @IBAction func channelSegmentValueChanged(_ sender: Any) {
         
@@ -58,7 +75,7 @@ class ChannelsTableViewController: UITableViewController {
     
     
     //MARK: - Download Channels
-    private func downloadChannels() {
+    private func downloadAllChannels() {
         FirebaseChannelListener.shared.downloadAllChannels { (allChannels) in
             
             self.allChannels = allChannels
@@ -70,8 +87,10 @@ class ChannelsTableViewController: UITableViewController {
             }
         }
         
-        FirebaseChannelListener.shared.downloadSubscribedChannels { subscribedChannels in
-            
+    }
+    
+    private func downloadSubscribedChannels() {
+        FirebaseChannelListener.shared.downloadSubscribedChannels { (subscribedChannels) in
             self.subscribedChannels = subscribedChannels
             if self.channelSegmentOutlet.selectedSegmentIndex == 0 {
                 DispatchQueue.main.async {
@@ -79,11 +98,40 @@ class ChannelsTableViewController: UITableViewController {
                 }
             }
         }
-        
     }
     
     
     
+    //MARK: - UIScrollViewDelegate
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
+        if self.refreshControl!.isRefreshing {
+            self.downloadAllChannels()
+            self.refreshControl!.endRefreshing()
+        }
+    }
     
+    
+    
+    //MARK: - Navigation
+    private func showChannelView(channel: Channel) {
+        
+        let channelVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "channelView") as! ChannelDetailTableViewController  // name is Main because our storyboard name is Main.storyboard.. "as! ChannelTableViewController" because this identifier belongs to ChannelTableViewController
+        channelVC.channel = channel
+        channelVC.delegate = self
+        self.navigationController?.pushViewController(channelVC, animated: true)
+    }
+    
+    private func showChat(channel: Channel) {
+        print("chat of channel ", channel.name)
+    }
 
+}
+
+
+extension ChannelsTableViewController: ChannelDetailTableViewControllerDelegate {
+    
+    func didClickFollow() {  // so whenever we follow a channel, this func will be called once we pop the view
+        self.downloadAllChannels()
+    }
 }
