@@ -45,7 +45,7 @@ class ChannelDetailTableViewController: UITableViewController {
     private func showChannelData() {
         self.title = channel.name
         nameLabel.text = channel.name
-        membersLabel.text = "\(channel.memberIds.count) Üye"
+        membersLabel.text = "\(channel.memberIds.count) Takipçi"
         aboutText.text = channel.aboutChannel
         setAvatar(avatarLink: channel.avatarLink)
     }

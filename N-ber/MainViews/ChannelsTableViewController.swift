@@ -64,6 +64,31 @@ class ChannelsTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
+        if channelSegmentOutlet.selectedSegmentIndex == 1 {
+            return false
+        } else {
+            
+            return subscribedChannels[indexPath.row].adminId != User.currentId  // if we are not the administrator, this will be the true, and then we will say canEdit return true, so we can swipe left on our channel.. if we are that mean we are not going to allow to do that
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        
+        if editingStyle == .delete {
+        
+            var channelToUnfollow = subscribedChannels[indexPath.row]
+            subscribedChannels.remove(at: indexPath.row)
+            
+            if let index = channelToUnfollow.memberIds.firstIndex(of: User.currentId) {
+                channelToUnfollow.memberIds.remove(at: index)
+            }
+            
+            FirebaseChannelListener.shared.saveChannel(channelToUnfollow)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
     
     //MARK: - IB Actions
