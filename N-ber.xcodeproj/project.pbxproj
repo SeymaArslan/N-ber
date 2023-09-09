@@ -15,6 +15,7 @@
 		1236A50E2AAA542200AC3B1E /* AddChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */; };
 		1236A5102AAB03FC00AC3B1E /* FirebaseChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */; };
 		1236A5122AAC74F300AC3B1E /* ChannelDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5112AAC74F300AC3B1E /* ChannelDetailTableViewController.swift */; };
+		1236A5142AACA13E00AC3B1E /* ChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5132AACA13E00AC3B1E /* ChannelChatViewController.swift */; };
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
 		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		123A93E62AA366FF00F65F58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 123A93E52AA366FF00F65F58 /* README.md */; };
@@ -76,6 +77,7 @@
 		1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelTableViewController.swift; sourceTree = "<group>"; };
 		1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChannelListener.swift; sourceTree = "<group>"; };
 		1236A5112AAC74F300AC3B1E /* ChannelDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailTableViewController.swift; sourceTree = "<group>"; };
+		1236A5132AACA13E00AC3B1E /* ChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatViewController.swift; sourceTree = "<group>"; };
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		123A93E52AA366FF00F65F58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				1242BE092A9616C00011332A /* ProfileTableViewController.swift */,
 				12853DA52AA86C09001C8A7E /* MapViewController.swift */,
 				1242BE162A9E19A20011332A /* ChatViewController.swift */,
+				1236A5132AACA13E00AC3B1E /* ChannelChatViewController.swift */,
 				1236A50B2AAA541200AC3B1E /* MyChannelsTableViewController.swift */,
 				1236A50D2AAA542200AC3B1E /* AddChannelTableViewController.swift */,
 				1236A5112AAC74F300AC3B1E /* ChannelDetailTableViewController.swift */,
@@ -470,6 +473,7 @@
 				12BFE5B42A913AB9005748B2 /* SettingsTableViewController.swift in Sources */,
 				1236A50A2AA9F5F300AC3B1E /* ChannelTableViewCell.swift in Sources */,
 				123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */,
+				1236A5142AACA13E00AC3B1E /* ChannelChatViewController.swift in Sources */,
 				12F3DFE32A93F6AD002A7E12 /* Extensions.swift in Sources */,
 				12853D982AA5F4AC001C8A7E /* FirebaseTypingListener.swift in Sources */,
 				1236A50E2AAA542200AC3B1E /* AddChannelTableViewController.swift in Sources */,

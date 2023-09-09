@@ -13,7 +13,6 @@ import RealmSwift
 
 class ChatViewController: MessagesViewController {
 
-    
     //MARK: - Views
     let leftBarButtonView: UIView = { // this will be our container view and now we are going to you
         return UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
@@ -36,6 +35,8 @@ class ChatViewController: MessagesViewController {
     }()
     
     
+    
+    
     //MARK: - Vars
     private var chatId = ""
     private var recipientId = ""
@@ -46,13 +47,7 @@ class ChatViewController: MessagesViewController {
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
     let refreshController = UIRefreshControl()
-    
-    let micButton = InputBarButtonItem()
-    
-    var mkMessages: [MKMessage] = []
-    var allLocalMessages: Results<LocalMessage>!
-    
-    let realm = try! Realm()
+    var gallery: GalleryController!
     
     var displayMessagesCount = 0
     var maxMessageNumber = 0
@@ -60,7 +55,12 @@ class ChatViewController: MessagesViewController {
     
     var typingCounter = 0  // that is going to listen for our typing changes so we save our typing changes
     
-    var gallery: GalleryController!
+    var mkMessages: [MKMessage] = []
+    var allLocalMessages: Results<LocalMessage>!
+    
+    let realm = try! Realm()
+    
+    let micButton = InputBarButtonItem()
     
     // Listeners
     var notificationToken: NotificationToken?
@@ -68,6 +68,9 @@ class ChatViewController: MessagesViewController {
     var longPressGesture: UILongPressGestureRecognizer!
     var audioFileName: String = ""
     var audioDuration: Date!
+    
+    
+    
     
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
@@ -95,6 +98,7 @@ class ChatViewController: MessagesViewController {
         
         configureMessageCollectionView()
         configureGestureRecognizer()
+        
         configureMessageInputBar()
 
         loadChats()
@@ -116,6 +120,8 @@ class ChatViewController: MessagesViewController {
         FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
         audioController.stopAnyOngoingPlaying()
     }
+    
+    
     
     
     //MARK: - Configurations
@@ -236,6 +242,8 @@ class ChatViewController: MessagesViewController {
     }
     
     
+    
+    
     //MARK: - Insert messages
     private func listenForReadStatusChange() {
         FirebaseMessageListener.shared.listenForReadStatusChange(User.currentId, collectionId: chatId) { updatedMessage in
@@ -257,10 +265,6 @@ class ChatViewController: MessagesViewController {
         for i in minMessageMember ..< maxMessageNumber {
             insertMessage(allLocalMessages[i])
         }
-        
-//        for message in allLocalMessages {
-//            insertMessage(message)
-//        }
     }
     
     private func insertMessage(_ localMessage: LocalMessage) { // So this function is going just the loop and calls are insert message and this function, we are dividing the tasks so that this function knows only how to take a local message, convert it into a message.. So we want to put every new MKMessage there
@@ -285,9 +289,7 @@ class ChatViewController: MessagesViewController {
         for i in (minMessageMember ... maxMessageNumber).reversed() { // we add the message old message, it should be at the index zero of our array (func of insertMessage)
             
             insertOlderMessage(allLocalMessages[i])
-            
         }
-        
     }
     
     private func insertOlderMessage(_ localMessage: LocalMessage) {
@@ -297,6 +299,27 @@ class ChatViewController: MessagesViewController {
         displayMessagesCount += 1
     }
     
+    
+    
+    
+    //MARK: - Update read messages status
+    private func updatedMessage(_ localMessage: LocalMessage) {
+        // the first thing we want to do is to find that message
+        for index in 0 ..< mkMessages.count {
+            let tempMessage = mkMessages[index]
+            if localMessage.id == tempMessage.messageId {
+                mkMessages[index].status = localMessage.status
+                mkMessages[index].readDate = localMessage.readDate
+                
+                RealmManager.shared.saveToRealm(localMessage)
+                
+                if mkMessages[index].status == kRead {
+                    self.messagesCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
     private func markMessageAsRead(_ localMessage: LocalMessage) {
         if localMessage.senderId != User.currentId && localMessage.status != kRead {
             FirebaseMessageListener.shared.updateMessageInFirebase(localMessage, memberIds: [User.currentId, recipientId])
@@ -304,17 +327,19 @@ class ChatViewController: MessagesViewController {
     }
     
     
-    //MARK: - Actions
-    func messageSend(text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0) {
-        
-        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, audioDuration: audioDuration, memberIds: [User.currentId, recipientId])
-        
-    }
     
+    
+    //MARK: - Actions
     @objc func backButtonPressed() {
         FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
         removeListeners()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func messageSend(text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0) {
+        
+        OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, location: location, audioDuration: audioDuration, memberIds: [User.currentId, recipientId])
+        
     }
     
     private func actionAttachMessage() {
@@ -354,6 +379,39 @@ class ChatViewController: MessagesViewController {
     }
     
     
+    
+    
+    //MARK: - UIScrollViewDelegate
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshController.isRefreshing {
+            if displayMessagesCount < allLocalMessages.count {
+                self.loadMoreMessages(maxNumber: maxMessageNumber, minNumber: minMessageMember)  // load earlear messages
+                
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshController.endRefreshing()
+        }
+    }
+    
+    
+    
+    //MARK: - Helpers
+    private func removeListeners() {
+        FirebaseTypingListener.shared.removeTypingListener()
+        // we want to remove our message listener because we don't want to listen for any new messages when we leave the chatRoom
+        FirebaseMessageListener.shared.removeListeners()
+    }
+    
+    private func lastMessageDate() -> Date {
+        let lastMessageDate = allLocalMessages.last?.date ?? Date() // The scenario is, we started brandnew chat there are no messages, so that last this thing will be nil (allLocalMessages.last?.date) because there are no messages in our local messages, so then we want to keep listening for any new chats starting from now so that if somebody types, we will recieve it, so this is the starting from now date which will return to the current date and time (Date())
+        
+        // What we want to do is add one second to this date, and the reason that we are doing this is because when we do a filter in firebase is greater than specific date, for some reason, if there is another object with the value of the same date, so it will return that one as well, so we don't want to do it, for example in our case if I put it if I don't add the current date, this last message will be returned twice, so if I add one second to the last message date, it will keep this message
+        return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate  // this will be our function that returns the last message date
+    }
+    
+    
+    
+    
     //MARK: - Update typing indicator
     func createTypingObserver() {
         FirebaseTypingListener.shared.createTypingObserver(chatRoomId: chatId) { (isTyping) in
@@ -388,52 +446,6 @@ class ChatViewController: MessagesViewController {
         subTitleLabel.text = show ? "Yazıyor.." : ""
     }
     
-    
-    //MARK: - UIScrollViewDelegate
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if refreshController.isRefreshing {
-            if displayMessagesCount < allLocalMessages.count {
-                self.loadMoreMessages(maxNumber: maxMessageNumber, minNumber: minMessageMember)  // load earlear messages
-                
-                messagesCollectionView.reloadDataAndKeepOffset()
-            }
-            refreshController.endRefreshing()
-        }
-    }
-    
-    
-    //MARK: - Update read message status
-    private func updatedMessage(_ localMessage: LocalMessage) {
-        // the first thing we want to do is to find that message
-        for index in 0 ..< mkMessages.count {
-            let tempMessage = mkMessages[index]
-            if localMessage.id == tempMessage.messageId {
-                mkMessages[index].status = localMessage.status
-                mkMessages[index].readDate = localMessage.readDate
-                
-                RealmManager.shared.saveToRealm(localMessage)
-                
-                if mkMessages[index].status == kRead {
-                    self.messagesCollectionView.reloadData()
-                }
-            }
-        }
-    }
-    
-    
-    //MARK: - Helpers
-    private func removeListeners() {
-        FirebaseTypingListener.shared.removeTypingListener()
-        // we want to remove our message listener because we don't want to listen for any new messages when we leave the chatRoom
-        FirebaseMessageListener.shared.removeListeners()
-    }
-    
-    private func lastMessageDate() -> Date {
-        let lastMessageDate = allLocalMessages.last?.date ?? Date() // The scenario is, we started brandnew chat there are no messages, so that last this thing will be nil (allLocalMessages.last?.date) because there are no messages in our local messages, so then we want to keep listening for any new chats starting from now so that if somebody types, we will recieve it, so this is the starting from now date which will return to the current date and time (Date())
-        
-        // What we want to do is add one second to this date, and the reason that we are doing this is because when we do a filter in firebase is greater than specific date, for some reason, if there is another object with the value of the same date, so it will return that one as well, so we don't want to do it, for example in our case if I put it if I don't add the current date, this last message will be returned twice, so if I add one second to the last message date, it will keep this message
-        return Calendar.current.date(byAdding: .second, value: 1, to: lastMessageDate) ?? lastMessageDate  // this will be our function that returns the last message date
-    }
     
     
     //MARK: - Gallery

@@ -8,6 +8,7 @@
 import Foundation
 import MessageKit
 
+//MARK: - ChatVC
 extension ChatViewController: MessagesDataSource {
     
     func currentSender() -> MessageKit.SenderType {  // sender type waiting 2 value first is id second is username and we are going to return to sender type.. Create MKSender in MessageKiyDefaults struct
@@ -24,8 +25,9 @@ extension ChatViewController: MessagesDataSource {
         mkMessages.count
     }
     
-    //MARK: - Cell top labels
     
+    
+    //MARK: - Cell top labels
     func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
         if indexPath.section % 3 == 0 { // We will say if in this part toward section can be divided to three without any leftovers, that it means this is every third message and we want to show our title
             
@@ -61,5 +63,52 @@ extension ChatViewController: MessagesDataSource {
         }
         return nil
     }
-    
 }
+
+
+
+
+//MARK: - ChannelChatVC
+extension ChannelChatViewController: MessagesDataSource {
+    
+    func currentSender() -> MessageKit.SenderType {
+        return currentUser
+    }
+    
+    func messageForItem(at indexPath: IndexPath, in messagesCollectionView: MessageKit.MessagesCollectionView) -> MessageKit.MessageType {
+        
+        return mkMessages[indexPath.section]
+    }
+    
+    func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
+        mkMessages.count
+    }
+    
+    
+    
+    //MARK: - Cell top labels
+    func cellTopLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        if indexPath.section % 3 == 0 {
+            let showLoadMore = (indexPath.section == 0) && (allLocalMessages.count > displayMessagesCount)
+            let text = showLoadMore ? "Önceki mesajlarınız için kaydırın" : MessageKitDateFormatter.shared.string(from: message.sentDate)
+            let font = showLoadMore ? UIFont.systemFont(ofSize: 13) : UIFont.boldSystemFont(ofSize: 10)
+            let color = showLoadMore ? UIColor.systemBlue : UIColor.systemGray2
+            
+            return NSAttributedString(string: text, attributes: [.font: font, .foregroundColor: color])
+        }
+        return nil
+    }
+    
+
+    // message bottom label
+    func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
+        
+        if indexPath.section != mkMessages.count - 1 {
+            let font = UIFont.boldSystemFont(ofSize: 10)
+            let color = UIColor.systemGray2
+            return NSAttributedString(string: message.sentDate.time(), attributes: [.font: font, .foregroundColor: color])
+        }
+        return nil
+    }
+}
+
