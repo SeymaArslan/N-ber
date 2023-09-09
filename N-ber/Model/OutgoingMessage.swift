@@ -53,28 +53,79 @@ class OutgoingMessage {
         
     }
     
+    
+    class func sendChannel(channel: Channel, text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0) {
+        
+        let currentUser = User.currentUser!
+        var channel = channel
+        
+        let message = LocalMessage()
+        message.id = UUID().uuidString
+        message.chatRoomId = channel.id
+        message.senderId = currentUser.id
+        message.senderName = currentUser.username
+        
+        message.senderInitials = String(currentUser.username.first!)
+        message.date = Date()
+        message.status = kSent
+        
+        if text != nil {
+            sendTextMessage(message: message, text: text!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if photo != nil {
+            sendPictureMessage(message: message, photo: photo!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if video != nil {
+            sendVideoMessage(message: message, video: video!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if location != nil {
+            sendLocationMessage(message: message, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if audio != nil {
+            sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        // send push notification
+        
+        channel.lastMessageDate = Date()
+        FirebaseChannelListener.shared.saveChannel(channel)
+        
+    }
+    
+    
     class func sendMessage(message: LocalMessage, memberIds: [String]) { // the task of this func will be simply to save these to our own and to save these to our firebase for each user
         RealmManager.shared.saveToRealm(message)
         
         for memberId in memberIds {
             FirebaseMessageListener.shared.addMessage(message, memberId: memberId)
         }
-        
+    }
+    
+    
+    class func sendChannelMessage(message: LocalMessage, channel: Channel) { // the task of this func will be simply to save these to our own and to save these to our firebase for each user
+        RealmManager.shared.saveToRealm(message)
+        FirebaseMessageListener.shared.addChannelMessage(message, channel: channel)
     }
     
 }
 
-func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
+func sendTextMessage(message: LocalMessage, text: String, memberIds: [String], channel: Channel? = nil) {
     
     message.message = text
     message.type = kText
     
-    OutgoingMessage.sendMessage(message: message, memberIds: memberIds) // we call this function and we pass our message and sendTextMessage function.
-    
+    if channel != nil {
+        OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+    } else {
+        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    }
 }
 
-func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String]) {
-    print("Fotoğraflı mesaj gönderildi")
+func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String], channel: Channel? = nil) {
     
     message.message = "+ Fotoğraf"
     message.type = kPhoto
@@ -89,13 +140,17 @@ func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [Strin
         if imageURL != nil {
             message.pictureUrl = imageURL!
             
-            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            if channel != nil {
+                OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+            } else {
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            }
         }
     }
     
 }
 
-func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) {
+func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String], channel: Channel? = nil) {
     
     message.message = "+ Video"
     message.type = kVideo
@@ -120,12 +175,15 @@ func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) 
                     FileStorage.saveFileLocally(fileData: videoData!, fileName: fileName + ".mov")
                     
                     FileStorage.uploadVideo(videoData!, directory: videoDirectory) { (videoLink) in
-                        // once we receive the video link, it means we have completed all the things we are required to send a message
+                        
                         message.pictureUrl = imageLink ?? ""
                         message.videoUrl = videoLink ?? ""
                         
-                        // and once we have these, we're going to send our message, which is just calling our OutgoingMessage func, which just takes the local message with our changes and saves these to our fireplace
-                        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+                        if channel != nil {
+                            OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+                        } else {
+                            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+                        }
                     }
                 }
             }
@@ -135,8 +193,7 @@ func sendVideoMessage(message: LocalMessage, video: Video, memberIds: [String]) 
 }
 
 
-func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
-    // here we want to access our message and also access our current location
+func sendLocationMessage(message: LocalMessage, memberIds: [String], channel: Channel? = nil) {
     
     let currentLocation = LocationManager.shared.currentLocation
     message.message = "+ Konum"
@@ -144,10 +201,14 @@ func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
     message.latitude = currentLocation?.latitude ?? 0.0
     message.longitude = currentLocation?.longitude ?? 0.0
     
-    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    if channel != nil {
+        OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+    } else {
+        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    }
 }
 
-func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String]) {
+func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String], channel: Channel? = nil) {
     
     message.message = "+ Sesli mesaj"
     message.type = kAudio
@@ -160,7 +221,11 @@ func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuratio
             message.audioUrl = audioUrl ?? ""
             message.audioDuration = Double(audioDuration)
             
-            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            if channel != nil {
+                OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+            } else {
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            }
         }
     }
     

@@ -99,6 +99,14 @@ class FirebaseMessageListener {
         }
     }
     
+    func addChannelMessage(_ message: LocalMessage, channel: Channel){
+        do {
+            let _ = try FirebaseReference(.Messages).document(channel.id).collection(channel.id).document(message.id).setData(from: message)
+        } catch {
+            print("Mesaj kaydedilirken hata oluştu ", error.localizedDescription)
+        }
+    }
+    
     
     //MARK: - UpdateMessageStatus
     func updateMessageInFirebase(_ message: LocalMessage, memberIds: [String]) { // whenever our user is reading a message here, we want to take that message and change a status to be read, and then we are also going to update the date it was read so our sender can check when was the mwssage read and at the status is read or sent And to do that, we are going to write one function here.

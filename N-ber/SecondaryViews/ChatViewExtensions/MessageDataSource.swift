@@ -102,13 +102,9 @@ extension ChannelChatViewController: MessagesDataSource {
 
     // message bottom label
     func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
-        
-        if indexPath.section != mkMessages.count - 1 {
-            let font = UIFont.boldSystemFont(ofSize: 10)
-            let color = UIColor.systemGray2
-            return NSAttributedString(string: message.sentDate.time(), attributes: [.font: font, .foregroundColor: color])
-        }
-        return nil
+        let font = UIFont.boldSystemFont(ofSize: 10)
+        let color = UIColor.systemGray2
+        return NSAttributedString(string: message.sentDate.time(), attributes: [.font: font, .foregroundColor: color])
     }
 }
 

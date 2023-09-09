@@ -60,7 +60,7 @@ extension ChannelChatViewController: MessagesLayoutDelegate {
     //MARK: - Message bottom label
     func messageBottomLabelHeight(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> CGFloat {
         
-        return indexPath.section != mkMessages.count - 1 ? 10 : 0
+        return 10
     }
     
     func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
