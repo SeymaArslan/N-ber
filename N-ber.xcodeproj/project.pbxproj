@@ -16,6 +16,7 @@
 		1236A5102AAB03FC00AC3B1E /* FirebaseChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */; };
 		1236A5122AAC74F300AC3B1E /* ChannelDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5112AAC74F300AC3B1E /* ChannelDetailTableViewController.swift */; };
 		1236A5142AACA13E00AC3B1E /* ChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5132AACA13E00AC3B1E /* ChannelChatViewController.swift */; };
+		1236A5162AADF83A00AC3B1E /* PushNotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1236A5152AADF83A00AC3B1E /* PushNotificationService.swift */; };
 		123A93E22AA0800D00F65F58 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E12AA0800D00F65F58 /* RealmManager.swift */; };
 		123A93E42AA0869E00F65F58 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */; };
 		123A93E62AA366FF00F65F58 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 123A93E52AA366FF00F65F58 /* README.md */; };
@@ -78,6 +79,7 @@
 		1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseChannelListener.swift; sourceTree = "<group>"; };
 		1236A5112AAC74F300AC3B1E /* ChannelDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailTableViewController.swift; sourceTree = "<group>"; };
 		1236A5132AACA13E00AC3B1E /* ChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatViewController.swift; sourceTree = "<group>"; };
+		1236A5152AADF83A00AC3B1E /* PushNotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationService.swift; sourceTree = "<group>"; };
 		123A93E12AA0800D00F65F58 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		123A93E32AA0869E00F65F58 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		123A93E52AA366FF00F65F58 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 				123A93E72AA3695400F65F58 /* FirebaseMessageListener.swift */,
 				1236A50F2AAB03FC00AC3B1E /* FirebaseChannelListener.swift */,
 				12F3DFDE2A938C5D002A7E12 /* FileStorage.swift */,
+				1236A5152AADF83A00AC3B1E /* PushNotificationService.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				12F3DFDF2A938C5D002A7E12 /* FileStorage.swift in Sources */,
 				1242BE132A9A59600011332A /* FirebaseRecentListener.swift in Sources */,
 				12F3DFE12A93E792002A7E12 /*  GlobalFunctions.swift in Sources */,
+				1236A5162AADF83A00AC3B1E /* PushNotificationService.swift in Sources */,
 				128E4FCD2A9F5C5E0028244D /* InputBarAccessoryViewDelegate.swift in Sources */,
 				128E4FCF2A9F62220028244D /* MessageKitDefaults.swift in Sources */,
 				128E4FC72A9F5C210028244D /* MessageCellDelegate.swift in Sources */,
@@ -657,10 +661,11 @@
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kitaplığına erişmek istiyor.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kamerana erişmek istiyor.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumuna erişmek istiyor.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kütüphanenize erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kameranıza erişmek istiyor.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) mikrofonunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) galerinize erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -692,10 +697,11 @@
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kitaplığına erişmek istiyor.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kamerana erişmek istiyor.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumuna erişmek istiyor.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) fotoğraf kitaplığına erişmek istiyor.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_NAME) medya kütüphanenize erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) kameranıza erişmek istiyor.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_NAME) konumunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_NAME) mikrofonunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_NAME) galerinize erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

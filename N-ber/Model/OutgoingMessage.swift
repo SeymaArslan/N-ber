@@ -26,7 +26,6 @@ class OutgoingMessage {
         message.status = kSent
         
         if text != nil {
-            // send textMessage
             sendTextMessage(message: message, text: text!, memberIds: memberIds)
         }
         
@@ -46,8 +45,13 @@ class OutgoingMessage {
 //            print("ses gönder ", audio, audioDuration)
             sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
         }
+  
         
-        //TODO: send push notification
+  // +++++++++++
+        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: memberIds), body: message.message, chatRoomId: chatId) // +++++
+    // ++++++++
+        
+        
         
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
         
@@ -89,7 +93,11 @@ class OutgoingMessage {
             sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: channel.memberIds, channel: channel)
         }
         
-        // send push notification
+        
+        // +++++++++++
+        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: channel.memberIds), body: message.message, channel: channel, chatRoomId: channel.id) // +++++
+          // ++++++++
+        
         
         channel.lastMessageDate = Date()
         FirebaseChannelListener.shared.saveChannel(channel)

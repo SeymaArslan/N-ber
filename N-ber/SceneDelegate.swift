@@ -18,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         autoLogin()
+        
+        resetBudge()  // +++++++++
+        
         guard let _ = (scene as? UIWindowScene) else { return }
         
     }
@@ -27,23 +30,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
+        
+        resetBudge()  // +++++++++
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         LocationManager.shared.startUpdating()  // once we go, we closed our application and reopen, we are going to stop and start our location and then scene will resign active
+        
+        resetBudge()  // +++++++++
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         LocationManager.shared.stopUpdating()
     }
 
+    
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        
+        resetBudge()  // +++++++++
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         LocationManager.shared.stopUpdating() // here we want to stop
+        
+        resetBudge()  // +++++++++
     }
 
     //MARK: - Autologin
@@ -63,6 +75,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let mainView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainView") as! UITabBarController
         
         self.window?.rootViewController = mainView
+    }
+    
+    
+    // ++++++
+    private func resetBudge() {
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
     
 }

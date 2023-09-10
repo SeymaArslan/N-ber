@@ -11,6 +11,8 @@ let userDefaults = UserDefaults.standard
 
 public let kFileReference = "gs://n-ber-39675.appspot.com"
 
+public let kServerKey = "" // +++++
+
 public let kNumberOfMessages = 12
 
 public let kCURRENTUSER = "currentUser"
