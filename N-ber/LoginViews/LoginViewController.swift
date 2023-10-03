@@ -11,6 +11,7 @@ import ProgressHUD
 class LoginViewController: UIViewController {
 
     //MARK: - Outlets
+
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var repeatPasswordLabel: UILabel!
@@ -34,7 +35,6 @@ class LoginViewController: UIViewController {
         updateUIFor(login: true)
         setupTextFieldDelegates()
         setupBackgroungTap()
-        
     }
 
     //MARK: - Actions
@@ -64,9 +64,8 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
-        updateUIFor(login: sender.titleLabel?.text == "Giriş")
+        updateUIFor(login: sender.titleLabel?.text == "Giriş yapın")
         isLogin.toggle()
-        resendEmailButtonOutlet.isHidden = true
     }
     
     //MARK: - Setup
@@ -93,14 +92,13 @@ class LoginViewController: UIViewController {
     
     private func updateUIFor(login: Bool) {
         loginButtonOutlet.setTitle(login ? "Giriş" : "Kayıt" , for: .normal)
-        signUpButtonOutlet.setTitle(login ? "Kayıt Ol" : "Giriş", for: .normal)
-        signUpLabel.text = login ? "Hesabım Yok?" : "Hesabım Var"
+        signUpButtonOutlet.setTitle(login ? "Kayıt olun" : "Giriş yapın", for: .normal)
+        signUpLabel.text = login ? "Bir hesabınız yok mu?" : "Bir hesabınız var mı?"
         
         UIView.animate(withDuration: 0.5) {
             self.repeatPasswordTextField.isHidden = login
             self.repeatPasswordLabel.isHidden = login
             self.repeatPasswordLineView.isHidden = login
-            self.resendEmailButtonOutlet.isHidden = login
         }
     }
     
@@ -154,12 +152,12 @@ class LoginViewController: UIViewController {
                     self.resendEmailButtonOutlet.isHidden = false
                 } else {
                     ProgressHUD.showFailed(error?.localizedDescription)
-                    self.resendEmailButtonOutlet.isHidden = true
+//                    self.resendEmailButtonOutlet.isHidden = true
                 }
             }
         } else {
             ProgressHUD.showFailed("Girdiğiniz şifreler birbirinden farklı.")
-            self.resendEmailButtonOutlet.isHidden = true
+//            self.resendEmailButtonOutlet.isHidden = true
         }
     }
     
@@ -178,7 +176,7 @@ class LoginViewController: UIViewController {
             if error == nil {
                 ProgressHUD.showSuccess("Yeni doğrulama maili gönderildi.")
             } else {
-//                ProgressHUD.showFailed(error!.localizedDescription)
+                ProgressHUD.showFailed(error!.localizedDescription)
                 print(error!.localizedDescription)
             }
         }

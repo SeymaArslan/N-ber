@@ -118,6 +118,7 @@
 		128E4FCE2A9F62220028244D /* MessageKitDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageKitDefaults.swift; sourceTree = "<group>"; };
 		128E4FD02A9F71730028244D /* MKMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMessage.swift; sourceTree = "<group>"; };
 		128E4FD22A9F75E40028244D /* LocalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalMessage.swift; sourceTree = "<group>"; };
+		12B46D792AC9B7A200A61184 /* N-ber.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "N-ber.entitlements"; sourceTree = "<group>"; };
 		12BFE5A82A8E5D55005748B2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		12BFE5AB2A8E60DB005748B2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		12BFE5AD2A8E9CB8005748B2 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
@@ -223,6 +224,7 @@
 		125D2C162A8C041A003415B1 /* N-ber */ = {
 			isa = PBXGroup;
 			children = (
+				12B46D792AC9B7A200A61184 /* N-ber.entitlements */,
 				125D2C172A8C041A003415B1 /* AppDelegate.swift */,
 				125D2C192A8C041A003415B1 /* SceneDelegate.swift */,
 				1242BE082A9614560011332A /* MainViews */,
@@ -656,6 +658,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "N-ber/N-ber.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
@@ -692,6 +695,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "N-ber/N-ber.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CG2DGVAM4V;
