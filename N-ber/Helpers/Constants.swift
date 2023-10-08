@@ -11,7 +11,7 @@ let userDefaults = UserDefaults.standard
 
 public let kFileReference = "gs://n-ber-39675.appspot.com"
 
-public let kServerKey = "" // +++++
+public let kServerKey = "AAAAMI5pbT0:APA91bE1EBLMXt0o7Cd3ARg77WImn4rMXY758CInO3TGfNW7saP3Ct4_E9LN1k_O3Wu-0abLAy1FMvCVgWa45nCdgslD6e4fR1tV2cBr1fk5QWOuTQ8f7NPmoBxJ5AYMqO7DZi6GkZ8w"
 
 public let kNumberOfMessages = 12
 

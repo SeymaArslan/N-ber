@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseCore
-import FirebaseMessaging  // ++++
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        Messaging.messaging().delegate = self  //+++++
-        requestPushNotificationPermissin()   // ++++
+        Messaging.messaging().delegate = self
+        requestPushNotificationPermissin()
         
         firstRunCheck()
         
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     
-    //MARK: - Remote Notifications ++++
+    //MARK: - Remote Notifications
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -56,9 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func requestPushNotificationPermissin() {
         UNUserNotificationCenter.current().delegate = self
-        
         let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-
         UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { _, _ in
             
         }
@@ -85,24 +83,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             userDefaults.synchronize()
         }
-        
     }
-
 }
 
-// +++++
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
         completionHandler()
     }
 }
 
-// +++++
 extension AppDelegate: MessagingDelegate { // this is our cloud firebase.. from pods firebaseMessaging
-    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print(" user push topken is ", fcmToken)
+        print("......user push topken is ", fcmToken)
         updateUserPushId(newPushId: fcmToken!)
     }
 }

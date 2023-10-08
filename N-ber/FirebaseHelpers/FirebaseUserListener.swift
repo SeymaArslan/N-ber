@@ -152,7 +152,7 @@ class FirebaseUserListener {
     }
     
     
-    //MARK: - Update ++++
+    //MARK: - Update
     func updateUserInFirebase(_ user: User) {
         do {
             let _ = try FirebaseReference(.User).document(user.id).setData(from: user)
@@ -160,8 +160,4 @@ class FirebaseUserListener {
             print(error.localizedDescription, "updating user")
         }
     }
-    
-    
-    
 }
-

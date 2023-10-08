@@ -31,7 +31,6 @@ class ChannelDetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         navigationItem.largeTitleDisplayMode = .never
         tableView.tableFooterView = UIView()  // tablonun ilk hücresi büyük  bir boşluğa sahip engellemek için bu kodu yazıyoruz
         
