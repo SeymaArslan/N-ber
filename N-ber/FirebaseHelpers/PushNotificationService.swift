@@ -3,7 +3,7 @@
 //  N-ber
 //
 //  Created by Seyma on 10.09.2023.
-//   +++++
+//
 
 import Foundation
 
@@ -23,8 +23,7 @@ class PushNotificationService {
             }
         }
     }
-    
-    
+
     private func sendMessageToUser(to token: String, title: String, body: String, chatRoomId: String) {
         
         let urlString = "https://fcm.googleapis.com/fcm/send"

@@ -10,18 +10,15 @@ import UIKit
 import AVFoundation
 
 
-func removeCurrentUserFrom(userIds: [String]) -> [String] {  // +++++++++++
+func removeCurrentUserFrom(userIds: [String]) -> [String] {
     var allIds = userIds
-    
     for id in allIds {
         if id == User.currentId {
             allIds.remove(at: allIds.firstIndex(of: id)!)
         }
     }
-    
     return allIds
 }
-
 
 func fileNameFrom(fileUrl: String) -> String {
     return ((fileUrl.components(separatedBy: "_").last)!.components(separatedBy: "?").first!).components(separatedBy: ".").first!

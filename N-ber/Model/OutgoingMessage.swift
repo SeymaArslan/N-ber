@@ -42,21 +42,12 @@ class OutgoingMessage {
         }
         
         if audio != nil {
-//            print("ses gönder ", audio, audioDuration)
             sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
         }
-  
-        
-  // +++++++++++
-        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: memberIds), body: message.message, chatRoomId: chatId) // +++++
-    // ++++++++
-        
-        
-        
+
+        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: memberIds), body: message.message, chatRoomId: chatId)
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
-        
     }
-    
     
     class func sendChannel(channel: Channel, text: String?, photo: UIImage?, video: Video?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         
@@ -92,18 +83,11 @@ class OutgoingMessage {
         if audio != nil {
             sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: channel.memberIds, channel: channel)
         }
-        
-        
-        // +++++++++++
-        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: channel.memberIds), body: message.message, channel: channel, chatRoomId: channel.id) // +++++
-          // ++++++++
-        
-        
+
+        PushNotificationService.shared.sendPushNotificationTo(userIds: removeCurrentUserFrom(userIds: channel.memberIds), body: message.message, channel: channel, chatRoomId: channel.id)
         channel.lastMessageDate = Date()
         FirebaseChannelListener.shared.saveChannel(channel)
-        
     }
-    
     
     class func sendMessage(message: LocalMessage, memberIds: [String]) { // the task of this func will be simply to save these to our own and to save these to our firebase for each user
         RealmManager.shared.saveToRealm(message)
@@ -113,16 +97,13 @@ class OutgoingMessage {
         }
     }
     
-    
     class func sendChannelMessage(message: LocalMessage, channel: Channel) { // the task of this func will be simply to save these to our own and to save these to our firebase for each user
         RealmManager.shared.saveToRealm(message)
         FirebaseMessageListener.shared.addChannelMessage(message, channel: channel)
     }
-    
 }
 
 func sendTextMessage(message: LocalMessage, text: String, memberIds: [String], channel: Channel? = nil) {
-    
     message.message = text
     message.type = kText
     

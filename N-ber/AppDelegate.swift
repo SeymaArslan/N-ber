@@ -94,7 +94,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
 extension AppDelegate: MessagingDelegate { // this is our cloud firebase.. from pods firebaseMessaging
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("......user push topken is ", fcmToken)
+        print("......user push token is ", fcmToken)
         updateUserPushId(newPushId: fcmToken!)
     }
 }

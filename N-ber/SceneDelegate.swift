@@ -19,10 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         autoLogin()
         
-        resetBudge()  // +++++++++
+        resetBudge()
         
         guard let _ = (scene as? UIWindowScene) else { return }
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -31,31 +30,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not necessarily discarded (see `application:didDiscardSceneSessions` instead).
         
-        resetBudge()  // +++++++++
+        resetBudge()
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         LocationManager.shared.startUpdating()  // once we go, we closed our application and reopen, we are going to stop and start our location and then scene will resign active
         
-        resetBudge()  // +++++++++
+        resetBudge()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
         LocationManager.shared.stopUpdating()
     }
 
-    
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
-        
-        resetBudge()  // +++++++++
+        resetBudge()
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         LocationManager.shared.stopUpdating() // here we want to stop
-        
-        resetBudge()  // +++++++++
+        resetBudge()
     }
 
     //MARK: - Autologin
@@ -67,7 +63,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     self.goToApp()
                 }
             }
-            
         })
     }
     
@@ -77,11 +72,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window?.rootViewController = mainView
     }
     
-    
-    // ++++++
     private func resetBudge() {
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
-    
 }
-
