@@ -344,7 +344,15 @@ class ChatViewController: MessagesViewController {
     
     private func actionAttachMessage() {
         messageInputBar.inputTextView.resignFirstResponder()
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+//        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet) // only iphone
+        var alertStyle = UIAlertController.Style.actionSheet // for ipad
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            alertStyle = UIAlertController.Style.alert
+        }
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: alertStyle)
+
+        
         
         let takePhotoOrVideo = UIAlertAction(title: "Kamera", style: .default) { (alert) in
 

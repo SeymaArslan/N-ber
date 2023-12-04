@@ -51,27 +51,30 @@ class SettingsTableViewController: UITableViewController {
     
     //MARK: -  Actions
     @IBAction func tellAFriendButtonPressed(_ sender: Any) {
-        let textToShare = String(describing: "N-ber")
-        guard let appURLToShare = URL(string: "https://lionelo.tech/birEsnaf/index.php"), let image = UIImage(named: "AppIcon.png") else {   //  ********** URL olarak app url i vermeyi unutma
-            return
-        }
+
+        let firstActivityItem = "N-ber'i paylaş"
+        let secondActivityItem: NSURL = NSURL(string: "https://www.google.com")!
+        let image: UIImage = UIImage(named: "icon.png")!
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem, secondActivityItem, image], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = (sender as! UIButton)
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.down
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
         
-        let items = [textToShare, appURLToShare, image] as [Any]
-        let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        activityViewController.activityItemsConfiguration = [UIActivity.ActivityType.message] as? UIActivityItemsConfigurationReading
         
-        avc.excludedActivityTypes = [
-            UIActivity.ActivityType.airDrop,
+        activityViewController.excludedActivityTypes = [
+            UIActivity.ActivityType.postToWeibo,
             UIActivity.ActivityType.print,
+            UIActivity.ActivityType.assignToContact,
             UIActivity.ActivityType.saveToCameraRoll,
-            UIActivity.ActivityType.addToReadingList
+            UIActivity.ActivityType.addToReadingList,
+            UIActivity.ActivityType.postToFlickr,
+            UIActivity.ActivityType.postToVimeo,
+            UIActivity.ActivityType.postToTencentWeibo,
+            UIActivity.ActivityType.postToFacebook
         ]
-    
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            if avc.responds(to: #selector(getter: UIViewController.popoverPresentationController)) {
-                avc.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
-            }
-        }
-        self.present(avc, animated: true, completion: nil)
+        activityViewController.isModalInPresentation = true
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     @IBAction func termsAndConditionsButtonPressed(_ sender: Any) {
@@ -137,5 +140,5 @@ class SettingsTableViewController: UITableViewController {
             
         }
     }
-    
+
 }
