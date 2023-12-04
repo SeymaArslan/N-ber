@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SettingsTableViewController: UITableViewController {
 
@@ -49,12 +50,34 @@ class SettingsTableViewController: UITableViewController {
     }
     
     //MARK: -  Actions
-    @IBAction func tellAFrindButtonPressed(_ sender: Any) {
-        print("Arkadaşlarına öner")
+    @IBAction func tellAFriendButtonPressed(_ sender: Any) {
+        let textToShare = String(describing: "N-ber")
+        guard let appURLToShare = URL(string: "https://lionelo.tech/birEsnaf/index.php"), let image = UIImage(named: "AppIcon.png") else {   //  ********** URL olarak app url i vermeyi unutma
+            return
+        }
+        
+        let items = [textToShare, appURLToShare, image] as [Any]
+        let avc = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        
+        avc.excludedActivityTypes = [
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.print,
+            UIActivity.ActivityType.saveToCameraRoll,
+            UIActivity.ActivityType.addToReadingList
+        ]
+    
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if avc.responds(to: #selector(getter: UIViewController.popoverPresentationController)) {
+                avc.popoverPresentationController?.barButtonItem = sender as? UIBarButtonItem
+            }
+        }
+        self.present(avc, animated: true, completion: nil)
     }
     
     @IBAction func termsAndConditionsButtonPressed(_ sender: Any) {
-        print("Şartlar ve Koşullar")
+        let alert = UIAlertController(title: "Şartlar ve koşullar", message: "Linke gidiniz, Link: https://lionelo.tech/birEsnaf/index.php", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Tamam", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func logOutButtonPressed(_ sender: Any) {
@@ -66,6 +89,33 @@ class SettingsTableViewController: UITableViewController {
                     self.present(loginView, animated: true, completion: nil)
                //     self.dismiss(animated: true, completion: nil)
                 }
+            }
+        }
+    }
+    
+    @IBAction func deleteUserAccount(_ sender: Any) {
+        FirebaseUserListener.shared.deleteAccountCurrentUser { error in
+            if error == nil {
+                ProgressHUD.showSuccess("Hesabınız Silindi.")
+                let loginView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                DispatchQueue.main.async {
+                    loginView.modalPresentationStyle = .fullScreen
+                    self.present(loginView, animated: true, completion: nil)
+                }
+            }
+        }
+        if var user = User.currentUser {
+            FirebaseUserListener.shared.deleteUserToFirestore(user) { success in
+                if success {
+                    let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                    DispatchQueue.main.async {
+                        loginView.modalPresentationStyle = .fullScreen
+                        self.present(loginView, animated: true, completion: nil)
+                    }
+                } else {
+                    ProgressHUD.showSuccess("Silme işlemi gerçekleşemedi.")
+                }
+                
             }
         }
     }

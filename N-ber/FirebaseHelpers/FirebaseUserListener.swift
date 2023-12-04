@@ -10,7 +10,7 @@ import Firebase
 
 class FirebaseUserListener {
     static let shared = FirebaseUserListener()
-
+    
     private init () {
     }
     
@@ -78,6 +78,33 @@ class FirebaseUserListener {
         })
     }
     
+
+    func deleteAccountCurrentUser(completion: @escaping(_ error: Error?) -> Void) {
+        Auth.auth().currentUser?.delete { error in  // bu func 2
+            if let error = error {
+                // hata atarsa
+                completion(error)
+            } else {
+                // hesap silindi
+                userDefaults.removeObject(forKey: kCURRENTUSER)
+                userDefaults.synchronize()
+                completion(nil)
+            }
+        }
+    }
+    
+    func deleteUserToFirestore(_ user: User, completion: @escaping (Bool) -> ()) {
+        FirebaseReference(.User).document(user.id).delete { error in
+            if let error = error {
+                print("Error: deleting review user \(user.id) -- \(error.localizedDescription) ")
+                completion(false)
+            } else {
+                print("Successfully deleted \(user.id).")
+                completion(true)
+            }
+        }
+    }
+    
     //MARK: - Save users
     func saveUserToFirestore(_ user: User) {
         do {
@@ -86,6 +113,8 @@ class FirebaseUserListener {
             print(error.localizedDescription, "adding user")
         }
     }
+    
+    
     
     //MARK: - DownloadUserFromFirebase
     func downloadUserFromFirebase(userId: String, email: String? = nil) {
@@ -160,4 +189,6 @@ class FirebaseUserListener {
             print(error.localizedDescription, "updating user")
         }
     }
+    
+
 }

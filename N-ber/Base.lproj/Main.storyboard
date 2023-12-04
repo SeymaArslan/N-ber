@@ -315,7 +315,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="g5f-hi-n0t" kind="relationship" relationship="viewControllers" id="rXd-Ut-MeX"/>
-                        <segue destination="8WN-2n-Uaq" kind="relationship" relationship="viewControllers" id="lLR-TC-q4G"/>
                         <segue destination="8kI-OR-reH" kind="relationship" relationship="viewControllers" id="1Ak-pU-5UT"/>
                         <segue destination="OrQ-vN-8uc" kind="relationship" relationship="viewControllers" id="j4k-UW-YN2"/>
                     </connections>
@@ -450,7 +449,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="49.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sk-2g-DpF">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sk-2g-DpF">
                                                     <rect key="frame" x="16" y="7" width="338.66666666666669" height="35.333333333333336"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Arkadaşına Öner"/>
@@ -474,7 +473,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-bg-pa4">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebM-bg-pa4">
                                                     <rect key="frame" x="16" y="7" width="338.66666666666669" height="35"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Şartlar ve Koşullar"/>
@@ -518,18 +517,18 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="ycU-SY-s4F">
-                                        <rect key="frame" x="0.0" y="451.66666793823242" width="393" height="50.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="451.66666793823242" width="393" height="52.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ycU-SY-s4F" id="eTn-PV-DoL">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="50.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="52.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFH-dp-kVK">
-                                                    <rect key="frame" x="16" y="7" width="369" height="36.666666666666664"/>
+                                                    <rect key="frame" x="16" y="7" width="369" height="38.333333333333336"/>
                                                     <color key="tintColor" systemColor="systemOrangeColor"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Çıkış">
-                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="18"/>
+                                                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
                                                     </buttonConfiguration>
                                                     <connections>
                                                         <action selector="logOutButtonPressed:" destination="eud-ls-zdU" eventType="touchUpInside" id="WPg-MN-itE"/>
@@ -541,6 +540,33 @@
                                                 <constraint firstItem="kFH-dp-kVK" firstAttribute="leading" secondItem="eTn-PV-DoL" secondAttribute="leading" constant="16" id="8pZ-J1-8Yy"/>
                                                 <constraint firstItem="kFH-dp-kVK" firstAttribute="centerY" secondItem="eTn-PV-DoL" secondAttribute="centerY" id="ZLT-wb-onl"/>
                                                 <constraint firstAttribute="trailing" secondItem="kFH-dp-kVK" secondAttribute="trailing" constant="8" id="fct-uJ-0WQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="54s-5h-wcO">
+                                        <rect key="frame" x="0.0" y="504" width="393" height="50.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="54s-5h-wcO" id="fPg-EZ-Pyn">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="50.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WWl-Vu-fgY">
+                                                    <rect key="frame" x="16" y="7" width="369" height="36.666666666666664"/>
+                                                    <color key="tintColor" systemColor="systemRedColor"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Hesabımı Sil">
+                                                        <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="deleteUserAccount:" destination="eud-ls-zdU" eventType="touchUpInside" id="6DH-IG-4xP"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WWl-Vu-fgY" firstAttribute="top" secondItem="fPg-EZ-Pyn" secondAttribute="top" constant="7" id="INj-uf-ZGk"/>
+                                                <constraint firstAttribute="trailing" secondItem="WWl-Vu-fgY" secondAttribute="trailing" constant="8" id="SBo-kd-iN1"/>
+                                                <constraint firstItem="WWl-Vu-fgY" firstAttribute="leading" secondItem="fPg-EZ-Pyn" secondAttribute="leading" constant="16" id="wBn-pO-fzv"/>
+                                                <constraint firstItem="WWl-Vu-fgY" firstAttribute="centerY" secondItem="fPg-EZ-Pyn" secondAttribute="centerY" id="zgI-ND-4Od"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -633,7 +659,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Adınız" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Dw-y6-WdV">
-                                                    <rect key="frame" x="20" y="15.333333333333332" width="353" height="19.666666666666668"/>
+                                                    <rect key="frame" x="20" y="15.333333333333334" width="353" height="19.666666666666664"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                                 </textField>
@@ -1370,19 +1396,22 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
