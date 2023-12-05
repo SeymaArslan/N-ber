@@ -665,11 +665,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "N-ber medya kütüphanenize erişmek istiyor.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "N-ber kameranıza erişmek istiyor.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için medya kütüphanenize erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için kameranıza erişmek istiyor.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "N-ber mesajlaşırken anlık konumunuzu gönderebilmeniz için erişim istiyor.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "N-ber mikrofonunuza erişmek istiyor.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "N-ber galerinize erişmek istiyor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "N-ber sesli mesaj gönderebilmeniz için mikrofonunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için galerinize erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -680,13 +680,16 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seymarslan.N-ber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -704,11 +707,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "N-ber/Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
-				INFOPLIST_KEY_NSAppleMusicUsageDescription = "N-ber medya kütüphanenize erişmek istiyor.";
-				INFOPLIST_KEY_NSCameraUsageDescription = "N-ber kameranıza erişmek istiyor.";
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için medya kütüphanenize erişmek istiyor.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için kameranıza erişmek istiyor.";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "N-ber mesajlaşırken anlık konumunuzu gönderebilmeniz için erişim istiyor.";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "N-ber mikrofonunuza erişmek istiyor.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "N-ber galerinize erişmek istiyor.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "N-ber sesli mesaj gönderebilmeniz için mikrofonunuza erişmek istiyor.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "N-ber profil fotoğrafınızı değiştirmeniz ve mesajlaşırken fotoğraf/video paylaşabilmeniz için galerinize erişmek istiyor.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -719,12 +722,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.seymarslan.N-ber";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

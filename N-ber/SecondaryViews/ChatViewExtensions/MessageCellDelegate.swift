@@ -52,10 +52,41 @@ extension ChatViewController: MessageCellDelegate {
     
     func didTapMessage(in cell: MessageCollectionViewCell) { // burada func sadece harita için fakat text mesajları içinde çağırılıyor bu yüzdeeeen ... let's get access to our cell index
         
+
+        
         if let indexPath = messagesCollectionView.indexPath(for: cell) {
             let mkMessage = mkMessages[indexPath.section]
+
             
-            if mkMessage.locationItem != nil {  
+//            var alertStyle = UIAlertController.Style.actionSheet // for ipad
+//            if UIDevice.current.userInterfaceIdiom == .pad {
+//                alertStyle = UIAlertController.Style.alert
+//            }
+//            let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: alertStyle)
+//            
+//            
+//            
+//            let reportMessage = UIAlertAction(title: "Mesajı Bildir?", style: .default) { (alert) in
+//                
+//                self.showImageGallery(camera: true)
+//            }
+//            
+//            let cancelAction = UIAlertAction(title: "Kapat", style: .cancel, handler: nil)
+//            
+//            reportMessage.setValue(UIImage(systemName: "exclamationmark.circle"), forKey: "image")
+//            shareMedia.setValue(UIImage(systemName: "photo.fill"), forKey: "image")
+//            shareLocation.setValue(UIImage(systemName: "mappin.and.ellipse"), forKey: "image")
+//            
+//            optionMenu.addAction(reportMessage)
+//            optionMenu.addAction(shareMedia)
+//            optionMenu.addAction(shareLocation)
+//            optionMenu.addAction(cancelAction)
+//            
+//            self.present(optionMenu, animated: true, completion: nil)
+            
+            
+            
+            if mkMessage.locationItem != nil {
                 let mapView = MapViewController()
                 mapView.location = mkMessage.locationItem?.location
                 
